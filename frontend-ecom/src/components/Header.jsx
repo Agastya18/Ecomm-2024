@@ -1,17 +1,18 @@
 import {NavLink} from 'react-router-dom'
 import { GiShoppingBag } from 'react-icons/gi'
-
+import logo from '../assets/logo.png'
 import toast from 'react-hot-toast'
-
+import { BsCart } from "react-icons/bs";
 const Header = () => {
 
   
   return (
-    <div className="  h-[10vh] flex items-center  shadow-md justify-around ">
+    <div className="  h-[12vh] flex items-center  shadow-md justify-around bg-[#a1b0c1] ">
       <div className=' flex '>
-      <div className=' font-bold'><GiShoppingBag/></div>
-        <h1 className="text-2xl font-bold ml-[20%]  " style={{ fontFamily:"Lumanosimo" }}>  
-         Logo</h1>
+     
+        <NavLink to={"/"}>
+          <img src={logo} alt="logo" width={"90px "} height={"40px"} />
+        </NavLink>
       </div>
         <ul  className=" flex gap-5 font-bold  ml-[20%]   " style={{ fontFamily:"Lumanosimo" }}>
           <li>
@@ -25,7 +26,7 @@ const Header = () => {
           </li>
           
           <li>
-          <NavLink to="/cart"  className=" hover:text-indigo-600  text-xl active:text-indigo-600 ">Cart(0)</NavLink>
+          <NavLink to="/cart"  className=" hover:text-indigo-600    active:text-indigo-600 flex flex-row "><BsCart size={"30px"} /> <sup>1</sup></NavLink>
           </li>
         </ul>
      

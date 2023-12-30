@@ -11,7 +11,7 @@ function App() {
 
   return (
     
-     <>
+     <div >
       <Routes>
         <Route path="/" element={<Home/>} />
         
@@ -21,7 +21,9 @@ function App() {
         <Route path="*" element={<PageNot/>} />
         
       </Routes>
-     </>
+     </div>
+      
+     
     
   )
 }

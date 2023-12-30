@@ -1,8 +1,8 @@
-import React from 'react'
+
 
 const HomeScreen = () => {
   return (
-    <div className=' h-[80vh]'>HomeScreen</div>
+    <div className=' h-[78vh]'>HomeScreen</div>
   )
 }
 
