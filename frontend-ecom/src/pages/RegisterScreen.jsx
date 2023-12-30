@@ -4,7 +4,7 @@ import { Link ,useNavigate} from "react-router-dom"
 import axios from 'axios'
 const RegisterScreen = () => {
   const [name,setName]= useState("")
-  const [pass,setPass]= useState("")
+  const [password,setPass]= useState("")
   const [email,setEmail]= useState("")
   const navigate = useNavigate()
   const handleSubmit=async(e)=>{
@@ -59,7 +59,7 @@ const RegisterScreen = () => {
                  <input label="password"
                     type="password"
                     id="password"
-                   value={pass}
+                   value={password}
                    onChange={(e)=>setPass(e.target.value)}
                    className=' w-full p-2 border border-gray-300 rounded-md focus:outline-none '
                 />
