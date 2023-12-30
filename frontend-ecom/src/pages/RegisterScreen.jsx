@@ -9,8 +9,8 @@ const RegisterScreen = () => {
   const navigate = useNavigate()
   const handleSubmit=async(e)=>{
     e.preventDefault()
-    console.log(name,pass,email)
-    if(!name || !pass || !email){
+    console.log(name,password,email)
+    if(!name || !password || !email){
         alert('please fill all the fields')
         return
     }
@@ -18,7 +18,7 @@ const RegisterScreen = () => {
     const userData={
       name: name,
       email: email,
-      password: pass
+      password: password
     }
     try {
      
@@ -27,7 +27,7 @@ const RegisterScreen = () => {
       toast.success("user created successfully")
       navigate('/signin')
     } catch (error) {
-   
+      toast.error("An error occurred")
       console.log(error)
     }
     

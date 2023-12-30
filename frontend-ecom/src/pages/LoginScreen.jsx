@@ -30,7 +30,7 @@ const LoginScreen = () => {
 }
   return (
     
-        <div className=' h-[80vh] bg-gray-300 flex flex-col justify-center items-center'>
+        <div className=' h-[100vh] bg-gray-300 flex flex-col justify-center items-center'>
         <div className=' bg-white px-16 pt-8 pb-12 mb-4'>
               <h1 className=' text-3xl font-mono text-center'>Login</h1>
               <form >
