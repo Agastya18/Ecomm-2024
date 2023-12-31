@@ -7,7 +7,7 @@ const Header = () => {
 
   
   return (
-    <div className="  h-[12vh] flex items-center  shadow-md justify-around bg-[#abbacb] ">
+    <div className="  h-[10vh] flex items-center  shadow-md justify-around bg-[#abbacb] ">
       <div className=' flex '>
      
         <NavLink to={"/"}>

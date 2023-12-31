@@ -4,7 +4,7 @@ import { BsCart3 } from "react-icons/bs";
 const ProductCard = ({product}) => {
   return (
     <Link to={'#'}>
-      <div className="relative m-10 w-full max-w-xs overflow-hidden rounded-lg bg-white shadow-xl hover:-translate-y-1 hover:scale-110  duration-300">
+      <div className="relative m-3 w-full max-w-xs overflow-hidden rounded-lg bg-white shadow-xl hover:-translate-y-1 hover:scale-100  duration-300">
   <a href="#">
     <img
       className="h-50 rounded-t-lg object-cover"
@@ -15,7 +15,7 @@ const ProductCard = ({product}) => {
   <span className="absolute top-0 left-0 w-28 translate-y-4 -translate-x-6 -rotate-45 bg-black text-center text-sm text-white">
     Sale
   </span>
-  <div className="mt-3 px-5 pb-4">
+  <div className="mt-2 px-5 pb-2">
     <a href="#">
       <h5 className="text-xl font-semibold tracking-tight text-slate-900">
        {product.name}
@@ -74,7 +74,7 @@ const ProductCard = ({product}) => {
     <div className="flex items-center justify-between">
       <p>
         <span className="text-3xl font-bold text-slate-900">${product.price}</span>
-        <span className="text-sm text-slate-900 line-through">$299</span>
+        <span className="text-sm text-slate-900 line-through  ml-1">$299</span>
       </p>
       <a
         href="#"
