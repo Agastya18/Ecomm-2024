@@ -7,7 +7,7 @@ const Header = () => {
 
   
   return (
-    <div className="  h-[12vh] flex items-center  shadow-md justify-around bg-[#a1b0c1] ">
+    <div className="  h-[12vh] flex items-center  shadow-md justify-around bg-[#abbacb] ">
       <div className=' flex '>
      
         <NavLink to={"/"}>
@@ -16,7 +16,7 @@ const Header = () => {
       </div>
         <ul  className=" flex gap-5 font-bold  ml-[20%]   " style={{ fontFamily:"Lumanosimo" }}>
           <li>
-          <NavLink to="/" className=" hover:text-indigo-600  text-xl active:text-indigo-600 ">home</NavLink>
+          <NavLink to="/" className=" hover:text-white  text-xl active:text-indigo-600 ">home</NavLink>
           </li>
           <li>
           <NavLink to="/about" className=" hover:text-indigo-600  text-xl active:text-indigo-600 ">about</NavLink>
