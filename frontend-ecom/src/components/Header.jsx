@@ -7,30 +7,28 @@ const Header = () => {
 
   
   return (
-    <div className="  h-[10vh] flex items-center  shadow-md justify-around bg-[#abbacb] ">
-      <div className=' flex '>
-     
-        <NavLink to={"/"}>
-          <img src={logo} alt="logo" width={"90px "} height={"40px"} />
-        </NavLink>
-      </div>
-        <ul  className=" flex gap-5 font-bold  ml-[20%]   " style={{ fontFamily:"Lumanosimo" }}>
-          <li>
-          <NavLink to="/" className=" hover:text-white  text-xl active:text-indigo-600 ">home</NavLink>
-          </li>
-          <li>
-          <NavLink to="/about" className=" hover:text-indigo-600  text-xl active:text-indigo-600 ">about</NavLink>
-          </li>
-          <li>
-          <NavLink to="/contact"  className=" hover:text-indigo-600  text-xl active:text-indigo-600 ">contact</NavLink>
-          </li>
-          
-          <li>
-          <NavLink to="/cart"  className=" hover:text-indigo-600    active:text-indigo-600 flex flex-row "><BsCart size={"30px"} /> <sup>1</sup></NavLink>
-          </li>
-        </ul>
-     
-    </div>
+    <nav className="  flex flex-wrap p-5 flex-col md:flex-row items-center shadow bg-slate-100 ">
+  <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+    <img src={logo} className=' w-16 h-16 ml-5'/>
+  </a>
+  <div className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base  justify-center">
+    <a className="mr-5">First Link</a>
+    <a className="mr-5">Second Link</a>
+    <a className="mr-5">Third Link</a>
+   
+  </div>
+  <div className='flex'>
+  <BsCart size={"25px"} className=' mr-5'/>
+  <span className='mr-8'>(0)</span>
+  </div>
+
+  
+  <button className="inline-flex items-center bg-yellow-500 border-0 py-1 px-3 mt-4 md:mt-0">
+    Click Me
+  </button>
+</nav>
+
+
   )
 }
 
