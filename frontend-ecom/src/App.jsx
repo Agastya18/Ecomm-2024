@@ -5,6 +5,7 @@ import Register from './pages/RegisterScreen'
 import Login from './pages/LoginScreen'
 import Home from './pages/HomeScreen'
 import PageNot from './pages/PageNotScreen'
+import ProductScreen from './pages/ProductScreen'
 
 function App() {
   
@@ -14,7 +15,7 @@ function App() {
      <div >
       <Routes>
         <Route path="/" element={<Home/>} />
-        
+        <Route path="/product/:id" element={<ProductScreen/>} />
         <Route path="/register" element={<Register/>} />
         <Route path="/login" element={<Login/>} />
         
