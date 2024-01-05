@@ -27,14 +27,14 @@ const Sidebar = () => {
   </button>
   <aside
     id="logo-sidebar"
-    className=" z-40  w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+    className=" z-40 top-0 left-0  w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
     aria-label="Sidebar"
   >
     <div className="h-full px-3 py-4 overflow-y-auto bg-zinc-100  ">
-      <a href="https://flowbite.com/" className="flex items-center ps-2.5 mb-5 mt-24  flex-col">
+      <a href="https://flowbite.com/" className="flex items-center ps-2.5 mb-5 mt-2  flex-col">
       <img
     src="https://res.cloudinary.com/youtube-cloud/image/upload/v1702963448/u1hls5ymyzpi17wdn5la.jpg"
-    className="rounded-full w-28  mr-24"
+    className="rounded-full w-28  mr-16"
     alt="profile picture"
     srcSet=""
   />
@@ -58,7 +58,7 @@ const Sidebar = () => {
               <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
               <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
             </svg>
-            <span className="ms-3">Agastya - Dashboard</span>
+            <span className="ms-3">Agastya-Dash</span>
           </a>
         </li>
        
@@ -130,8 +130,61 @@ const Sidebar = () => {
       </ul>
     </div>
   </aside>
-  <div className="p-4 w-full text-2xl  ">
-   User datadhaksdaskjdskjfkjsfhkjsdfsdf
+  <div className="p-4 w-[50%] ml-[10%] mt-10 text-2xl  ">
+  <div className="bg-white overflow-hidden shadow rounded-lg border">
+  <div className="px-4 py-5 sm:px-6">
+  <div className="flex items-center">
+  <div className="relative">
+    <img
+      className="h-24  mx-auto rounded-full  object-cover"
+      src="https://res.cloudinary.com/youtube-cloud/image/upload/v1702963448/u1hls5ymyzpi17wdn5la.jpg"
+      alt="Avatar"
+    />
+    <div className="absolute inset-0 rounded-full shadow-inner" />
+  </div>
+  <div className="ml-4">
+    <h2 className="font-bold text-gray-800 text-2xl">Agastya Gaur</h2>
+    <p className="text-gray-600 font-light text-sm mt-2">Software Engineer</p>
+    
+
+  </div>
+  <button className="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2 ml-28">Update </button>
+</div>
+
+    
+  </div>
+  <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
+    <dl className="sm:divide-y sm:divide-gray-200">
+      <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt className="text-sm font-medium text-gray-500">Full name</dt>
+        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          Agastya gaur
+        </dd>
+      </div>
+      <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt className="text-sm font-medium text-gray-500">Email address</dt>
+        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          agastya@example.com
+        </dd>
+      </div>
+      <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt className="text-sm font-medium text-gray-500">Password</dt>
+        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          12345
+        </dd>
+      </div>
+      <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt className="text-sm font-medium text-gray-500">confirm password</dt>
+        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          12345
+          <br />
+           
+        </dd>
+      </div>
+    </dl>
+  </div>
+</div>
+
   </div>
 </div>
 

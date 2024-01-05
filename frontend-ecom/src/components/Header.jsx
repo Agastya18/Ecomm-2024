@@ -8,7 +8,7 @@ const Header = () => {
   
   return (
     <nav className="  flex flex-wrap p-4 flex-col md:flex-row items-center shadow bg-slate-100 ">
-  <a className="flex title-font font-medium items-center text-gray-900  md:mb-0 flex-col">
+  <a className="flex title-font font-medium items-center text-gray-900  md:mb-0 flex-col ml-8">
     <img src={logo} className=' w-14 h-14 ml-2'/>
     <div className=' text-sm  font-light'>Kharido.com</div>
   </a>
@@ -25,7 +25,7 @@ const Header = () => {
 
   
   <button className="inline-flex items-center bg-yellow-500 border-0 py-1 px-3 mt-4 md:mt-0">
-    Click Me
+    Profile
   </button>
 </nav>
 

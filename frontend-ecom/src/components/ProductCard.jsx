@@ -7,7 +7,7 @@ const ProductCard = ({product}) => {
   return (
     <Link to={`/product/${product._id}`}>
       <div className="relative m-3 w-full max-w-xs overflow-hidden rounded-lg bg-white shadow-xl hover:-translate-y-1 hover:scale-100  duration-300">
-  <a href="#">
+  <a href="#" >
     <img
       className="h-50 rounded-t-lg object-cover"
       src={product.image}
