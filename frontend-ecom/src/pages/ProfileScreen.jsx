@@ -1,11 +1,14 @@
 
+import Layout from '../components/Layout'
 import Sidebar from '../components/Sidebar'
 
 const ProfileScreen = () => {
   return (
-    <div>
-        <Sidebar/>
-    </div>
+    
+        <Layout>
+            <Sidebar/>
+        </Layout>
+    
   )
 }
 

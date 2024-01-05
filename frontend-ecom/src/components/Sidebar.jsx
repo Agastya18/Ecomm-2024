@@ -2,7 +2,7 @@
 
 const Sidebar = () => {
   return (
-    <>
+    <div className=" flex">
   <button
     data-drawer-target="logo-sidebar"
     data-drawer-toggle="logo-sidebar"
@@ -27,7 +27,7 @@ const Sidebar = () => {
   </button>
   <aside
     id="logo-sidebar"
-    className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+    className=" z-40  w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
     aria-label="Sidebar"
   >
     <div className="h-full px-3 py-4 overflow-y-auto bg-zinc-100  ">
@@ -130,10 +130,10 @@ const Sidebar = () => {
       </ul>
     </div>
   </aside>
-  <div className="p-4 sm:ml-64 text-2xl">
-   User data
+  <div className="p-4 w-full text-2xl  ">
+   User datadhaksdaskjdskjfkjsfhkjsdfsdf
   </div>
-</>
+</div>
 
 
   )

@@ -8,7 +8,7 @@ const ProductScreen = () => {
     const product = productData.find((p) => p._id === productId)
     console.log(product)
   return (
-    <Layout>
+    <Layout title={"Product"}>
       <section className=" py-2 sm:py-3">
   <div className=" mx-auto px-4 ">
    
