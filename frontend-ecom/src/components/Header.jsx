@@ -1,15 +1,16 @@
 import {NavLink} from 'react-router-dom'
 import { GiShoppingBag } from 'react-icons/gi'
-import logo from '../assets/logo.png'
+import logo from '../assets/logo3.svg'
 import toast from 'react-hot-toast'
 import { BsCart } from "react-icons/bs";
 const Header = () => {
 
   
   return (
-    <nav className="  flex flex-wrap p-5 flex-col md:flex-row items-center shadow bg-slate-100 ">
-  <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-    <img src={logo} className=' w-16 h-16 ml-5'/>
+    <nav className="  flex flex-wrap p-4 flex-col md:flex-row items-center shadow bg-slate-100 ">
+  <a className="flex title-font font-medium items-center text-gray-900  md:mb-0 flex-col">
+    <img src={logo} className=' w-14 h-14 ml-2'/>
+    <div className=' text-sm  font-light'>Kharido.com</div>
   </a>
   <div className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base  justify-center">
     <a className="mr-5">First Link</a>
