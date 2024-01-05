@@ -2,13 +2,15 @@
 import productData from "../productData"
 import { useParams } from 'react-router-dom'
 import Rating from "../components/Rating";
+import Layout from "../components/Layout";
 const ProductScreen = () => {
     const {id: productId} = useParams();
     const product = productData.find((p) => p._id === productId)
     console.log(product)
   return (
-    <section className="py-12 sm:py-16">
-  <div className="container mx-auto px-4">
+    <Layout>
+      <section className=" py-2 sm:py-3">
+  <div className=" mx-auto px-4 ">
    
     <div className="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-12 lg:grid-cols-5 lg:gap-16">
       <div className="lg:col-span-3 lg:row-end-1">
@@ -207,6 +209,8 @@ const ProductScreen = () => {
     </div>
   </div>
 </section>
+    </Layout>
+
 
   )
 }

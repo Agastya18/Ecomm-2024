@@ -4,7 +4,7 @@ import product from "../productData"
 
 const HomeScreen = () => {
   return (
-    <Layout>
+    <Layout title={"Kharido.com"}>
       <div className=' h-[100%] '>
       <div className='flex flex-wrap justify-center'>
         {product.map((product) => (

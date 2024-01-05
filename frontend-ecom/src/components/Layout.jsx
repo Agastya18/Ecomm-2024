@@ -12,7 +12,7 @@ const Layout = ({children,title}) => {
 
     </Helmet>
      <Header />
-    <main style={{ minHeight: "80vh" }} >
+    <main style={{ minHeight: "80vh" }}  >
     
       {children}
 
