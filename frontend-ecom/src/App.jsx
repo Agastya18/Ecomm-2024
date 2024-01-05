@@ -9,6 +9,7 @@ import ProductScreen from './pages/ProductScreen'
 import CartScreen from './pages/CartScreen'
 import Sidebar from './components/Sidebar'
 import ProfileScreen from './pages/ProfileScreen'
+import { ShippingScreen } from './pages/ShippingScreen'
 
 function App() {
   
@@ -23,6 +24,7 @@ function App() {
         <Route path="/register" element={<Register/>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/side" element={<ProfileScreen/>} />
+        <Route path="/ship" element={<ShippingScreen/>} />
         <Route path="*" element={<PageNot/>} />
         
       </Routes>
