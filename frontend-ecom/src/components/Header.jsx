@@ -7,7 +7,7 @@ const Header = () => {
 
   
   return (
-    <nav className="  flex flex-wrap p-4 flex-col md:flex-row items-center shadow bg-slate-100 ">
+    <nav className="  flex flex-wrap p-4 flex-col md:flex-row items-center shadow bg-slate-200 ">
   <a className="flex title-font font-medium items-center text-gray-900  md:mb-0 flex-col ml-8">
     <img src={logo} className=' w-14 h-14 ml-2'/>
     <div className=' text-sm  font-light'>Kharido.com</div>
