@@ -52,7 +52,7 @@ const CartScreen = () => {
           <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
             <div className="mt-5 sm:mt-0">
               <h2 className="text-lg font-bold text-gray-900">
-                Nike Air Max 2019
+                Nike Air Max 2019 
               </h2>
               <p className="mt-1 text-sm text-gray-700 font-semibold">Nike</p>
             </div>

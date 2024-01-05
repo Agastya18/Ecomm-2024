@@ -7,6 +7,7 @@ import Home from './pages/HomeScreen'
 import PageNot from './pages/PageNotScreen'
 import ProductScreen from './pages/ProductScreen'
 import CartScreen from './pages/CartScreen'
+import Sidebar from './components/Sidebar'
 
 function App() {
   
@@ -20,7 +21,7 @@ function App() {
         <Route path='/cart' element={<CartScreen/>} />
         <Route path="/register" element={<Register/>} />
         <Route path="/login" element={<Login/>} />
-        
+        <Route path="/side" element={<Sidebar/>} />
         <Route path="*" element={<PageNot/>} />
         
       </Routes>

@@ -11,7 +11,7 @@ const LoginScreen = () => {
   const [email,setEmail]= useState("")
   const navigate = useNavigate()
  
-  const handleSubmit=async(e)=>{
+  const handleSubmit=async(e)=>{  
     e.preventDefault()
     console.log(password,email)
     if( !password || !email){
