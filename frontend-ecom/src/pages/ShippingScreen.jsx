@@ -1,13 +1,16 @@
 import Layout from "../components/Layout"
 import logo from "./../assets/ship2.jpg"
-
+import Progress from "../components/Progress"
 export const ShippingScreen = () => {
   return (
    <Layout title={"shipping"}>
+      <Progress/>
      <div className="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
-      <div className="container max-w-screen-lg mx-auto mb-12">
+     
+      <div className="container max-w-screen-lg mx-auto mb-28">
+      
         <div>
-          <h2 className="font-bold text-4xl ">Shipping Form</h2>
+          <h1 className="font-bold text-4xl ">Shipping Form</h1>
           <p className="text-gray-500 mb-6">
           Please fill out all the fields.
           </p>
