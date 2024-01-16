@@ -2,6 +2,7 @@
 import { MdDeleteForever } from "react-icons/md";
 import Layout from '../components/Layout';
 import Progress from '../components/Progress';
+import { Link } from "react-router-dom";
 const CartScreen = () => {
   return (
    <Layout title={"Cart"}>
@@ -108,9 +109,11 @@ const CartScreen = () => {
             
           </div>
         </div>
+        <Link to={"/ship"}>
         <button className="mt-5 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">
           Check out
         </button>
+        </Link>
    
         <a href="#" className="flex font-semibold text-indigo-600 text-sm mt-5 ml-2">
   <svg className="fill-current mr-2 text-indigo-600 w-4" viewBox="0 0 448 512">

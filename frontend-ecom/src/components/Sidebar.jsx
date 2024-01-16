@@ -2,7 +2,7 @@
 
 const Sidebar = () => {
   return (
-    <div className=" flex">
+    <div className=" flex ">
   <button
     data-drawer-target="logo-sidebar"
     data-drawer-toggle="logo-sidebar"
@@ -30,13 +30,13 @@ const Sidebar = () => {
     className=" z-40 top-0 left-0  w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
     aria-label="Sidebar"
   >
-    <div className="h-full px-3 py-4 overflow-y-auto bg-zinc-100  ">
-      <a href="https://flowbite.com/" className="flex items-center ps-2.5 mb-5 mt-2  flex-col">
+    <div className="h-full px-3 py-4 overflow-y-auto bg-zinc-100   ">
+      <a href="https://flowbite.com/" className="flex items-center ps-2.5 mb-5 mt-2  flex-col ">
       <img
-    src="https://res.cloudinary.com/youtube-cloud/image/upload/v1702963448/u1hls5ymyzpi17wdn5la.jpg"
-    className="rounded-full w-28  mr-16"
+    src={"https://res.cloudinary.com/youtube-cloud/image/upload/v1702963448/u1hls5ymyzpi17wdn5la.jpg"}
+    className="rounded-full w-28  mr-16 "
     alt="profile picture"
-    srcSet=""
+    
   />
         {/* <span className="self-center text-xl font-semibold whitespace-nowrap  ">
           Agastya
@@ -130,8 +130,8 @@ const Sidebar = () => {
       </ul>
     </div>
   </aside>
-  <div className="p-4 w-[50%] ml-[10%] mt-10 text-2xl  ">
-  <div className="bg-white overflow-hidden shadow rounded-lg border">
+  <div className="p-4 w-[50%] ml-[10%] mt-10 text-2xl   ">
+  <div className="bg-white overflow-hidden  rounded-lg border shadow-lg">
   <div className="px-4 py-5 sm:px-6">
   <div className="flex items-center">
   <div className="relative">
@@ -142,7 +142,7 @@ const Sidebar = () => {
     />
     <div className="absolute inset-0 rounded-full shadow-inner" />
   </div>
-  <div className="ml-4">
+  <div className="ml-4 ">
     <h2 className="font-bold text-gray-800 text-2xl">Agastya Gaur</h2>
     <p className="text-gray-600 font-light text-sm mt-2">Software Engineer</p>
     
@@ -153,7 +153,7 @@ const Sidebar = () => {
 
     
   </div>
-  <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
+  <div className="border-t border-gray-200 px-4 py-5 sm:p-0 ">
     <dl className="sm:divide-y sm:divide-gray-200">
       <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt className="text-sm font-medium text-gray-500">Full name</dt>

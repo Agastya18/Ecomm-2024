@@ -1,6 +1,7 @@
 import Layout from "../components/Layout"
 import logo from "./../assets/ship2.jpg"
 import Progress from "../components/Progress"
+import { Link } from "react-router-dom"
 export const ShippingScreen = () => {
   return (
    <Layout title={"shipping"}>
@@ -159,9 +160,11 @@ export const ShippingScreen = () => {
                  
                   <div className="md:col-span-5 text-right">
                     <div className="inline-flex items-end">
+                      <Link to ="/order">
                       <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         Submit
                       </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
