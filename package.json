@@ -9,7 +9,7 @@
     "start": "nodemon backend/server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "agastya gaur",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^3.0.3"

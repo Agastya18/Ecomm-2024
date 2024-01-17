@@ -1,6 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
-
+import products from './data/product.js';
 dotenv.config(
     // {
     //     path: './.env'
@@ -8,8 +8,19 @@ dotenv.config(
 );
 const app = express();
 const PORT=process.env.PORT
+
+//middlewares
+
+app.use(express.json());
+
+app.use(express.urlencoded({ extended: false }));
 app.get('/', (req, res) => {
-  res.send('Server is ready');
+  res.json(products);
+})
+app.get('/api/:id', (req, res) => {
+  const product = products.find((p) => p._id === req.params.id);
+  console.log(product);
+  res.json(product);
 })
 
 app.listen(PORT, () => {
