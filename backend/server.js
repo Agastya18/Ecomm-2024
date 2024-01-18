@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import products from './data/product.js';
+import connectDB from './config/db.js';
 dotenv.config(
     // {
     //     path: './.env'
@@ -8,7 +9,7 @@ dotenv.config(
 );
 const app = express();
 const PORT=process.env.PORT
-
+connectDB();
 //middlewares
 
 app.use(express.json());
