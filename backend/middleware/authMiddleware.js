@@ -26,7 +26,7 @@ import jwt from "jsonwebtoken";
 
 }
 
-const Admin = async(req,res)=>{
+const Admin = async(req,res,next)=>{
     try {
         const user = await User.findById(req.user._id).select("-password -refreshToken");
         if(user.isAdmin)
