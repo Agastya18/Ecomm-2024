@@ -1,6 +1,6 @@
 import { User } from "../models/userModel.js";
 import jwt from "jsonwebtoken";
-export const verifyUser=async(req,res,next)=>{
+ const verifyUser=async(req,res,next)=>{
     try {
     const token = req.cookies.accessToken || req.header("Authorization")?.replace("Bearer ", "")
        // console.log(token)
@@ -23,5 +23,26 @@ export const verifyUser=async(req,res,next)=>{
     } catch (error) {
         res.status(401).json({ message: "You need to Login error" });
     }
+
+}
+
+const Admin = async(req,res)=>{
+    try {
+        const user = await User.findById(req.user._id).select("-password -refreshToken");
+        if(user.isAdmin)
+        {
+            next();
+        }
+        else{
+            return res.status(401).json({ message: "You are not authorized as  admin" });
+        }
+    } catch (error) {
+        res.status(401).json({ message: "You are not admin error" });
+    }
+
+}
+export{
+    verifyUser,
+    Admin
 
 }

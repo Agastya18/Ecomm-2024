@@ -1,5 +1,8 @@
  import { User } from "../models/userModel.js";
 
+ // @desc    Register a new user
+// @route   POST /api/v1/register
+// @access  Public
  const userRegister = async(req,res)=>{
    const {name,email,password} = req.body;
    if(!name || !email || !password){
@@ -32,6 +35,9 @@
   
 
 }
+// @desc    login user & get token
+// @route   POST /api/v1/login
+// @access  Public
 const userLogin = async(req, res) => {
       const {email, password} = req.body;
         if(!email || !password){
@@ -81,6 +87,9 @@ const userLogin = async(req, res) => {
 
 }
 
+// @desc    Logout user / clear cookie
+// @route   POST /api/users/logout
+// @access  Private
 const userLogout = async(req,res)=>{
      const log= await User.findByIdAndUpdate(req.user._id,{refreshToken:null},{new:true})
      const option={
@@ -90,7 +99,94 @@ const userLogout = async(req,res)=>{
 
 }
 
+// @desc    Get user profile
+// @route   GET /api/users/profile
+// @access  Private
+const getCurrentUser = async(req,res)=>{
+   const currentUser= await User.findById(req.user._id).select("-password");
+    if(currentUser){
+         return res.status(200).json({message:"User found",currentUser})
+    }
+    else{
+         return res.status(400).json({message:"User not found"})
+    }
+}
 
+// @desc    Update user profile
+// @route   PUT /api/users/profile
+// @access  Private
+const updateUserProfile = async(req,res)=>{
+    const user = await User.findById(req.user._id);
+    if(user){
+        user.name = req.body.name || user.name;
+        user.email = req.body.email || user.email;
+        if(req.body.password){
+            user.password = req.body.password;
+        }
+        const updatedUser = await user.save({validateBeforeSave: false});
+        if(updatedUser){
+            return res.status(200).json({message:"User updated successfully",
+            user:{
+                _id:updatedUser._id,
+                name:updatedUser.name,
+                email:updatedUser.email,
+                isAdmin:updatedUser.isAdmin,
+                avatar:updatedUser.avatar,
+                refreshToken:updatedUser.refreshToken,
+            }})
+        }
+        else{
+            return res.status(400).json({message:"Invalid user data"})
+        }
+    }
+    else{
+        return res.status(400).json({message:"User not found"})
+    }
+
+}
+
+// @desc    Get user by ID
+// @route   GET /api/users/:id
+// @access  Private/Admin
+const getUserById = async(req,res)=>{
+    const user = await User.findById(req.params.id).select("-password");
+    if(user){
+        return res.status(200).json({message:"User found",user})
+    }
+    else{
+        return res.status(400).json({message:"User not found"})
+    }
+}
+
+// @desc    Update user
+// @route   PUT /api/users/:id
+// @access  Private/Admin
+const updateUserRole= async(req,res)=>{
+    const user = await User.findById(req.params.id);
+    if(user){
+        user.name = req.body.name || user.name;
+        user.email = req.body.email || user.email;
+        user.isAdmin = req.body.isAdmin;
+        const updatedUser = await user.save({validateBeforeSave: false});
+        if(updatedUser){
+            return res.status(200).json({message:"User updated successfully",
+            user:{
+                _id:updatedUser._id,
+                name:updatedUser.name,
+                email:updatedUser.email,
+                isAdmin:updatedUser.isAdmin,
+                avatar:updatedUser.avatar,
+                refreshToken:updatedUser.refreshToken,
+            }})
+        }
+        else{
+            return res.status(400).json({message:"Invalid user data"})
+        }
+    }
+    else{
+        return res.status(400).json({message:"User not found"})
+    }
+}
 
 
 
@@ -98,7 +194,10 @@ export {
     userRegister,
     userLogin,
     userLogout,
-    
+    getCurrentUser,
+    updateUserProfile,
+    getUserById,
+    updateUserRole,
 }
 
 
