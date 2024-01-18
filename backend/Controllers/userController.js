@@ -97,6 +97,7 @@ const userLogout = async(req,res)=>{
 export {
     userRegister,
     userLogin,
+    userLogout,
     
 }
 
