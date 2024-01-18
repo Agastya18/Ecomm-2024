@@ -4,9 +4,9 @@ import products from './data/product.js';
 import connectDB from './config/db.js';
 import cookieParser from 'cookie-parser';
 dotenv.config(
-     {
-         path: './.env'
-     }
+    //  {
+    //      path: './.env'
+    //  }
 );
 const app = express();
 const PORT=process.env.PORT
@@ -27,5 +27,5 @@ app.use('/api/v1', userRoute);
 
 
 app.listen(PORT, () => {
-  console.log(`Serve at http://localhost:${process.env.PORT}`);
+  console.log(`Serve running at:  http://localhost:${PORT}`);
 })
