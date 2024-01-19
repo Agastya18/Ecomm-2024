@@ -1,8 +1,10 @@
 import Layout from "../components/Layout"
 import ProductCard from "../components/ProductCard"
 import product from "../productData"
-
+import { useGetProductsQuery } from "../redux/slices/ProductApiSlice"
 const HomeScreen = () => {
+
+  const {data:product}= useGetProductsQuery()
   return (
     <Layout title={"Kharido.com"}>
       <div className=' h-[100%] '>
