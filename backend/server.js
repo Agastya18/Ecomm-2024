@@ -24,7 +24,8 @@ app.get('/', (req, res) => {
 import userRoute from './routes/userRoute.js';
 
 app.use('/api/v1', userRoute);
-
+import productRoute from './routes/productRoute.js';
+app.use('/api/v1',productRoute)
 
 app.listen(PORT, () => {
   console.log(`Serve running at:  http://localhost:${PORT}`);

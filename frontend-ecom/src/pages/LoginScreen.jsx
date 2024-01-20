@@ -5,8 +5,10 @@ import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import logo from "../assets/logo3.svg"
 import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux';
+import { loginFront } from '../redux/slices/authSlice'
 const LoginScreen = () => {
-
+  const dispatch = useDispatch()
     const [password,setPass]= useState("")
   const [email,setEmail]= useState("")
   const navigate = useNavigate()
@@ -21,6 +23,7 @@ const LoginScreen = () => {
     //api call
     try {
          const res= await axios.post('/api/v1/login',{email,password})
+         dispatch(loginFront(res.data))
          navigate("/")
          
     } catch (error) {
