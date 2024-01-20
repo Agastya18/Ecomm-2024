@@ -19,6 +19,20 @@ const createProduct= async(req,res)=>{
 
 
 }
+
+// @desc    Fetch single product
+// @route   GET /api/products/:id
+// @access  Public
+
+const getProductById=async(req,res)=>{
+    const product=await Product.findById(req.params.id);
+    if(product){
+        res.json({message:"Product found",product});
+    }else{
+        res.status(404).json({message:"Product not found"});
+    }
+}
 export {
     createProduct,
+    getProductById,
 }
