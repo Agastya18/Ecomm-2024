@@ -8,7 +8,7 @@ import { createProduct, getAllProducts, getProductById, updateProduct } from "..
 router.route("/create-product").post(verifyUser,Admin,createProduct);
 router.route("/get-product/:id").get(verifyUser,getProductById);
 //router.route("/pro").get(verifyUser,getAllProducts);
-router.route("/update-product/:id").put(verifyUser,updateProduct)
+router.route("/update-product/:id").put(verifyUser,Admin,updateProduct)
 
  
     
