@@ -7,7 +7,7 @@ import { createProduct, deleteProduct, getAllProducts, getProductById, updatePro
 
 router.route("/create-product").post(verifyUser,Admin,createProduct);
 router.route("/get-product/:id").get(verifyUser,getProductById);
-//router.route("/pro").get(verifyUser,getAllProducts);
+router.route("/pro").get(verifyUser,getAllProducts);
 router.route("/update-product/:id").put(verifyUser,Admin,updateProduct)
 router.route("/delete-product/:id").delete(verifyUser,Admin,deleteProduct)
 
