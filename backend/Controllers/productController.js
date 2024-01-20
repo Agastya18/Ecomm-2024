@@ -32,7 +32,54 @@ const getProductById=async(req,res)=>{
         res.status(404).json({message:"Product not found"});
     }
 }
+
+// @desc    Fetch all products
+// @route   GET /api/products
+// @access  Public
+
+const getAllProducts=async(req,res)=>{
+   try {
+    const products = await Product.find({});
+    if(products)
+    {
+        res.json({message:"Products found",products});
+    }
+    else{
+        res.status(404).json({message:"Products not found"});
+    }
+   } catch (error) {
+    console.log("not working........1.....1...");
+   }
+}
+
+// @desc    Update a product
+// @route   PUT /api/products/:id
+// @access  Private/Admin
+
+const updateProduct=async(req,res)=>{
+    const {name,description,price,brand,category,rating,shipping,countInStock,numReviews,images}=req.body;
+    const product=await Product.findById(req.params.id);
+    if(product){
+        product.name=name || product.name;
+        product.description=description || product.description;
+        product.price=price || product.price;
+        product.brand=brand || product.brand;
+        product.category=category || product.category;
+        product.rating=rating   || product.rating;
+        product.shipping=shipping || product.shipping;
+        product.countInStock=countInStock || product.countInStock;
+        product.numReviews=numReviews || product.numReviews;
+        product.images=images || product.images;
+        const updatedProduct=await product.save({ validateBeforeSave:false});
+        res.json({message:"Product updated successfully",product:updatedProduct});
+    }else{
+        res.status(404).json({message:"Product not found"});
+    }
+
+}
 export {
     createProduct,
     getProductById,
+    getAllProducts,
+    updateProduct,
 }
