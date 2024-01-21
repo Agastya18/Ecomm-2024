@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getCurrentUser, getUserById, updateUserProfile, updateUserRole, userLogin, userLogout, userRegister } from "../Controllers/userController.js";
+import {  getCurrentUser, getUserById, updateUserProfile, updateUserRole, userLogin, userLogout, userRegister } from "../Controllers/userController.js";
 import { Admin, verifyUser } from "../middleware/authMiddleware.js";
 
 
@@ -14,5 +14,5 @@ import { Admin, verifyUser } from "../middleware/authMiddleware.js";
  router.route("/update-user").put(verifyUser,updateUserProfile)
  router.route("/:id").get(verifyUser,getUserById)
  router.route("/:id").put(verifyUser,Admin,updateUserRole)
-    
+ 
 export default router;

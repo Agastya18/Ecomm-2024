@@ -1,6 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import products from './data/product.js';
+
 import connectDB from './config/db.js';
 import cookieParser from 'cookie-parser';
 dotenv.config(

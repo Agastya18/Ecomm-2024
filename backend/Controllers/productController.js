@@ -37,10 +37,10 @@ const getProductById=async(req,res)=>{
 // @route   GET /api/products
 // @access  Public
 
-const getAllProducts=async(req,res)=>{
+const getAllProducts= async(req,res)=>{
    try {
-    const products = await Product.find({});
-    res.json(products);
+   const products= await Product.find();
+   return  res.json(products);
     
    } catch (error) {
     console.log("not working........1.....1...");
@@ -123,4 +123,5 @@ export {
     getAllProducts,
     updateProduct,
     deleteProduct,
+    createProductReview,
 }

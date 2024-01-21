@@ -190,6 +190,7 @@ const updateUserRole= async(req,res)=>{
 
 
 
+
 export {
     userRegister,
     userLogin,
@@ -198,6 +199,7 @@ export {
     updateUserProfile,
     getUserById,
     updateUserRole,
+  
 }
 
 
