@@ -93,6 +93,22 @@ const deleteProduct=async(req,res)=>{
     }
 }
 
+// @desc    Get top rated products
+// @route   GET /api/products/top
+// @access  Public
+
+
+const getTopRatedProduct=async(req,res)=>{
+    const products=await Product.find({}).sort({rating:-1}).limit(3);
+    if(products){
+        res.json({message:"Top rated products found",products});
+    }else{
+        res.status(404).json({message:"Top rated products not found"});
+    }
+
+}
+
+
 // @desc    Create new review
 // @route   POST /api/products/:id/reviews
 // @access  Private
@@ -154,6 +170,7 @@ export {
     getAllProducts,
     updateProduct,
     deleteProduct,
+    getTopRatedProduct,
     createProductReview,
     getAllReviews,
     
