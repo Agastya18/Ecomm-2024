@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 
 import connectDB from './config/db.js';
 import cookieParser from 'cookie-parser';
+import userRoutes from './routes/userRoute.js';
+import productRoutes from './routes/productRoute.js';
 dotenv.config(
     //  {
     //      path: './.env'
@@ -18,14 +20,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser())
 
 //routes
-app.get('/', (req, res) => {
-  res.json(products);
-})
-import userRoute from './routes/userRoute.js';
 
-app.use('/api/v1', userRoute);
-import productRoute from './routes/productRoute.js';
-app.use('/api/v1',productRoute)
+
+
+app.use('/api/v1/user', userRoutes);
+
+app.use('/api/v1/product',productRoutes)
 
 app.listen(PORT, () => {
   console.log(`Serve running at:  http://localhost:${PORT}`);
