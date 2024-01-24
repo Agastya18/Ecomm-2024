@@ -128,17 +128,14 @@ const createProductReview=async(req,res)=>{
    }
 
     if(alreadyReviewed){
-            product.reviews.forEach((rev) => {
-                if (rev.user.toString() === req.user._id.toString())
-                  (rev.rating = rating), (rev.comment = comment);
-              });
-             // res.status(400).json({message:"Product already reviewed"});
-         }else{
-            product.reviews.push(review);
-            product.numReviews=product.reviews.length;
+           
+              res.status(400).json({message:"Product already reviewed"});
          }
+           
          
-        
+         
+         product.reviews.push(review);
+            product.numReviews=product.reviews.length;
          product.rating=product.reviews.reduce((acc,item)=>item.rating+acc,0)/product.reviews.length;
          await product.save({validateBeforeSave:false});
          res.status(201).json({message:"Review added"});
@@ -161,6 +158,29 @@ const  getAllReviews = async (req, res) => {
     }
   };
 
+  //detele reviews of a products
+// @route   DELETE /api/products/reviews
+// @access  Private
+
+const deleteReview = async (req, res) => {
+    const product = await Product.findById(req.query.id);
+    if (product) {
+      const reviews = product.reviews.filter(
+        (r) => r._id.toString() !== req.params.id.toString()
+      );
+      product.reviews = reviews;
+      product.numReviews = product.reviews.length;
+      product.rating =
+        product.reviews.reduce((acc, item) => item.rating + acc, 0) /
+        product.reviews.length;
+      await product.save({ validateBeforeSave: false });
+      res.json({message:"Review deleted"});
+    } else {
+      res.status(404).json({message:"Product not found"});
+    }
+  
+}
+
 
 
 
@@ -173,6 +193,7 @@ export {
     getTopRatedProduct,
     createProductReview,
     getAllReviews,
+    deleteReview,
     
    
 }
