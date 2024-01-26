@@ -7,9 +7,9 @@ import { createProduct, createProductReview, deleteProduct, deleteReview, getAll
 
 
 
-router.route("/create-product").post(verifyUser,Admin,createProduct);
-router.route("/get-product/:id").get(verifyUser,getProductById);
-router.route("/all-product").get(verifyUser,getAllProducts);
+router.route("/create-product").post(createProduct); // use verifyuser,admin in future
+router.route("/get-product/:id").get(getProductById); // use verifyuser in future
+router.route("/all-product").get(getAllProducts); // use verifyuser in future
 router.route("/update-product/:id").put(verifyUser,Admin,updateProduct)
 router.route("/delete-product/:id").delete(verifyUser,Admin,deleteProduct)
 router.route("/top-product").get(verifyUser,getTopRatedProduct)

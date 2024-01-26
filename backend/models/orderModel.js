@@ -60,16 +60,18 @@ const orderSchema = mongoose.Schema({
         type:Date
     },
     isDelivered:{      // or orderStatus
-        type:Boolean,
+        type:String,
         required:true,
-        default:false
+        default:"Processing"
     },
     deliveredAt:{
         type:Date
+    },
+    createdAt:{
+        type:Date,
+        default:Date.now
     }
     
-},{
-    timestamps:true
 });
 
 const Order = mongoose.model('Order',orderSchema);

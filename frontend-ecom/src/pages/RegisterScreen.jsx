@@ -24,7 +24,7 @@ const RegisterScreen = () => {
     }
     try {
      
-      const res= await axios.post('/api/v1/register',userData)
+      const res= await axios.post('/api/v1/user/register',userData)
       console.log(res.data)
       toast.success("user created successfully")
       navigate('/login')
