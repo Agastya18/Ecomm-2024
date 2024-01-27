@@ -1,16 +1,43 @@
 import Product from "../models/productModel.js";
-
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 // @desc    Create a product
 // @route   POST /api/products
 // @access  Private/Admin
 
 const createProduct= async(req,res)=>{
-    const {name,description,price,brand,category,rating,shipping,countInStock,numReviews,images}=req.body;
+const {name,description,price,brand,category,rating,shipping,countInStock,numReviews,images}=req.body;
      if(!name || !description || !price || !brand || !category || !rating || !shipping || !countInStock  || !numReviews ){
          return res.status(400).json({message:"Please fill all the fields"});
      }
-      const createProduct= await Product.create({name,description,price,brand,category,rating,shipping,countInStock,images,numReviews,user:req.user._id});
+    // console.log(req.files)
+     const filed= req.files
+       let locimages = [];
+        if(!filed){
+            return res.status(400).json({message:"Please upload an image"});
+        
+        }
+        for(let i=0;i<filed.length;i++){
+            const imageLocalPath = filed[i];
+            if(!imageLocalPath){
+                return res.status(400).json({message:"Please upload an image local path"});
+            }
+            const imageCloudinaryPath = await uploadOnCloudinary(imageLocalPath.path);
+            if(!imageCloudinaryPath){
+                return res.status(400).json({message:"Image upload failed"});
+            }
+            locimages.push(imageCloudinaryPath.url);
+
+        }
+        console.log(locimages);
+
+
+        
+
+
+
+
+ const createProduct= await Product.create({name,description,price,brand,category,rating,shipping,countInStock,images:locimages,numReviews,user:req.user._id});
         if(createProduct){
             res.status(201).json({message:"Product created successfully",product:createProduct});
         }else{
@@ -58,6 +85,28 @@ const getAllProducts= async(req,res)=>{
 const updateProduct=async(req,res)=>{
     const {name,description,price,brand,category,rating,shipping,countInStock,numReviews,images}=req.body;
     const product=await Product.findById(req.params.id);
+     const filed= req.files
+         let locimages = [];
+        if(!filed){
+            return res.status(400).json({message:"Please upload an image"});
+        }
+
+        
+        for(let i=0;i<filed.length;i++){
+            const imageLocalPath = filed[i];
+            if(!imageLocalPath){
+                return res.status(400).json({message:"Please upload an image local path"});
+            }
+            const imageCloudinaryPath = await uploadOnCloudinary(imageLocalPath.path);
+            if(!imageCloudinaryPath){
+                return res.status(400).json({message:"Image upload failed"});
+            }
+            locimages.push(imageCloudinaryPath.url);
+
+        }
+        console.log("this is test",locimages);
+        
+     
     if(product){
         product.name=name || product.name;
         product.description=description || product.description;
@@ -68,7 +117,7 @@ const updateProduct=async(req,res)=>{
         product.shipping=shipping || product.shipping;
         product.countInStock=countInStock || product.countInStock;
         product.numReviews=numReviews || product.numReviews;
-        product.images=images || product.images;
+        product.images= locimages  || product.images;
         const updatedProduct=await product.save({ validateBeforeSave:false});
         res.json({message:"Product updated successfully",product:updatedProduct});
     }else{

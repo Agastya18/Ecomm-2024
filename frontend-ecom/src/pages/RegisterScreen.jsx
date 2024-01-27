@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { Link ,useNavigate} from "react-router-dom"
-
+import Reg from "../assets/reg.png"
 import logo from "../assets/logo3.svg"
 import axios from 'axios'
 const RegisterScreen = () => {
@@ -13,7 +13,8 @@ const RegisterScreen = () => {
     e.preventDefault()
     console.log(name,password,email)
     if(!name || !password || !email){
-        alert('please fill all the fields')
+       // alert('please fill all the fields')
+        toast.error('please fill all the fields')
         return
     }
     //api call
@@ -21,6 +22,7 @@ const RegisterScreen = () => {
       name: name,
       email: email,
       password: password
+      
     }
     try {
      
@@ -148,7 +150,7 @@ const RegisterScreen = () => {
       className="hidden lg:block lg:w-1/2 bg-cover"
       style={{
         backgroundImage:
-          'url("https://images.unsplash.com/photo-1546514714-df0ccc50d7bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80")'
+          'url("https://res.cloudinary.com/ecomm-2024/image/upload/v1706349047/hmyndkvahslzs45jikbl.png")'
       }}
     />
     <div className="w-full p-8 lg:w-1/2">
@@ -156,7 +158,7 @@ const RegisterScreen = () => {
         <img src={logo} alt="image" className=' h-6 ml-[48%]' />
       </h2>
       <p className="text-xl text-gray-600 text-center">Kharidoo.com !</p>
-      <a
+      {/* <a
         href="#"
         className="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100"
       >
@@ -183,11 +185,37 @@ const RegisterScreen = () => {
         <h1 className="px-4 py-3 w-5/6 text-center text-gray-600 font-bold">
           Sign in with Google
         </h1>
-      </a>
+      </a> */}
+
+      <div className="flex items-center space-x-6 shadow-sm rounded-lg mt-4 p-2 bg-gray-100 ">
+    <div className="shrink-0">
+      <img
+        id="preview_img"
+        className="h-18 w-17  rounded-full object-cover"
+        src="https://lh3.googleusercontent.com/a-/AFdZucpC_6WFBIfaAbPHBwGM9z8SxyM1oV4wB4Ngwp_UyQ=s96-c"
+        alt="Current profile photo"
+      />
+    </div>
+    <label className="block">
+      <span className="sr-only">Choose profile photo</span>
+      <input
+        type="file"
+       
+        className="block w-full text-sm text-slate-500
+  file:mr-4 file:py-2 file:px-4
+  file:rounded-full file:border-0
+  file:text-sm file:font-semibold
+  file:bg-violet-50 file:text-violet-700
+  hover:file:bg-violet-100
+"
+      />
+    </label>
+  </div>
+
       <div className="mt-4 flex items-center justify-between">
         <span className="border-b w-1/5 lg:w-1/4" />
         <a href="#" className="text-xs text-center text-gray-500 uppercase">
-          or login with email
+           Register with email
         </a>
         <span className="border-b w-1/5 lg:w-1/4" />
       </div>

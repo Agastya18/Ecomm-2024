@@ -11,7 +11,7 @@ import Sidebar from './components/Sidebar'
 import ProfileScreen from './pages/ProfileScreen'
 import { ShippingScreen } from './pages/ShippingScreen'
 import OrderScreen from './pages/OrderScreen'
-import Caro from './pages/Caro'
+
 
 function App() {
   
