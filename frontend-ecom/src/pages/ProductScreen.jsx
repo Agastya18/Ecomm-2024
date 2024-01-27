@@ -103,9 +103,12 @@ const ProductScreen = () => {
     </button>
   </div>
 </div>
+  <div className=" border-gray-900 py-4  text-gray-900 hover:border-gray-400 hover:text-gray-800">
+     <div className=" inline-block font-bold font-mono ">Description:</div>
+     <p className=" font-light">efsdfsdfsdfdfsdf dsfsdfsdf dfsd f dsf sd fsd f sdf sd fs d sfsdfsdfsdf sfsd sd</p>
+  </div>
 
-
-        <div className="mt-10 flex flex-col items-center justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0">
+        <div className="mt-2 flex flex-col items-center justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0">
           <div className="flex items-end">
             {/* future use----/--/---/- */}
             <p className=" font-bold">Brand: Nike</p>
@@ -132,7 +135,7 @@ const ProductScreen = () => {
             Add to cart
           </button>
         </div>
-        <ul className="mt-8 space-y-2">
+        <ul className="mt-3 space-y-2">
           <li className="flex items-center text-left text-sm font-medium text-gray-600">
             <svg
               className="mr-2 block h-5 w-5 align-middle text-gray-500"
@@ -149,26 +152,9 @@ const ProductScreen = () => {
                 className=""
               />
             </svg>
-            Free shipping worldwide
+            Free shipping worldwide 
           </li>
-          <li className="flex items-center text-left text-sm font-medium text-gray-600">
-            <svg
-              className="mr-2 block h-5 w-5 align-middle text-gray-500"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
-                className=""
-              />
-            </svg>
-            Cancel Anytime
-          </li>
+          
         </ul>
       </div>
       <div className="lg:col-span-3">

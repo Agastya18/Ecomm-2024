@@ -1,5 +1,5 @@
 import Product from "../models/productModel.js";
-import { uploadOnCloudinary } from "../utils/cloudinary.js";
+import { uploadOnCloudinary,deleteOnCloudinary } from "../utils/cloudinary.js";
 
 // @desc    Create a product
 // @route   POST /api/products
@@ -104,7 +104,7 @@ const updateProduct=async(req,res)=>{
             locimages.push(imageCloudinaryPath.url);
 
         }
-        console.log("this is test",locimages);
+      //  console.log("this is test",locimages);
         
      
     if(product){
@@ -133,6 +133,21 @@ const updateProduct=async(req,res)=>{
 const deleteProduct=async(req,res)=>{
 
   const product=await Product.findById(req.params.id);
+      
+  // deleting images from cloudinary
+    // for(let i=0;i<product.images.length;i++){
+    //     const imageCloudinaryPath = product.images[i];
+        
+    //     if(!imageCloudinaryPath){
+    //         return res.status(400).json({message:"Please upload an image local path"});
+    //     }
+    //     const imageCloudinaryPathDelete = await deleteOnCloudinary(imageCloudinaryPath);
+    //     if(!imageCloudinaryPathDelete){
+    //         return res.status(400).json({message:"Image delete failed"});
+    //     }
+    // }
+
+
     if(product){
         await Product.deleteOne({_id:req.params.id})
         res.json({message:"Product deleted successfully"});
