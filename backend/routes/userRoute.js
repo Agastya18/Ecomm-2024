@@ -1,12 +1,13 @@
 import { Router } from "express";
 import {  getCurrentUser, getUserById, updateUserProfile, updateUserRole, userLogin, userLogout, userRegister } from "../Controllers/userController.js";
 import { Admin, verifyUser } from "../middleware/authMiddleware.js";
+import { upload } from "../middleware/multer.js";
 
 
  const router = Router();
 
 
- router.route("/register").post(userRegister)
+ router.route("/register").post(upload.single("avatar"),userRegister)
  router.route("/login").post(userLogin)
  router.route("/logout").post(verifyUser,userLogout)
  router.route("/me").get(verifyUser,getCurrentUser)

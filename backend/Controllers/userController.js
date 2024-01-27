@@ -1,4 +1,5 @@
  import { User } from "../models/userModel.js";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
  // @desc    Register a new user
 // @route   POST /api/v1/register
@@ -12,6 +13,17 @@
     if(existedUser){
           return   res.status(400).json({message:"User already exists"})
     }
+    console.log(req.file)
+     const avatarLocalPath = req.file;
+     if(!avatarLocalPath){
+            return   res.status(400).json({message:"Please upload an image"})
+     }
+        const avatarCloudinaryPath = await uploadOnCloudinary(avatarLocalPath.path);
+        if(!avatarCloudinaryPath){
+            return   res.status(400).json({message:"Image upload failed"})
+        }
+        
+
     const user = await User.create({name,email,password})
     if(user){
         return res.status(201).json({message:"User created successfully",
@@ -20,7 +32,7 @@
             name:user.name,
             email:user.email,
             isAdmin:user.isAdmin,
-            avatar:user.avatar,
+            avatar:avatarCloudinaryPath.url,
             refreshToken:user.refreshToken,
            
         }})
