@@ -11,6 +11,7 @@ import Sidebar from './components/Sidebar'
 import ProfileScreen from './pages/ProfileScreen'
 import { ShippingScreen } from './pages/ShippingScreen'
 import OrderScreen from './pages/OrderScreen'
+import Caro from './pages/Caro'
 
 function App() {
   
@@ -27,6 +28,7 @@ function App() {
         <Route path="/side" element={<ProfileScreen/>} />
         <Route path="/ship" element={<ShippingScreen/>} />
         <Route path="/order" element={<OrderScreen/>} />
+        
         <Route path="*" element={<PageNot/>} />
         
       </Routes>
