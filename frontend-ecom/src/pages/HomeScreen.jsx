@@ -6,11 +6,13 @@ import product from "../productData"
 import { useGetProductQuery,useGetSingleProductQuery } from "../redux/slices/ProductApiSlice"
 import { useEffect } from "react"
 const HomeScreen = () => {
-    const id = "65abe9891854ed5a5d9fe1e0"
+    //const id = "65abe9891854ed5a5d9fe1e0"
   const {data} = useGetProductQuery()
-  const {data:proid} = useGetSingleProductQuery(id)
+  
+  
   console.log("data is ------",data)
-  console.log("data id is ------",proid)
+ 
+  
 
 
   
@@ -26,7 +28,7 @@ const HomeScreen = () => {
       <div className=' h-[100%] '>
       <Carousel/>
       <div className='flex flex-wrap justify-center'>
-        {product.map((product) => (
+        {data?.products.map((product) => (
           <ProductCard  key={product._id} product={product} />
         ))}
       </div>

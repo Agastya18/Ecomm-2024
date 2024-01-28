@@ -3,9 +3,11 @@ import productData from "../productData"
 import { useParams } from 'react-router-dom'
 import Rating from "../components/Rating";
 import Layout from "../components/Layout";
+import { useGetProductQuery,useGetSingleProductQuery } from "../redux/slices/ProductApiSlice"
 const ProductScreen = () => {
     const {id: productId} = useParams();
-    const product = productData.find((p) => p._id === productId)
+    const{data}=useGetProductQuery();
+    const product = data?.products.find((p) => p._id === productId)
     console.log(product)
   return (
     <Layout title={"Product"}>
@@ -23,7 +25,7 @@ const ProductScreen = () => {
             <div className="max-w-xl overflow-hidden rounded-lg">
               <img
                 className="h-full w-full max-w-full object-cover"
-                src={product.image}
+                src={product?.images[0]}
                 alt=""
               />
             </div>
@@ -36,7 +38,7 @@ const ProductScreen = () => {
               >
                 <img
                   className="h-full w-full object-cover"
-                  src={product.image}
+                  src={product?.images[1]}
                   alt=""
                 />
               </button>
@@ -46,7 +48,7 @@ const ProductScreen = () => {
               >
                 <img
                   className="h-full w-full object-cover"
-                  src={product.image}
+                  src={product?.images[2]}
                   alt=""
                 />
               </button>
@@ -56,7 +58,7 @@ const ProductScreen = () => {
               >
                 <img
                   className="h-full w-full object-cover"
-                  src={product.image}
+                  src={product?.images[3]}
                   alt=""
                 />
               </button>
@@ -66,25 +68,33 @@ const ProductScreen = () => {
       </div>
       <div className="lg:col-span-2 lg:row-span-2 lg:row-end-2">
         <h1 className="sm: text-2xl font-bold text-gray-900 sm:text-3xl">
-          {product.name}
+          {product?.name}
         </h1>
         <div className="mt-5 flex items-center">
           <div className="flex items-center">
             
-            <Rating value={product.rating}  />
-             <p className="ml-24">{product.rating} Rating</p>
+            <Rating value={product?.rating}  />
+             <p className="ml-24">{product?.rating} Rating</p>
           </div>
           
         </div>
         
         <p className=" mt-8 inline-block mb-8 text-4xl font-bold text-gray-700 dark:text-gray-400 ">
-  <span>${product.price}</span>
+  <span>${product?.price}</span>
   <span className=" ml-1 text-base font-normal text-gray-500 line-through dark:text-gray-400">
-    $200.00
+    $1000.00
   </span>
 </p>
 
-<p className="text-green-600 dark:text-green-300 "> Status: {product.stockIn} in stock</p>
+{/* <p className="text-green-600 dark:text-green-500 "> Status: {product.stockIn} in stock</p> */}
+{
+  product?.
+countInStock
+ > 3 ? <p className="text-green-600 dark:text-green-500 "> <p className=" inline font-bold text-black"> Status:</p> {product.countInStock} in stock</p> : product?.countInStock ==0 ? <p className="text-red-600 dark:text-red-500 "> <p className=" inline font-bold text-black"> Status:</p>  Out of stock</p>:<p className="text-yellow-600 dark:text-yellow-500 "> <p className=" inline font-bold text-black"> Status:</p>  only  {product.countInStock} in stock !</p>
+ 
+  
+  
+}
 
 <div className="w-32 mb-8  mt-5">
   <label
@@ -109,13 +119,13 @@ const ProductScreen = () => {
 </div>
   <div className=" border-gray-900 py-4  text-gray-900 hover:border-gray-400 hover:text-gray-800">
      <div className=" inline-block font-bold font-mono ">Description:</div>
-     <p className=" font-light">efsdfsdfsdfdfsdf dsfsdfsdf dfsd f dsf sd fsd f sdf sd fs d sfsdfsdfsdf sfsd sd</p>
+     <p className=" font-light">{product?.description}</p>
   </div>
 
         <div className="mt-2 flex flex-col items-center justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0">
           <div className="flex items-end">
             {/* future use----/--/---/- */}
-            <p className=" font-bold">Brand: Nike</p>
+            <p className=" font-bold">Brand: <p className=" inline font-light">{product?.brand}</p></p>
             
           </div>
           <button
@@ -180,17 +190,14 @@ const ProductScreen = () => {
               Reviews
               <span className="ml-2 block rounded-full bg-gray-500 px-2 py-px text-xs font-bold text-gray-100">
                 {" "}
-                {product.numReviews}{" "}
+                {product?.numReviews}{" "}
               </span>
             </a>
           </nav>
         </div>
-        <div className="mt-8 flow-root sm:mt-12">
-          <h1 className="text-xl font-bold">{product.description}</h1>
-          <p className="mt-4">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-            accusantium nesciunt fuga.
-          </p>
+        <div className="mt-8 flow-root sm:mt-6">
+          <h1 className="text-xl font-bold">{product?.description}</h1>
+          
          
          
           
