@@ -10,6 +10,7 @@ const reviewSchema = mongoose.Schema(
         required: true,
         ref: 'User',
       },
+      avatar: { type: String, required: true}
     },
     {
       timestamps: true,

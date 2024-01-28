@@ -12,7 +12,7 @@ import { upload } from "../middleware/multer.js";
  router.route("/logout").post(verifyUser,userLogout)
  router.route("/me").get(verifyUser,getCurrentUser)
  
- router.route("/update-user").put(verifyUser,updateUserProfile)
+ router.route("/update-user").put(verifyUser,upload.single("avatar"),updateUserProfile)
  router.route("/:id").get(verifyUser,getUserById)
  router.route("/:id").put(verifyUser,Admin,updateUserRole)
  

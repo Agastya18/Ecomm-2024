@@ -188,7 +188,8 @@ const createProductReview=async(req,res)=>{
         name:req.user.name,
         rating:Number(rating),
         comment,
-        user:req.user._id
+        user:req.user._id,
+        avatar:req.user.avatar,
    }
 
     if(alreadyReviewed){

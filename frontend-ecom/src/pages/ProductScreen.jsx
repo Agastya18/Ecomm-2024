@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import Rating from "../components/Rating";
 import Layout from "../components/Layout";
 import { useGetProductQuery,useGetSingleProductQuery } from "../redux/slices/ProductApiSlice"
+import Review from "../components/Review";
 const ProductScreen = () => {
     const {id: productId} = useParams();
     const{data}=useGetProductQuery();
@@ -90,7 +91,7 @@ const ProductScreen = () => {
 {
   product?.
 countInStock
- > 3 ? <p className="text-green-600 dark:text-green-500 "> <p className=" inline font-bold text-black"> Status:</p> {product.countInStock} in stock</p> : product?.countInStock ==0 ? <p className="text-red-600 dark:text-red-500 "> <p className=" inline font-bold text-black"> Status:</p>  Out of stock</p>:<p className="text-yellow-600 dark:text-yellow-500 "> <p className=" inline font-bold text-black"> Status:</p>  only  {product.countInStock} in stock !</p>
+ > 3 ? <p className="text-green-600 dark:text-green-500 "> <p className=" inline font-bold text-black"> Status:</p> {product?.countInStock} in stock</p> : product?.countInStock ==0 ? <p className="text-red-600 dark:text-red-500 "> <p className=" inline font-bold text-black"> Status:</p>  Out of stock</p>:<p className="text-yellow-600 dark:text-yellow-500 "> <p className=" inline font-bold text-black"> Status:</p>  only  {product?.countInStock} in stock !</p>
  
   
   
@@ -174,14 +175,7 @@ countInStock
       <div className="lg:col-span-3">
         <div className="border-b border-gray-300">
           <nav className="flex gap-4">
-            {/* <a
-              href="#"
-              title=""
-              className="border-b-2 border-gray-900 py-4 text-sm font-medium text-gray-900 hover:border-gray-400 hover:text-gray-800"
-            >
-              {" "}
-              Description{" "}
-            </a> */}
+            
             <a
               href="#"
               title=""
@@ -192,11 +186,37 @@ countInStock
                 {" "}
                 {product?.numReviews}{" "}
               </span>
+              
             </a>
+            <form className=" flex items-center justify-center bg-slate-50 rounded-md" >
+              <label className="inline text-gray-700 text-sm font-bold ">Rating:</label>
+             
+              <select className="px-3  border rounded-md focus:outline-none focus:border-blue-500" id="cars" name="cars">
+              <option value=''>Select...</option>
+                          <option value='1'>1 - Poor</option>
+                          <option value='2'>2 - Fair</option>
+                          <option value='3'>3 - Good</option>
+                          <option value='4'>4 - Very Good</option>
+                          <option value='5'>5 - Excellent</option>
+  </select>
+
+              <label className="inline text-gray-700 text-sm font-bold ml-2">Comment:</label>
+              <textarea id="message" name="message" rows="1" placeholder="How can we help you?"
+        className=" w-80 px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
+              <button type="submit" className="inline-flex items-center justify-center bg-gray-900 text-white px-4 py-2 rounded-md focus:outline-none hover:bg-gray-800 transition-all duration-200 ease-in-out ml-8">
+                Submit
+              </button>
+            </form>
           </nav>
+          
         </div>
+        
         <div className="mt-8 flow-root sm:mt-6">
-          <h1 className="text-xl font-bold">{product?.description}</h1>
+         
+          
+
+          {/* // in future loop for review */}
+          {product?.reviews.length ===0 && product?.reviews[0] === undefined ? <p className="text-gray-600  text-center font-bold bg-blue-100 p-4 shadow-md text-2xl">No reviews yet.</p> : <Review reviews={product?.reviews[0]}/>}
           
          
          

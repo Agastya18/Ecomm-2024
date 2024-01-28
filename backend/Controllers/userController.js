@@ -135,6 +135,14 @@ const updateUserProfile = async(req,res)=>{
         if(req.body.password){
             user.password = req.body.password;
         }
+        const avatarLocalPath = req.file;
+        if(avatarLocalPath){
+            const avatarCloudinaryPath = await uploadOnCloudinary(avatarLocalPath.path)
+            if(!avatarCloudinaryPath){
+                return   res.status(400).json({message:"Image upload failed"})
+            }
+            user.avatar = avatarCloudinaryPath.url;
+        }
         const updatedUser = await user.save({validateBeforeSave: false});
         if(updatedUser){
             return res.status(200).json({message:"User updated successfully",
