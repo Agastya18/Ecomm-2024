@@ -11,8 +11,12 @@ const ProductScreen = () => {
     <Layout title={"Product"}>
       <section className=" py-2 sm:py-3">
   <div className=" mx-auto px-4 ">
+  
+
    
-    <div className="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-12 lg:grid-cols-5 lg:gap-16">
+
+   
+    <div className="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-7 lg:grid-cols-5 lg:gap-16">
       <div className="lg:col-span-3 lg:row-end-1">
         <div className="lg:flex lg:items-start">
           <div className="lg:order-2 lg:ml-5">
@@ -160,14 +164,14 @@ const ProductScreen = () => {
       <div className="lg:col-span-3">
         <div className="border-b border-gray-300">
           <nav className="flex gap-4">
-            <a
+            {/* <a
               href="#"
               title=""
               className="border-b-2 border-gray-900 py-4 text-sm font-medium text-gray-900 hover:border-gray-400 hover:text-gray-800"
             >
               {" "}
               Description{" "}
-            </a>
+            </a> */}
             <a
               href="#"
               title=""

@@ -7,7 +7,7 @@ import Home from './pages/HomeScreen'
 import PageNot from './pages/PageNotScreen'
 import ProductScreen from './pages/ProductScreen'
 import CartScreen from './pages/CartScreen'
-import Sidebar from './components/Sidebar'
+//import Sidebar from './components/Sidebar'
 import ProfileScreen from './pages/ProfileScreen'
 import { ShippingScreen } from './pages/ShippingScreen'
 import OrderScreen from './pages/OrderScreen'
@@ -28,6 +28,7 @@ function App() {
         <Route path="/side" element={<ProfileScreen/>} />
         <Route path="/ship" element={<ShippingScreen/>} />
         <Route path="/order" element={<OrderScreen/>} />
+        
         
         <Route path="*" element={<PageNot/>} />
         

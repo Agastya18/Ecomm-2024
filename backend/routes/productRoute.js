@@ -7,7 +7,7 @@ import { upload } from "../middleware/multer.js";
 
 
 
-router.route("/create-product").post(upload.array("images",3),verifyUser,Admin,createProduct); // use verifyuser,admin in future
+router.route("/create-product").post(upload.array("images",4),verifyUser,Admin,createProduct); // use verifyuser,admin in future
 router.route("/get-product/:id").get(getProductById); // use verifyuser in future
 router.route("/all-product").get(getAllProducts); // use verifyuser in future
 router.route("/update-product/:id").put(verifyUser,Admin,upload.array('images',3),updateProduct)

@@ -7,6 +7,7 @@ const CartScreen = () => {
   return (
    <Layout title={"Cart"}>
    <Progress/>
+   
      <div className="h-screen  pt-20">
     <h1 className="mb-9 text-center text-4xl font-bold w-[75%] mx-auto  font-Oswald">Your Cart</h1>
     <div className="mx-auto max-w-6xl justify-center px-6 md:flex md:space-x-6 xl:px-0 bg-gray-200 p-3">
