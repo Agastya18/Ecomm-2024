@@ -6,6 +6,7 @@ import Layout from "../components/Layout";
 import { useGetProductQuery,useGetSingleProductQuery } from "../redux/slices/ProductApiSlice"
 import Review from "../components/Review";
 import Loader from "../components/Loader";
+import Message from "../components/Message";
 const ProductScreen = () => {
     const {id: productId} = useParams();
     const{data,isLoading,error}=useGetProductQuery();
@@ -224,7 +225,7 @@ countInStock
           
 
           {/* // in future loop for review */}
-          {product?.reviews.length ===0 && product?.reviews[0] === undefined ? <p className="text-gray-600  text-center font-bold bg-blue-100 p-4 shadow-md text-2xl">No reviews yet.</p> : <Review reviews={product?.reviews[0]}/>}
+          {product?.reviews.length ===0 && product?.reviews[0] === undefined ? <Message message={"No review yet."}/> : <Review reviews={product?.reviews[0]}/>}
           
          
          

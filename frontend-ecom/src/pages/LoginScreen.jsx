@@ -1,18 +1,21 @@
 
-import { Link } from 'react-router-dom'
+import { Link,useLocation,useNavigation } from 'react-router-dom'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import logo from "../assets/logo3.svg"
 import axios from 'axios'
+import Loader from '../components/Loader'
 import { useDispatch, useSelector } from 'react-redux';
 import { loginFront } from '../redux/slices/authSlice'
+import { useLoginMutation } from '../redux/slices/userApiSlice'
 const LoginScreen = () => {
   const dispatch = useDispatch()
     const [password,setPass]= useState("")
   const [email,setEmail]= useState("")
   const navigate = useNavigate()
- 
+  const [ login , { isLoading, error, data }] = useLoginMutation();
+  const {userInfo}=useSelector(state=>state.auth)
   const handleSubmit=async(e)=>{  
     e.preventDefault()
     console.log(password,email)
@@ -22,9 +25,12 @@ const LoginScreen = () => {
     }
     //api call
     try {
-         const res= await axios.post('/api/v1/login',{email,password})
-         dispatch(loginFront(res.data))
-         navigate("/")
+        //  const res= await axios.post('/api/v1/user/login',{email,password})
+        //  dispatch(loginFront(res.data))
+        //  navigate("/")
+        const {data}=await login({email,password})
+        dispatch(loginFront(data))
+        navigate("/")
          
     } catch (error) {
       
@@ -143,10 +149,11 @@ const LoginScreen = () => {
             />
           </div>
           <div className="mt-8">
-            <button onClick={(e)=>handleSubmit(e)} className="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600">
+            <button disabled={isLoading} onClick={(e)=>handleSubmit(e)} className="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600">
               Login
             </button>
           </div>
+          { isLoading && <Loader /> }
           </form>
           <div className="mt-4 flex items-center justify-between">
             <span className="border-b w-1/5 md:w-1/4" />

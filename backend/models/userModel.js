@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     password: {type: String, required: true},
     isAdmin: {type: Boolean,  default: false},
     avatar: {type: String,  default: "/images/avatar.png"},
-    refreshToken: {type: String}
+    
 },{timestamps: true})
 
 // password hashing before saving
@@ -27,9 +27,6 @@ userSchema.methods.matchPassword = async function(enteredPassword){
 userSchema.methods.getAccessToken = function(){
     return jwt.sign({id: this._id}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: process.env.ACCESS_TOKEN_EXPIRY})
 }
-//genrating refresh token for user
-userSchema.methods.getRefreshToken = function(){
-    return jwt.sign({id: this._id}, process.env.REFRESH_TOKEN_SECRET, {expiresIn:process.env.REFRESH_TOKEN_EXPIRY})
-}
+
 
 export const User = mongoose.model("User", userSchema)

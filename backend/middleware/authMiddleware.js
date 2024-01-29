@@ -9,7 +9,7 @@ import jwt from "jsonwebtoken";
         }
         const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
        // console.log(decoded)
-        const user = await User.findById(decoded.id).select("-password -refreshToken");
+        const user = await User.findById(decoded.id).select("-password ");
         if(!user)
         {
             return res.status(401).json({ message: "User not found" });

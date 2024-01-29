@@ -1,5 +1,5 @@
 import axios from "axios"
-import { Carousel } from "../components/Carousel"
+import  Carousel  from "../components/Carousel"
 import Layout from "../components/Layout"
 import ProductCard from "../components/ProductCard"
 import product from "../productData"

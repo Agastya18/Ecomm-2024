@@ -67,28 +67,26 @@ const userLogin = async(req, res) => {
         if(!accessToken){
             return res.status(400).json({message:"Invalid accesstoken"})
         }
-        const refreshToken = await exUser.getRefreshToken();
-        if(!refreshToken){
-            return res.status(400).json({message:"Invalid refreshtoken"})
-        }
-        exUser.refreshToken = refreshToken;
-        await exUser.save({validateBeforeSave: false});
+        
+       
+       
         const option={
             httpOnly:true,
             
      }
+     //console.log(accessToken);
      res.status(200).cookie("accessToken",accessToken,option);
-     res.status(200).cookie("refreshToken",refreshToken,option);
+     
      const loggedInUser = {
          _id:exUser._id,
          name:exUser.name,
          email:exUser.email,
          isAdmin:exUser.isAdmin,
          avatar:exUser.avatar,
-         refreshToken:exUser.refreshToken,
+        
      }
      if(loggedInUser){
-            return res.status(200).json({message:"User logged in successfully",loggedInUser,accessToken,refreshToken})
+            return res.status(200).json({message:"User logged in successfully",loggedInUser,accessToken})
      }
         else{
                 return res.status(400).json({message:"Invalid credentials"})
