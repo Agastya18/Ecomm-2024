@@ -1,24 +1,32 @@
 
 import productData from "../productData"
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import Rating from "../components/Rating";
 import Layout from "../components/Layout";
 import { useGetProductQuery,useGetSingleProductQuery } from "../redux/slices/ProductApiSlice"
 import Review from "../components/Review";
+import Loader from "../components/Loader";
 const ProductScreen = () => {
     const {id: productId} = useParams();
-    const{data}=useGetProductQuery();
+    const{data,isLoading,error}=useGetProductQuery();
     const product = data?.products.find((p) => p._id === productId)
     console.log(product)
   return (
     <Layout title={"Product"}>
-      <section className=" py-2 sm:py-3">
-  <div className=" mx-auto px-4 ">
+     
+      <section className=" py-2 sm:py-3 ">
+      <Link className=' bg-slate-400  p-3 ml-6  m-2 rounded-md' to='/'>
+        Go Back
+      </Link>
+      {isLoading ? (
+        <div className="text-center text-2xl font-bold"> <Loader/> </div>
+        
+      ) : error ?(
+        <div className="text-center text-red-500 text-2xl font-bold">  {error?.data?.message || error.error}</div>
+      ):(
+        <div className=" mx-auto px-4  ">
   
 
-   
-
-   
     <div className="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-7 lg:grid-cols-5 lg:gap-16">
       <div className="lg:col-span-3 lg:row-end-1">
         <div className="lg:flex lg:items-start">
@@ -201,7 +209,7 @@ countInStock
   </select>
 
               <label className="inline text-gray-700 text-sm font-bold ml-2">Comment:</label>
-              <textarea id="message" name="message" rows="1" placeholder="How can we help you?"
+              <textarea id="message" name="message" rows="1" placeholder="please share your experience?"
         className=" w-80 px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
               <button type="submit" className="inline-flex items-center justify-center bg-gray-900 text-white px-4 py-2 rounded-md focus:outline-none hover:bg-gray-800 transition-all duration-200 ease-in-out ml-8">
                 Submit
@@ -225,6 +233,7 @@ countInStock
       </div>
     </div>
   </div>
+      ) }
 </section>
     </Layout>
 
