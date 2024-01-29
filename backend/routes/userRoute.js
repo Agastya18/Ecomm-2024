@@ -14,6 +14,6 @@ import { upload } from "../middleware/multer.js";
  
  router.route("/update-user").put(verifyUser,upload.single("avatar"),updateUserProfile)
  router.route("/:id").get(verifyUser,getUserById)
- router.route("/:id").put(verifyUser,Admin,updateUserRole)
+ router.route("/:id").put(verifyUser,Admin,upload.single("avatar"),updateUserRole)
  
 export default router;

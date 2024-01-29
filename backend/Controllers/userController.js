@@ -24,7 +24,7 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
         }
         
 
-    const user = await User.create({name,email,password})
+    const user = await User.create({name,email,password,avatar:avatarCloudinaryPath.url})
     if(user){
         return res.status(201).json({message:"User created successfully",
         user:{
@@ -33,7 +33,7 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
             email:user.email,
             isAdmin:user.isAdmin,
             avatar:avatarCloudinaryPath.url,
-            refreshToken:user.refreshToken,
+            
            
         }})
     }
@@ -185,6 +185,8 @@ const updateUserRole= async(req,res)=>{
         user.name = req.body.name || user.name;
         user.email = req.body.email || user.email;
         user.isAdmin = req.body.isAdmin;
+        
+
         const updatedUser = await user.save({validateBeforeSave: false});
         if(updatedUser){
             return res.status(200).json({message:"User updated successfully",
