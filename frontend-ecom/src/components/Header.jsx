@@ -1,12 +1,32 @@
-import {Link, NavLink} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { GiShoppingBag } from 'react-icons/gi'
 import logo from '../assets/logo3.svg'
 import toast from 'react-hot-toast'
 import { BsCart } from "react-icons/bs";
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
+import {logoutFront} from '../redux/slices/authSlice';
+import { useLogoutMutation } from '../redux/slices/userApiSlice';
 const Header = () => {
   const {userInfo}=useSelector(state=>state.auth)
-    console.log(userInfo?.loggedInUser)
+    //console.log(userInfo?.loggedInUser)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const [logoutApi] = useLogoutMutation()
+
+    const logoutHandler = async() => {
+      
+      try {
+        console.log('logout')
+         await logoutApi()
+        dispatch(logoutFront())
+        toast.success('Logout successfully')
+        navigate('/login')
+        
+      } catch (error) {
+        
+        toast.error(error.message)
+      }
+    }
   
   return (
 //     <nav className="  flex flex-wrap p-4 flex-col md:flex-row items-center shadow bg-slate-200 ">
@@ -33,19 +53,19 @@ const Header = () => {
 // </nav>
 <>
   {/* component */}
-  <header className="bg-white">
+  <header className=" bg-slate-50">
     <div className="container mx-auto px-4 py-8 flex items-center">
       {/* logo */}
-      <div className="mr-auto md:w-48 flex-shrink-0">
+      <div className="mr-auto md:w-48">
         <img
-          className="h-14 w-14 md:h-10"
+          className="h-16 w-16  "
           src={logo}
           alt="logo"
         />
-        <p>Kharido.com</p>
+        <p className=' text-sm'>Kharido.com</p>
       </div>
       {/* search */}
-      <div className="w-full mr-12 max-w-xs xl:max-w-lg 2xl:max-w-2xl bg-gray-100 rounded-md hidden xl:flex items-center">
+      <div className="w-full mr-12 max-w-xs xl:max-w-lg 2xl:max-w-2xl bg-gray-200 rounded-md hidden xl:flex items-center">
         <select
           className="bg-transparent uppercase font-bold text-sm p-4 mr-4"
           
@@ -77,14 +97,14 @@ const Header = () => {
       
       {/* buttons */}
       <nav className="contents">
-        <ul className=" lg:mr-3 xl:w-48 flex items-center justify-end">
-        <li className="lg:mr-16 lg:ml-4 relative inline-block">
+        <ul className=" lg:mr-1 xl:w-48 flex items-center justify-end">
+        <li className="lg:mr-16 lg:ml-4 relative inline-block ">
             <a className="" href="">
               <div className="absolute -top-1 right-0 z-10 bg-yellow-400 text-xs font-bold px-1 py-0.5 rounded-sm">
                 11
               </div>
               <svg
-                className="h-9 lg:h-10 p-2 text-gray-500"
+                className="h-9 lg:h-10 p-1 text-gray-500 "
                 aria-hidden="true"
                 focusable="false"
                 data-prefix="far"
@@ -109,14 +129,43 @@ const Header = () => {
       <div>
         {userInfo ? ( <div className=' flex items-center justify-center'>
           <img src={userInfo?.loggedInUser.avatar} alt="img" className=' w-12 h-12 shrink-0 rounded-full mr-2' />
-          <select className="px-3   border-none rounded-md focus:outline-none focus:border-blue-500" >
-              <option >{userInfo?.loggedInUser.name}</option>
-                          <option value='1'> Profile</option>
-                          <option value='2'> Logout</option>
-                          
-  </select>
+         
+  <div className="">
+  <div className="group inline-block relative ">
+    <button className="bg-gray-200 text-gray-700 font-semibold py-2 px-4  rounded-sm inline-flex items-center">
+      <span className="mr-1">{userInfo?.loggedInUser.name}</span>
+      <svg
+        className="fill-current h-4 w-4"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+      >
+        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+      </svg>
+    </button>
+    <ul className="absolute hidden text-gray-700 pt-1 group-hover:block z-30">
+      <li className="">
+        <a
+          className="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+          href="#"
+        >
+          Profile
+        </a>
+      </li>
+      <li className="" onClick={logoutHandler}>
+        <a
+          className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+          href="#"
+        >
+          Logout
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
         </div> ): (
-    <Link to={"/login"} className="  rounded-md inline-flex items-center bg-yellow-500 border-0 py-1 px-3 mt-4 md:mt-0">
+    <Link to={"/login"} className="  rounded-md inline-flex items-center bg-yellow-400 border-0 py-1 px-3 mt-4 md:mt-0">
      Login
    </Link>
         )}

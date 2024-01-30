@@ -194,7 +194,7 @@ const createProductReview=async(req,res)=>{
 
     if(alreadyReviewed){
            
-              res.status(400).json({message:"Product already reviewed"});
+             return res.status(400).json({message:"Product already reviewed"});
          }
            
          
