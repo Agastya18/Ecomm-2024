@@ -12,7 +12,7 @@ router.route("/get-product/:id").get(getProductById); // use verifyuser in futur
 router.route("/all-product").get(getAllProducts); // use verifyuser in future
 router.route("/update-product/:id").put(verifyUser,Admin,upload.array('images',3),updateProduct)
 router.route("/delete-product/:id").delete(verifyUser,Admin,deleteProduct)
-router.route("/top-product").get(verifyUser,getTopRatedProduct)
+router.route("/top-product").get(getTopRatedProduct)  // may be add verify
 router.route("/:id/reviews").post(verifyUser,createProductReview)
 router.route("/reviews").get(verifyUser, getAllReviews)
 router.route("/delete-review").delete(verifyUser,deleteReview)

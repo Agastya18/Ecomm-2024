@@ -13,7 +13,7 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
     if(existedUser){
           return   res.status(400).json({message:"User already exists"})
     }
-    console.log(req.file)
+    console.log("backend file data",req.file)
      const avatarLocalPath = req.file;
      if(!avatarLocalPath){
             return   res.status(400).json({message:"Please upload an image"})

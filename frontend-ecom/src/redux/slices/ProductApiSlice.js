@@ -17,10 +17,10 @@ export const productApiSlice= apiSlice.injectEndpoints({
             keepUnusedDataFor:5
         }),
         createProduct:builder.mutation({
-            query:(body)=>({
+            query:(data)=>({
                 url:'/api/v1/product/create-product',
                 method:'POST',
-                body
+                body:data
             })
         }),
         updateProduct:builder.mutation({
@@ -38,10 +38,10 @@ export const productApiSlice= apiSlice.injectEndpoints({
             })
         }),
         createReview:builder.mutation({
-            query:(body)=>({
-                url:'/api/v1/product/reviews',
+            query:(data)=>({
+                url:`/api/v1/product/${data.productId}/reviews`,
                 method:'POST',
-                body
+                body:data
             })
         }),
         deleteReview:builder.mutation({
@@ -62,4 +62,4 @@ export const productApiSlice= apiSlice.injectEndpoints({
     })
 });
 
-export const {useGetProductQuery, useGetSingleProductQuery,useGetTopRatedProductQuery}=productApiSlice;
+export const {useGetProductQuery, useGetSingleProductQuery,useGetTopRatedProductQuery, useCreateReviewMutation}=productApiSlice;

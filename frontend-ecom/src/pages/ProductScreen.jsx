@@ -1,17 +1,48 @@
 
 import productData from "../productData"
+import { useState } from "react";
 import { Link, useParams } from 'react-router-dom'
 import Rating from "../components/Rating";
 import Layout from "../components/Layout";
-import { useGetProductQuery,useGetSingleProductQuery } from "../redux/slices/ProductApiSlice"
+import { useGetProductQuery,useGetSingleProductQuery ,useCreateReviewMutation} from "../redux/slices/ProductApiSlice"
+import { useDispatch, useSelector } from 'react-redux';
 import Review from "../components/Review";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import toast from "react-hot-toast";
+import MyImages from "../components/MyImages";
 const ProductScreen = () => {
+  const{data,isLoading,error,refetch}=useGetProductQuery();
+  const [rating, setRating] = useState(0)
+  const [comment, setComment] = useState('')
+  const dispatch = useDispatch()
+  const [ createReview, { isLoading:isLoadingReview, } ] = useCreateReviewMutation()
+  const {userInfo}=useSelector(state=>state.auth)
+  console.log(rating,comment)
+ 
     const {id: productId} = useParams();
-    const{data,isLoading,error}=useGetProductQuery();
+    
     const product = data?.products.find((p) => p._id === productId)
-    console.log(product)
+   // console.log(product)
+
+    const submitHandler = async(e) => {
+      e.preventDefault()
+      try {
+        
+         await createReview({ productId,rating,comment});
+        console.log(data)
+        refetch();
+        toast.success("review add succesfully")
+        setComment(" ")
+        setRating(0)
+  
+  
+      } catch (error) {
+        toast.error("An error occurred in review")
+      }
+     
+     
+    }
   return (
     <Layout title={"Product"}>
      
@@ -30,7 +61,7 @@ const ProductScreen = () => {
 
     <div className="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-7 lg:grid-cols-5 lg:gap-16">
       <div className="lg:col-span-3 lg:row-end-1">
-        <div className="lg:flex lg:items-start">
+        {/* <div className="lg:flex lg:items-start">
           <div className="lg:order-2 lg:ml-5">
             <div className="max-w-xl overflow-hidden rounded-lg">
               <img
@@ -74,7 +105,8 @@ const ProductScreen = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
+        <MyImages imgs ={product.images}/>
       </div>
       <div className="lg:col-span-2 lg:row-span-2 lg:row-end-2">
         <h1 className="sm: text-2xl font-bold text-gray-900 sm:text-3xl">
@@ -197,25 +229,27 @@ countInStock
               </span>
               
             </a>
-            <form className=" flex items-center justify-center bg-slate-50 rounded-md" >
-              <label className="inline text-gray-700 text-sm font-bold ">Rating:</label>
-             
-              <select className="px-3  border rounded-md focus:outline-none focus:border-blue-500" id="cars" name="cars">
-              <option value=''>Select...</option>
-                          <option value='1'>1 - Poor</option>
-                          <option value='2'>2 - Fair</option>
-                          <option value='3'>3 - Good</option>
-                          <option value='4'>4 - Very Good</option>
-                          <option value='5'>5 - Excellent</option>
-  </select>
+      
+            {!userInfo ? <Message  message={"Please  Login to write review."}/> : <form className=" flex items-center justify-center bg-slate-50 rounded-md" onSubmit={submitHandler} >
 
-              <label className="inline text-gray-700 text-sm font-bold ml-2">Comment:</label>
-              <textarea id="message" name="message" rows="1" placeholder="please share your experience?"
-        className=" w-80 px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
-              <button type="submit" className="inline-flex items-center justify-center bg-gray-900 text-white px-4 py-2 rounded-md focus:outline-none hover:bg-gray-800 transition-all duration-200 ease-in-out ml-8">
-                Submit
-              </button>
-            </form>
+<label className="inline text-gray-700 text-sm font-bold ">Rating:</label>
+
+<select onChange={(e)=>setRating(e.target.value)} className="px-3  border rounded-md focus:outline-none focus:border-blue-500" id="cars" name="cars">
+<option value=''>Select...</option>
+            <option value='1'>1 - Poor</option>
+            <option value='2'>2 - Fair</option>
+            <option value='3'>3 - Good</option>
+            <option value='4'>4 - Very Good</option>
+            <option value='5'>5 - Excellent</option>
+</select>
+
+<label className="inline text-gray-700 text-sm font-bold ml-2">Comment:</label>
+<textarea onChange={(e)=>setComment(e.target.value)} value={comment}   rows="1" placeholder="please share your experience?"
+className=" w-80 px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
+<button type="submit" className="inline-flex items-center justify-center bg-gray-900 text-white px-4 py-2 rounded-md focus:outline-none hover:bg-gray-800 transition-all duration-200 ease-in-out ml-8">
+  Submit
+</button>
+</form>}
           </nav>
           
         </div>
@@ -225,7 +259,9 @@ countInStock
           
 
           {/* // in future loop for review */}
-          {product?.reviews.length ===0 && product?.reviews[0] === undefined ? <Message message={"No review yet."}/> : <Review reviews={product?.reviews[0]}/>}
+          {product?.reviews.length ===0 && product?.reviews[0] === undefined ? <Message message={"No review yet."}/> : product?.reviews.map((review) => (
+            <Review key={review._id} reviews={review}/>
+          ))}
           
          
          

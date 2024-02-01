@@ -10,7 +10,7 @@ const HomeScreen = () => {
   const {data} = useGetProductQuery()
   
   
-  console.log("data is ------",data)
+  //console.log("data is ------",data)
  
   
 
