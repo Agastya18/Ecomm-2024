@@ -15,10 +15,20 @@ const ProductScreen = () => {
   const{data,isLoading,error,refetch}=useGetProductQuery();
   const [rating, setRating] = useState(0)
   const [comment, setComment] = useState('')
+  const [qty, setQty] = useState(1)
   const dispatch = useDispatch()
+
+  const increaseQuantity = () => {
+    if (qty >= product.countInStock) return
+    setQty(qty + 1)
+  }
+  const decreaseQuantity = () => {
+    if (qty <= 1) return
+    setQty(qty - 1)
+  }
   const [ createReview, { isLoading:isLoadingReview, } ] = useCreateReviewMutation()
   const {userInfo}=useSelector(state=>state.auth)
-  console.log(rating,comment)
+ // console.log(rating,comment)
  
     const {id: productId} = useParams();
     
@@ -30,7 +40,7 @@ const ProductScreen = () => {
       try {
         
          await createReview({ productId,rating,comment});
-        console.log(data)
+      //  console.log(data)
         refetch();
         toast.success("review add succesfully")
         setComment(" ")
@@ -61,51 +71,7 @@ const ProductScreen = () => {
 
     <div className="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-7 lg:grid-cols-5 lg:gap-16">
       <div className="lg:col-span-3 lg:row-end-1">
-        {/* <div className="lg:flex lg:items-start">
-          <div className="lg:order-2 lg:ml-5">
-            <div className="max-w-xl overflow-hidden rounded-lg">
-              <img
-                className="h-full w-full max-w-full object-cover"
-                src={product?.images[0]}
-                alt=""
-              />
-            </div>
-          </div>
-          <div className="mt-2 w-full lg:order-1 lg:w-32 lg:flex-shrink-0 ">
-            <div className="flex flex-row items-start lg:flex-col">
-              <button
-                type="button"
-                className="flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-gray-900 text-center"
-              >
-                <img
-                  className="h-full w-full object-cover"
-                  src={product?.images[1]}
-                  alt=""
-                />
-              </button>
-              <button
-                type="button"
-                className="flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-transparent text-center"
-              >
-                <img
-                  className="h-full w-full object-cover"
-                  src={product?.images[2]}
-                  alt=""
-                />
-              </button>
-              <button
-                type="button"
-                className="flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-transparent text-center"
-              >
-                <img
-                  className="h-full w-full object-cover"
-                  src={product?.images[3]}
-                  alt=""
-                />
-              </button>
-            </div>
-          </div>
-        </div> */}
+       
         <MyImages imgs ={product.images}/>
       </div>
       <div className="lg:col-span-2 lg:row-span-2 lg:row-end-2">
@@ -146,15 +112,17 @@ countInStock
     Quantity
   </label>
   <div className="relative flex flex-row w-full h-10 mt-4 bg-transparent rounded-lg">
-    <button className="w-20 h-full text-gray-600 bg-gray-300 rounded-l outline-none cursor-pointer dark:hover:bg-gray-700 dark:text-gray-400 hover:text-gray-700 dark:bg-gray-900 hover:bg-gray-400">
+    <button className="w-20 h-full text-gray-600 bg-gray-300 rounded-l outline-none cursor-pointer  hover:text-gray-700  hover:bg-gray-400" onClick={decreaseQuantity}>
       <span className="m-auto text-2xl font-thin">-</span>
     </button>
     <input
       type="number"
+      readOnly
       className="flex items-center w-full font-semibold text-center text-gray-700 placeholder-gray-700 bg-gray-300 outline-none dark:text-gray-400 dark:placeholder-gray-400 dark:bg-gray-900 focus:outline-none text-md hover:text-black"
-      placeholder={1}
+     
+      value={qty}
     />
-    <button className="w-20 h-full text-gray-600 bg-gray-300 rounded-r outline-none cursor-pointer dark:hover:bg-gray-700 dark:text-gray-400 dark:bg-gray-900 hover:text-gray-700 hover:bg-gray-400">
+    <button className="w-20 h-full text-gray-600 bg-gray-300 rounded-r outline-none cursor-pointer  hover:text-gray-700 hover:bg-gray-400" onClick={increaseQuantity}>
       <span className="m-auto text-2xl font-thin">+</span>
     </button>
   </div>

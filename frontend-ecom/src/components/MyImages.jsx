@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 const MyImages = ({imgs=[" "]}) => {
-    console.log(imgs)
+    //console.log(imgs)
     const [mainImg, setMainImg] = useState(imgs[0])
   return (
     <div className="lg:flex lg:items-start">
