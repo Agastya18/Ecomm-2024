@@ -1,13 +1,15 @@
 import {Link, useNavigate} from 'react-router-dom'
-import { GiShoppingBag } from 'react-icons/gi'
+
 import logo from '../assets/logo3.svg'
 import toast from 'react-hot-toast'
-import { BsCart } from "react-icons/bs";
+
 import { useSelector,useDispatch } from 'react-redux';
 import {logoutFront} from '../redux/slices/authSlice';
 import { useLogoutMutation } from '../redux/slices/userApiSlice';
 const Header = () => {
   const {userInfo}=useSelector(state=>state.auth)
+  const {cartItems}=useSelector(state=>state.cart)
+  console.log("this is cart items",cartItems)
     //console.log(userInfo?.loggedInUser)
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -56,14 +58,14 @@ const Header = () => {
   <header className=" bg-slate-50">
     <div className="container mx-auto px-4 py-8 flex items-center">
       {/* logo */}
-      <div className="mr-auto md:w-48">
+      <Link to={'/'} className="mr-auto md:w-48">
         <img
           className="h-16 w-16  "
           src={logo}
           alt="logo"
         />
         <p className=' text-sm'>Kharido.com</p>
-      </div>
+      </Link>
       {/* search */}
       <div className="w-full mr-12 max-w-xs xl:max-w-lg 2xl:max-w-2xl bg-gray-200 rounded-md hidden xl:flex items-center">
         <select
@@ -100,9 +102,16 @@ const Header = () => {
         <ul className=" lg:mr-1 xl:w-48 flex items-center justify-end">
         <li className="lg:mr-16 lg:ml-4 relative inline-block ">
             <a className="" href="">
-              <div className="absolute -top-1 right-0 z-10 bg-yellow-400 text-xs font-bold px-1 py-0.5 rounded-sm">
+              {/* <div className="absolute -top-1 right-0 z-10 bg-yellow-400 text-xs font-bold px-1 py-0.5 rounded-sm">
                 11
+              </div> */}
+              {
+                cartItems.length>0 && (
+                  <div className="absolute -top-1 right-0 z-10 bg-yellow-400 text-xs font-bold px-1 py-0.5 rounded-sm">
+                  { cartItems.reduce((a, c) => a + c.qty, 0)}
               </div>
+                )
+              }
               <svg
                 className="h-9 lg:h-10 p-1 text-gray-500 "
                 aria-hidden="true"

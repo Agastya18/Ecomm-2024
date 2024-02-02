@@ -1,7 +1,7 @@
 
 import productData from "../productData"
 import { useState } from "react";
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams,useNavigate } from 'react-router-dom'
 import Rating from "../components/Rating";
 import Layout from "../components/Layout";
 import { useGetProductQuery,useGetSingleProductQuery ,useCreateReviewMutation} from "../redux/slices/ProductApiSlice"
@@ -11,13 +11,14 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import toast from "react-hot-toast";
 import MyImages from "../components/MyImages";
+import { addToCart } from "../redux/slices/cartSlice";
 const ProductScreen = () => {
   const{data,isLoading,error,refetch}=useGetProductQuery();
   const [rating, setRating] = useState(0)
   const [comment, setComment] = useState('')
   const [qty, setQty] = useState(1)
   const dispatch = useDispatch()
-
+const navigate = useNavigate()
   const increaseQuantity = () => {
     if (qty >= product.countInStock) return
     setQty(qty + 1)
@@ -34,6 +35,11 @@ const ProductScreen = () => {
     
     const product = data?.products.find((p) => p._id === productId)
    // console.log(product)
+
+   const addToCartHandler = () => {
+    dispatch(addToCart({...product, qty}))
+    navigate('/cart')
+   }
 
     const submitHandler = async(e) => {
       e.preventDefault()
@@ -141,6 +147,7 @@ countInStock
           <button
             type="button"
             className="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-gray-900 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800"
+            onClick={addToCartHandler}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
