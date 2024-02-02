@@ -1,33 +1,59 @@
 import Layout from "../components/Layout"
 import logo from "./../assets/ship2.jpg"
 import Progress from "../components/Progress"
-import { Link } from "react-router-dom"
+import { Link , useNavigate } from "react-router-dom"
+import { useState } from "react"
+import { useDispatch, useSelector } from 'react-redux';
+ import { saveShippingAddress } from "../redux/slices/cartSlice"
 export const ShippingScreen = () => {
+  
+  const cart = useSelector((state) => state.cart);
+   const { shippingAddress } = cart;
+   console.log(shippingAddress)
+ 
+  const [fullName, setFullName ] = useState( shippingAddress.fullName || "");
+  const [address, setAddress] = useState( shippingAddress.address ||"");
+  const [city, setCity] = useState( shippingAddress.city ||"");
+  const [province, setProvince] = useState( shippingAddress.province || "");
+  const [country, setCountry] = useState( shippingAddress.country || "");
+  const [postalCode, setPostalCode] = useState( shippingAddress.postalCode || "");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const submitHandler =(e) => {
+    e.preventDefault();
+    dispatch(saveShippingAddress({ fullName,address,city,province,country,postalCode}))
+    navigate('/order');
+  console.log(shippingAddress)
+  
+  };
+
+ 
+  
+ 
   return (
    <Layout title={"shipping"}>
       <Progress/>
      <div className="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
      
-      <div className="container max-w-screen-lg mx-auto mb-28">
+      <div className="container max-w-screen-lg mx-auto mb-52">
       
         <div>
-          <h1 className="font-bold text-4xl ">Shipping Form</h1>
-          <p className="text-gray-500 mb-6">
-          Please fill out all the fields.
-          </p>
+          <h1 className="font-bold text-4xl  bg-slate-100 rounded-md">Shipping Form</h1>
+          
           <div className="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
             <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
             <img src={logo} alt="truck" className=" mt-20  " />
               <div className="lg:col-span-2">
-                <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+                <div   className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                   <div className="md:col-span-5">
                     <label htmlFor="full_name">Full Name</label>
                     <input
                       type="text"
                       name="full_name"
-                      id="full_name"
+                     
                       className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                      defaultValue=""
+                     value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
                     />
                   </div>
                   <div className="md:col-span-5">
@@ -35,10 +61,10 @@ export const ShippingScreen = () => {
                     <input
                       type="text"
                       name="address"
-                      id="address"
+                     
                       className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                      defaultValue=""
-                      placeholder=""
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
                     />
                   </div>
                  
@@ -47,10 +73,11 @@ export const ShippingScreen = () => {
                     <input
                       type="text"
                       name="city"
-                      id="city"
+                      
                       className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                      defaultValue=""
-                      placeholder=""
+                      value={city}
+                      onChange={(e) => setCity(e.target.value)}
+                      
                     />
                   </div>
                   <div className="md:col-span-2">
@@ -58,10 +85,10 @@ export const ShippingScreen = () => {
                     <div className="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
                       <input
                         name="country"
-                        id="country"
-                        placeholder="Country"
+                        
                         className="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent"
-                        defaultValue=""
+                        value={country}
+                        onChange={(e) => setCountry(e.target.value)}
                       />
                       <button
                         tabIndex={-1}
@@ -104,10 +131,10 @@ export const ShippingScreen = () => {
                     <div className="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
                       <input
                         name="state"
-                        id="state"
-                        placeholder="State"
+                        
                         className="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent"
-                        defaultValue=""
+                        value={province}
+                        onChange={(e) => setProvince(e.target.value)}
                       />
                       <button
                         tabIndex={-1}
@@ -150,19 +177,19 @@ export const ShippingScreen = () => {
                     <input
                       type="text"
                       name="zipcode"
-                      id="zipcode"
+                     
                       className="transition-all flex items-center h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                      placeholder=""
-                      defaultValue=""
+                      value={postalCode}
+                      onChange={(e) => setPostalCode(e.target.value)}
                     />
                   </div>
                  
                  
                   <div className="md:col-span-5 text-right">
                     <div className="inline-flex items-end">
-                      <Link to ="/order">
-                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Submit
+                      <Link >
+                      <button onClick={submitHandler} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        Continue to Payment
                       </button>
                       </Link>
                     </div>

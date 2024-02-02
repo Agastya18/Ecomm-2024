@@ -1,9 +1,10 @@
 
-import { Outlet } from 'react-router-dom'
+import { Outlet , Navigate} from 'react-router-dom'
+import { useSelector } from 'react-redux'
 const PrivateRoute = () => {
-  return (
-    <div>PrivateRoute</div>
-  )
+  const {userInfo} = useSelector((state) => state.auth)
+  //console.log(userInfo)
+ return userInfo ? <Outlet/> : <Navigate to="/login"/>
 }
 
 export default PrivateRoute

@@ -27,7 +27,9 @@ const HomeScreen = () => {
     <Layout title={"Kharido.com"}>
       <div className=' h-[100%] '>
       <Carousel/>
+      
       <div className='flex flex-wrap justify-center'>
+      
         {data?.products.map((product) => (
           <ProductCard  key={product._id} product={product} />
         ))}
