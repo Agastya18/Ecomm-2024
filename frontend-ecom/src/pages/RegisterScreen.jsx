@@ -27,20 +27,24 @@ const RegisterScreen = () => {
 
   
     const formdata=new FormData()
-    formdata.append('file' ,file)
+    formdata.append('avatar' ,file)
+    formdata.append('name' ,name)
+    formdata.append('email' ,email)
+    formdata.append('password' ,password)
+
     
     console.log("thhis is formdata:",formdata)
     
     //api call
-    const userData={
-      name: name,
-      email: email,
-      password: password,
-      formdata
+    // const userData={
+    //   name: name,
+    //   email: email,
+    //   password: password,
+    //   formdata
       
      
       
-    }
+    // }
     try {
      
       // const res= await axios.post('/api/v1/user/register',userData)
@@ -52,7 +56,7 @@ const RegisterScreen = () => {
       
 
       
-      const {data}=await registerApi(userData)
+      const {data}=await registerApi(formdata)
       console.log(data)
       dispatch(loginFront(data))
       navigate("/")

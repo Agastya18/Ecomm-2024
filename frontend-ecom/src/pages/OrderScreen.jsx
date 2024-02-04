@@ -1,5 +1,6 @@
 import React from 'react'
 import Layout from '../components/Layout'
+import { Link } from 'react-router-dom'
 
 const OrderScreen = () => {
   return (
@@ -282,11 +283,11 @@ const OrderScreen = () => {
                   </p>
                 </div>
               </div>
-              <div className="flex w-full justify-center items-center md:justify-start md:items-start">
+              <Link to={'/ship'} className="  flex w-full justify-center items-center md:justify-start md:items-start">
                 <button className="mt-6 md:mt-0  py-5 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 border border-gray-800  w-96 2xl:w-full text-base font-medium leading-4 text-gray-800">
                   Edit Details
                 </button>
-              </div>
+              </Link>
             </div>
           </div>
         </div>

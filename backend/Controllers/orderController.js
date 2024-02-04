@@ -65,6 +65,9 @@ const getOrderById =async (req, res) => {
 const getAllOrders =async (req, res) => {
     try {
         const orders = await Order.find({}).populate("user", "id name");
+        if(!orders) {
+            return res.status(404).json({ message: "No orders found" });
+        }
         let totalAmount=0;
         orders.forEach(order=>{
             totalAmount+=order.totalPrice;
@@ -76,20 +79,35 @@ const getAllOrders =async (req, res) => {
 }
 
 // update order status
-// @desc    Update order to delivered
-// @route   GET /api/orders/:id/deliver
+// @desc    Update order status
+// @route   GET /admin/orders/:id
 // @access  Private/Admin
 
 const updateOrderStatus =async (req, res) => {
     try {
         const order = await Order.findById(req.params.id);
-        if (order) {
-           if(order.isDelivered==="Delivered"){
-               return res.status(400).json({ message: "Order already delivered" });}
+       if(!order) {
+           return res.status(404).json({ message: "Order not found" });
+       }
+       if(order.orderStatus==="Delivered"){
+           return res.status(400).json({ message: "Order already delivered" });
+       }
+       if(req.body.status==="Shipped"){
+              
+              order.orderStatus="Shipped";
+             // order.deliveredAt=Date.now();
 
-        } else {
-           return  res.status(404).json({ message: "Order not found" });
-        }
+           
+       }
+         if(req.body.status==="Delivered"){
+              order.orderStatus="Delivered";
+              order.deliveredAt=Date.now();
+         }
+
+        const updatedOrder = await order.save({ validateBeforeSave: false });
+        res.status(201).json({ message: "Order status updated", updatedOrder });
+
+
     } catch (error) {
         console.error(error);
     }

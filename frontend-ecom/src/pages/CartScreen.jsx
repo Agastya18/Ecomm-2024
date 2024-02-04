@@ -121,6 +121,22 @@ const CartScreen = () => {
         
         }</p>
       </div>
+
+      <div className="py-6">
+          <label  className="font-semibold inline-block mb-1 text-sm uppercase">Promo-Coupon Code</label>
+          <input type="text" id="promo" placeholder="Enter your code" className="p-2 text-sm w-full"/>
+        </div>
+        <button className="bg-red-500 hover:bg-red-600 px-5 py-2 text-sm text-white uppercase">Apply</button>
+
+
+
+
+
+
+
+
+
+
       <hr className="my-4" />
       <div className="flex justify-between">
         <p className="text-lg font-bold">Total</p>

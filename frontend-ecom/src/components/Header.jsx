@@ -137,12 +137,12 @@ const Header = () => {
       {/* cart count */}
       <div>
         {userInfo ? ( <div className=' flex items-center justify-center'>
-          <img src={userInfo?.loggedInUser.avatar} alt="img" className=' w-12 h-12 shrink-0 rounded-full mr-2' />
+          <img src={userInfo?.user.avatar} alt="img" className=' w-12 h-12 shrink-0 rounded-full mr-2' />
          
   <div className="">
   <div className="group inline-block relative ">
     <button className="bg-gray-200 text-gray-700 font-semibold py-2 px-4  rounded-sm inline-flex items-center">
-      <span className="mr-1">{userInfo?.loggedInUser.name}</span>
+      <span className="mr-1">{userInfo?.user.name}</span>
       <svg
         className="fill-current h-4 w-4"
         xmlns="http://www.w3.org/2000/svg"

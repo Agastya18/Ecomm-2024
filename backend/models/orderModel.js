@@ -59,7 +59,7 @@ const orderSchema = mongoose.Schema({
     paidAt:{
         type:Date
     },
-    isDelivered:{      // or orderStatus
+    orderStatus:{      // or orderStatus
         type:String,
         required:true,
         default:"Processing"

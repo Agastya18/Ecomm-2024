@@ -17,6 +17,7 @@ export const userApiSlice= apiSlice.injectEndpoints({
                 url: "/api/v1/user/register",
                 method: 'POST',
                 body: data,
+               // credentials: 'include'
                 }),
             }),
             logout: builder.mutation({

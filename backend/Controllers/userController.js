@@ -86,7 +86,7 @@ const userLogin = async(req, res) => {
         
      }
      if(loggedInUser){
-            return res.status(200).json({message:"User logged in successfully",loggedInUser,accessToken})
+            return res.status(200).json({message:"User logged in successfully",user:loggedInUser,accessToken})
      }
         else{
                 return res.status(400).json({message:"Invalid credentials"})

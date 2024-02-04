@@ -9,7 +9,7 @@ import { upload } from "../middleware/multer.js";
 
  router.route("/register").post(upload.single("avatar"),userRegister)
  router.route("/login").post(userLogin)
- router.route("/logout").post(verifyUser,userLogout)
+ router.route("/logout").post(userLogout)
  router.route("/me").get(verifyUser,getCurrentUser)
  
  router.route("/update-user").put(verifyUser,upload.single("avatar"),updateUserProfile)
