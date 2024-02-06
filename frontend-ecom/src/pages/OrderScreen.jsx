@@ -1,17 +1,62 @@
-import React from 'react'
+import  { useEffect } from 'react';
 import Layout from '../components/Layout'
-import { Link } from 'react-router-dom'
-
+import { Link, useNavigate } from 'react-router-dom'
+import OrderCart from '../components/OrderCard' 
+import EmptyCart from '../components/EmptyCart';
+import product from '../data/product'
+import { useDispatch, useSelector } from 'react-redux';
+import { useCreateOrderMutation } from '../redux/slices/ordersApiSlice';
+import { clearCart } from '../redux/slices/cartSlice';
 const OrderScreen = () => {
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const auth = useSelector((state)=>state.auth)
+  const {userInfo }=auth
+  const cart = useSelector((state)=>state.cart)
+  const {cartItems} = cart;
+ // console.log(userInfo)
+
+  useEffect(() => {
+    if(!cart.shippingAddress.address){
+      navigate('/ship')
+    }else if(!cart.paymentMethod){
+      navigate('/ship')
+    }
+  },[cart.paymentMethod, cart.shippingAddress.address, navigate])
+
+  const [createOrder, { data, error, isLoading }] = useCreateOrderMutation()
+  const placeOrderHandler = async() => {
+     
+    try {
+      const order = {
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemsPrice: cart.itemsPrice,
+        shippingPrice: cart.shippingPrice,
+        taxPrice: cart.taxPrice,
+        totalPrice: cart.totalPrice,
+      }
+      const { data } = await createOrder(order)
+      console.log(data)
+      dispatch(clearCart())
+      
+     // navigate(`/order/${data._id}`)
+      
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <>
-    {/* component */}
+   
     <Layout>
     <div className="py-8 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto ">
-      {/*- more free and premium Tailwind CSS components at https://tailwinduikit.com/ -*/}
+     
       <div className="flex justify-start item-start space-y-1 flex-col">
         <h1 className="text-3xl  lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">
-          Order #13432
+          Order Summary
         </h1>
         <p className="text-base  font-medium leading-6 text-gray-600">
           21st Mart 2021 at 10:34 PM
@@ -21,128 +66,16 @@ const OrderScreen = () => {
         <div className="flex flex-col justify-start items-start w-full space-y-4 md:space-y-6 xl:space-y-8">
           <div className=" flex flex-col justify-start items-start bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full">
             <p className="text-lg md:text-xl  font-semibold leading-6 xl:leading-5 text-gray-800">
-              Customer’s Cart
+             {userInfo?.user.name} Cart
             </p>
             
-            {/* <div className="mt-4 md:mt-6 flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full">
-              <div className="pb-4 md:pb-8 w-full md:w-40">
-                <img
-                  className="w-full hidden md:block"
-                  src="https://i.ibb.co/84qQR4p/Rectangle-10.png"
-                  alt="dress"
-                />
-                <img
-                  className="w-full md:hidden"
-                  src="https://i.ibb.co/L039qbN/Rectangle-10.png"
-                  alt="dress"
-                />
-              </div>
-              <div className="border-b border-gray-200 md:flex-row flex-col flex justify-between items-start w-full pb-8 space-y-4 md:space-y-0">
-                <div className="w-full flex flex-col justify-start items-start space-y-8">
-                  <h3 className="text-xl  xl:text-2xl font-semibold leading-6 text-gray-800">
-                    Premium Quaility Dress
-                  </h3>
-                  <div className="flex justify-start items-start flex-col space-y-2">
-                    <p className="text-sm  leading-none text-gray-800">
-                      <span className=" text-gray-900">
-                        Style:{" "}
-                      </span>{" "}
-                      Italic Minimal Design
-                    </p>
-                    <p className="text-sm  leading-none text-gray-800">
-                      <span className=" text-gray-900">
-                        Size:{" "}
-                      </span>{" "}
-                      Small
-                    </p>
-                    <p className="text-sm  leading-none text-gray-800">
-                      <span className=" text-gray-900">
-                        Color:{" "}
-                      </span>{" "}
-                      Light Blue
-                    </p>
-                  </div>
-                </div>
-                <div className="flex justify-between space-x-8 items-start w-full">
-                  <p className="text-base  xl:text-lg leading-6">
-                    $36.00{" "}
-                    <span className="text-red-300 line-through"> $45.00</span>
-                  </p>
-                  <p className="text-base  xl:text-lg leading-6 text-gray-800">
-                    01
-                  </p>
-                  <p className="text-base xl:text-lg font-semibold leading-6 text-gray-800">
-                    $36.00
-                  </p>
-                </div>
-              </div>
-            </div> */}
-            <div className="mt-6 md:mt-3 flex justify-start flex-col md:flex-row items-start md:items-center space-y-4 md:space-x-6 xl:space-x-8 w-full">
-              <div className="w-full md:w-40">
-                <img
-                  className="w-full hidden md:block"
-                  src="https://i.ibb.co/s6snNx0/Rectangle-17.png"
-                  alt="dress"
-                />
-                <img
-                  className="w-full md:hidden"
-                  src="https://i.ibb.co/BwYWJbJ/Rectangle-10.png"
-                  alt="dress"
-                />
-              </div>
-              <div className="flex justify-between items-start w-full flex-col md:flex-row space-y-4 md:space-y-0">
-                <div className="w-full flex flex-col justify-start items-start space-y-8">
-                  <h3 className="text-xl  xl:text-2xl font-semibold leading-6 text-gray-800">
-                    High Quaility Italic Dress
-                  </h3>
-                  <div className="flex justify-start items-start flex-col space-y-2">
-                    <p className="text-sm  leading-none text-gray-800">
-                      <span className=" text-gray-900">
-                        Brand:{" "}
-                      </span>{" "}
-                      Italic Minimal Design
-                    </p>
-                    <p className="text-sm leading-none text-gray-800">
-                      <span className=" text-gray-900">
-                        Rating:{" "}
-                      </span>{" "}
-                      Small
-                    </p>
-                    <p className="text-sm leading-none text-gray-800">
-                      <span className=" text-gray-900">
-                        ProducId:{" "}
-                      </span>{" "}
-                      Small
-                    </p>
-                    
-                  </div>
-                </div>
+            
+            {
+              cart.cartItems.length === 0 ? <EmptyCart /> : cart.cartItems.map((item, index) => (
+                <OrderCart key={index} {...item} />
+              ))
+            }
 
-
-                 
-                <div className="flex justify-between space-x-8 items-start w-full">
-                
-                  <div className="text-base  xl:text-lg leading-6 ">
-                   <p className=' mb-5 font-semibold'>rating</p>
-                    <p className='ml-5'> 01</p>
-                    {/* <span className="text-red-300 line-through"> $30.00</span> */}
-                  </div>
-                  <div className="text-base  xl:text-lg leading-6 text-gray-800">
-                  
-                   
-                    <p className=' mb-5 font-semibold '>Quantity</p>
-                    <p className=' ml-6'> 02</p>
-                  </div>
-                  
-                  <div className="text-base  xl:text-lg leading-6 text-gray-800">
-                  
-                   
-                    <p className=' mb-5 font-semibold'>Price</p>
-                    <p> $20</p>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
           <div className="flex justify-center flex-col md:flex-row  items-stretch w-full space-y-4 md:space-y-0 md:space-x-6 xl:space-x-8">
             <div className="flex flex-col px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50  space-y-6">
@@ -155,7 +88,7 @@ const OrderScreen = () => {
                     Subtotal
                   </p>
                   <p className="text-base leading-4 text-gray-600">
-                    $56.00
+                   ${cart.itemsPrice}
                   </p>
                 </div>
                 <div className="flex justify-between items-center w-full">
@@ -172,7 +105,7 @@ const OrderScreen = () => {
                     Shipping
                   </p>
                   <p className="text-baseleading-4 text-gray-600">
-                    $8.00
+                    {cart.shippingPrice}
                   </p>
                 </div>
               </div>
@@ -181,13 +114,13 @@ const OrderScreen = () => {
                   Total
                 </p>
                 <p className="text-base  font-semibold leading-4 text-gray-600">
-                  $36.00
+                  ${cart.totalPrice}
                 </p>
               </div>
             </div>
             <div className="flex flex-col justify-center px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 space-y-6">
               <h3 className="text-xl  font-semibold leading-5 text-gray-800">
-                Shipping
+                Payment Method:
               </h3>
               <div className="flex justify-between items-start w-full">
                 <div className="flex justify-center items-center space-x-4">
@@ -200,20 +133,19 @@ const OrderScreen = () => {
                   </div>
                   <div className="flex flex-col justify-start items-center">
                     <p className="text-lg leading-6  font-semibold text-gray-800">
-                      DPD Delivery
+                      {cart?.paymentMethod}
                       <br />
-                      <span className="font-normal">Delivery with 24 Hours</span>
+                      
                     </p>
                   </div>
                 </div>
-                <p className="text-lg font-semibold leading-6  text-gray-800">
-                  $8.00
-                </p>
+               
               </div>
               <div className="w-full flex justify-center items-center">
-                <button className="hover:bg-black    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white">
-                  View Carrier Details
+                <button onClick={placeOrderHandler}   disabled={ cart.cartItems.length===0} className="hover:bg-green-600    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green py-5 w-96 md:w-full bg-green-500 text-base font-medium leading-4 text-white">
+                  Place Order       {'->'}
                 </button>
+               
               </div>
             </div>
           </div>
@@ -225,17 +157,15 @@ const OrderScreen = () => {
           <div className="flex flex-col md:flex-row xl:flex-col justify-start items-stretch h-full w-full md:space-x-6 lg:space-x-8 xl:space-x-0">
             <div className="flex flex-col justify-start items-start flex-shrink-0">
               <div className="flex justify-center w-full md:justify-start items-center space-x-4 py-8 border-b border-gray-200">
-                <img
-                  src="https://i.ibb.co/5TSg7f6/Rectangle-18.png"
+                <img className='w-16 h-16  rounded-full  md:w-20 md:h-20 2xl:w-16 2xl:h-16'
+                  src={userInfo?.user.avatar}
                   alt="avatar"
                 />
                 <div className="flex justify-start items-start flex-col space-y-2">
                   <p className="text-base  font-semibold leading-4 text-left text-gray-800">
-                    David Kent
+                   {cart?.shippingAddress.fullName}
                   </p>
-                  <p className="text-sm  leading-5 text-gray-600">
-                    10 Previous Orders
-                  </p>
+                  
                 </div>
               </div>
               <div className="flex justify-center text-gray-800  md:justify-start items-center space-x-4 py-4 border-b border-gray-200 w-full">
@@ -260,7 +190,7 @@ const OrderScreen = () => {
                   />
                 </svg>
                 <p className="cursor-pointer text-sm leading-5 ">
-                  david89@gmail.com
+                 {userInfo?.user.email}
                 </p>
               </div>
             </div>
@@ -271,17 +201,10 @@ const OrderScreen = () => {
                     Shipping Address
                   </p>
                   <p className="w-48 lg:w-full  xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600">
-                    180 North King Street, Northhampton MA 1060
+                    {cart?.shippingAddress.address}, {cart?.shippingAddress.city}, {cart?.shippingAddress.province}  {cart?.shippingAddress.postalCode}, {cart?.shippingAddress.country}
                   </p>
                 </div>
-                <div className="flex justify-center md:justify-start items-center md:items-start flex-col space-y-4">
-                  <p className="text-base  font-semibold leading-4 text-center md:text-left text-gray-800">
-                    Billing Address
-                  </p>
-                  <p className="w-48 lg:w-full  xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600">
-                    180 North King Street, Northhampton MA 1060
-                  </p>
-                </div>
+                
               </div>
               <Link to={'/ship'} className="  flex w-full justify-center items-center md:justify-start md:items-start">
                 <button className="mt-6 md:mt-0  py-5 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 border border-gray-800  w-96 2xl:w-full text-base font-medium leading-4 text-gray-800">

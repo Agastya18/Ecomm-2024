@@ -101,11 +101,11 @@ const userLogin = async(req, res) => {
 // @route   POST /api/users/logout
 // @access  Private
 const userLogout = async(req,res)=>{
-     const log= await User.findByIdAndUpdate(req.user._id,{refreshToken:null},{new:true})
+     const log= await User.findByIdAndUpdate(req.user._id,{new:true})
      const option={
         httpOnly: true,  
     }
-    return res.status(200).clearCookie("accessToken",option).clearCookie("refreshToken",option).json({message:"User logged out successfully"});
+    return res.status(200).clearCookie("accessToken",option).json({message:"User logged out successfully"});
 
 }
 

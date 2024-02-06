@@ -1,5 +1,5 @@
-import Order from "../models/orderModel";
-
+import Order from "../models/orderModel.js";
+import { reduceStock } from "../utils/feature.js";
 // @desc    Create new order
 // @route   POST /api/orders
 // @access  Private
@@ -20,6 +20,9 @@ const createOrder =async (req, res) => {
         
         }
       const order = await Order.create({ shippingAddress, paymentMethod, itemsPrice, taxPrice, shippingPrice, totalPrice, user: req.user._id, orderItems,})
+        if (order) {
+            await reduceStock(orderItems);
+        }
 
         res.status(201).json({ message: "Order created", order });;
     } catch (error) {
@@ -133,4 +136,6 @@ const deleteOrder =async (req, res) => {
     }
 }
 
-export { createOrder, getMyOrders, getOrderById, getAllOrders, updateOrderStatus, deleteOrder };
+
+
+export { createOrder, getMyOrders, getOrderById, getAllOrders, updateOrderStatus, deleteOrder, };

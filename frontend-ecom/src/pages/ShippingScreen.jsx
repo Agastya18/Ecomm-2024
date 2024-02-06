@@ -4,7 +4,8 @@ import Progress from "../components/Progress"
 import { Link , useNavigate } from "react-router-dom"
 import { useState } from "react"
 import { useDispatch, useSelector } from 'react-redux';
- import { saveShippingAddress } from "../redux/slices/cartSlice"
+ import { saveShippingAddress,savePaymentMethod } from "../redux/slices/cartSlice"
+
 export const ShippingScreen = () => {
   
   const cart = useSelector((state) => state.cart);
@@ -17,11 +18,15 @@ export const ShippingScreen = () => {
   const [province, setProvince] = useState( shippingAddress.province || "");
   const [country, setCountry] = useState( shippingAddress.country || "");
   const [postalCode, setPostalCode] = useState( shippingAddress.postalCode || "");
+  const [payment, setPayment] = useState("")
+ //const [paymentOnline, setPaymentOnline] = useState("online")
+ console.log(payment)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const submitHandler =(e) => {
     e.preventDefault();
     dispatch(saveShippingAddress({ fullName,address,city,province,country,postalCode}))
+    dispatch(savePaymentMethod(payment))
     navigate('/order');
   console.log(shippingAddress)
   
@@ -172,6 +177,7 @@ export const ShippingScreen = () => {
                       </button>
                     </div>
                   </div>
+                  
                   <div className="md:col-span-1">
                     <label htmlFor="zipcode">Pincode</label>
                     <input
@@ -183,10 +189,45 @@ export const ShippingScreen = () => {
                       onChange={(e) => setPostalCode(e.target.value)}
                     />
                   </div>
+                  <div className="md:col-span-2">
+                    <p >Payment Method</p>
+                    <div className=" flex space-x-4 mt-3 bg-slate-100" >
+                    <label htmlFor="cod" >Cash on delivery</label>
+                      <input
+                      
+                          type='radio'
+                          id="cod"
+                          name="paymentMethod"
+                          
+                           value={payment}
+                        
+                       
+                        onChange={() => setPayment("cod")}
+                      />
+                       <label htmlFor="online">Online</label>
+                      <input
+                      
+                          type='radio'
+                          id="online"
+                          name="paymentMethod"
+                         
+                           value={payment}
+                        
+                       
+                        onChange={() => setPayment("online")}
+                      />
+                     
+                      
+                    </div>
+                  </div>
+                  
+                 
                  
                  
                   <div className="md:col-span-5 text-right">
+                 
                     <div className="inline-flex items-end">
+                   
                       <Link >
                       <button onClick={submitHandler} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         Continue to Payment

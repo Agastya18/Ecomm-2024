@@ -77,7 +77,7 @@ const RegisterScreen = () => {
       className="hidden lg:block lg:w-1/2 bg-cover"
       style={{
         backgroundImage:
-          'url("https://res.cloudinary.com/ecomm-2024/image/upload/v1706349047/hmyndkvahslzs45jikbl.png")'
+          'url("https://res.cloudinary.com/ecomm-2024/image/upload/v1707061732/tlzlutdyti0dvjqgpbol.png")'
       }}
     />
     <div className="w-full p-8 lg:w-1/2">
