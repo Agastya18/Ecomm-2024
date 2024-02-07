@@ -13,6 +13,9 @@ import ProfileScreen from './pages/ProfileScreen'
 import { ShippingScreen } from './pages/ShippingScreen'
 import OrderScreen from './pages/OrderScreen'
 import PaymentScreen from './pages/PaymentScreen'
+import Success from './components/Success'
+import Cancel from './components/Cancel'
+import SuccessOrder from './pages/SuccessOrder'
 
 
 function App() {
@@ -31,6 +34,9 @@ function App() {
         <Route path="/ship" element={<ShippingScreen/>} />
         <Route path="/order" element={<OrderScreen/>} />
         <Route path="/payment" element={<PaymentScreen/>} />
+        <Route path='/success' element={<Success/>} />
+        <Route path='/cancel' element={<Cancel/>} />
+        <Route path='/order/:id' element={<SuccessOrder/>} />
 
        {/* <Route path='' element={<PrivateRoute/>} >
        <Route path="/ship" element={<ShippingScreen/>} />

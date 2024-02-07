@@ -20,9 +20,9 @@ const createOrder =async (req, res) => {
         
         }
       const order = await Order.create({ shippingAddress, paymentMethod, itemsPrice, taxPrice, shippingPrice, totalPrice, user: req.user._id, orderItems,})
-        if (order) {
-            await reduceStock(orderItems);
-        }
+        // if (order) {
+        //     await reduceStock(orderItems);
+        // }    
 
         res.status(201).json({ message: "Order created", order });;
     } catch (error) {

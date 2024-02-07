@@ -3,90 +3,18 @@ import Layout from '../components/Layout'
 import { Link, useNavigate } from 'react-router-dom'
 import OrderCart from '../components/OrderCard' 
 import EmptyCart from '../components/EmptyCart';
-import product from '../data/product'
+
 import { useDispatch, useSelector } from 'react-redux';
 import { useCreateOrderMutation } from '../redux/slices/ordersApiSlice';
 import { clearCart } from '../redux/slices/cartSlice';
-import {loadStripe} from '@stripe/stripe-js';
-const OrderScreen = () => {
 
-  const navigate = useNavigate()
+const SuccessOrder = () => {
+    const navigate = useNavigate()
   const dispatch = useDispatch()
   const auth = useSelector((state)=>state.auth)
   const {userInfo }=auth
   const cart = useSelector((state)=>state.cart)
   const {cartItems} = cart;
- // console.log(userInfo)
- //console.log("stripe key",import.meta.env.VITE_STRIPE_PUBLIC)
- //console.log("test 1",import.meta.env.VITE_SOME_KEY)
-
-  useEffect(() => {
-    if(!cart.shippingAddress.address){
-      navigate('/ship')
-    }else if(!cart.paymentMethod){
-      navigate('/ship')
-    }
-  },[cart.paymentMethod, cart.shippingAddress.address, navigate])
-
-  const [createOrder, { data, error, isLoading }] = useCreateOrderMutation()
-  const placeOrderHandler = async() => {
-     
-    try {
-
-      const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLIC)
-
-      const body = {
-        products:cart
-    }
-    const headers = {
-        "Content-Type":"application/json"
-    }
-    const response = await fetch("http://localhost:4000/api/v1/payment/create-checkout-session",{
-        method:"POST",
-        headers:headers,
-        body:JSON.stringify(body)
-    });
-    const session = await response.json();
-
-    const result = stripe.redirectToCheckout({
-        sessionId:session.id
-    });
-    console.log("result st",result)
-    if(result.error){
-      console.log(result.error);
-      
-  }
-
-  //  4000003560000008
-       localStorage.setItem('session',JSON.stringify(session))
-       localStorage.setItem('result',JSON.stringify(result))
-     
-       
-        const order = {
-          orderItems:cartItems,
-          shippingAddress:cart.shippingAddress,
-          paymentMethod:cart.paymentMethod,
-          itemsPrice:cart.itemsPrice,
-          shippingPrice:cart.shippingPrice,
-          totalPrice:cart.totalPrice,
-          paymentResult:{
-            id:session.id,
-            status:session.payment_status,
-           
-           
-          }
-        }
-          const { data } = await createOrder(order)
-          console.log(data)
-        dispatch(clearCart())
-
-
-      
-      
-    } catch (error) {
-      console.log(error)
-    }
-  }
   return (
     <>
    
@@ -257,9 +185,7 @@ const OrderScreen = () => {
     </div>
     </Layout>
   </>
-  
-  
   )
 }
 
-export default OrderScreen
+export default SuccessOrder

@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import userRoutes from './routes/userRoute.js';
 import productRoutes from './routes/productRoute.js';
 import orderRoutes from './routes/orderRoute.js'
+import paymentRoute from './routes/paymentRoute.js';
 dotenv.config(
     //  {
     //      path: './.env'
@@ -35,6 +36,8 @@ app.use('/api/v1/user', userRoutes);
 app.use('/api/v1/product',productRoutes)
 
 app.use('/api/v1/order',orderRoutes)
+
+app.use('/api/v1/payment',paymentRoute)
 
 app.listen(PORT, () => {
   console.log(`Serve running at:  http://localhost:${PORT}`);

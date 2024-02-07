@@ -45,8 +45,8 @@ const navigate = useNavigate()
       e.preventDefault()
       try {
         
-         await createReview({ productId,rating,comment});
-      //  console.log(data)
+        await createReview({ productId,rating,comment});
+       // console.log(data)
         refetch();
         toast.success("review add succesfully")
         setComment(" ")

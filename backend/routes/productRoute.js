@@ -15,7 +15,7 @@ router.route("/delete-product/:id").delete(verifyUser,Admin,deleteProduct)
 router.route("/top-product").get(getTopRatedProduct)  // may be add verify
 router.route("/:id/reviews").post(verifyUser,createProductReview)
 router.route("/reviews").get(verifyUser, getAllReviews)
-router.route("/delete-review").delete(verifyUser,deleteReview)
+router.route("/delete-review/:id").delete(verifyUser,deleteReview)
 
 
  

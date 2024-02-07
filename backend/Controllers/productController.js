@@ -183,19 +183,22 @@ const createProductReview=async(req,res)=>{
     if(product){
     const alreadyReviewed=product.reviews.find(r=>r.user.toString()===req.user._id.toString());
           
-    
-    const review={
-        name:req.user.name,
-        rating:Number(rating),
-        comment,
-        user:req.user._id,
-        avatar:req.user.avatar,
-   }
+   
+   
 
     if(alreadyReviewed){
            
-             return res.status(400).json({message:"Product already reviewed"});
+             return res.status(400).json({message:"Product already reviewed",alreadyReviewed});
          }
+
+
+         const review={
+            name:req.user.name,
+            rating:Number(rating),
+            comment,
+            user:req.user._id,
+            avatar:req.user.avatar,
+       }
            
          
          
@@ -228,11 +231,9 @@ const  getAllReviews = async (req, res) => {
 // @access  Private
 
 const deleteReview = async (req, res) => {
-    const product = await Product.findById(req.query.id);
+    const product = await Product.findById(req.params.id);
     if (product) {
-      const reviews = product.reviews.filter(
-        (r) => r._id.toString() !== req.params.id.toString()
-      );
+      const reviews = product.reviews.filter(r=>r.user.toString()!==req.user._id.toString());
       product.reviews = reviews;
       product.numReviews = product.reviews.length;
       product.rating =
