@@ -5,6 +5,7 @@ import { Link, useParams,useNavigate } from 'react-router-dom'
 import Rating from "../components/Rating";
 import Layout from "../components/Layout";
 import { useGetProductQuery,useGetSingleProductQuery ,useCreateReviewMutation} from "../redux/slices/ProductApiSlice"
+
 import { useDispatch, useSelector } from 'react-redux';
 import Review from "../components/Review";
 import Loader from "../components/Loader";
@@ -235,7 +236,7 @@ className=" w-80 px-3 py-2 border rounded-md focus:outline-none focus:border-blu
 
           {/* // in future loop for review */}
           {product?.reviews.length ===0 && product?.reviews[0] === undefined ? <Message message={"No review yet."}/> : product?.reviews.map((review) => (
-            <Review key={review._id} reviews={review}/>
+            <Review key={review._id} reviews={review} proInfo={product?._id} logInfo={userInfo?.user}/>
           ))}
           
          

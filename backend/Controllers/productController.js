@@ -242,9 +242,29 @@ const deleteReview = async (req, res) => {
       await product.save({ validateBeforeSave: false });
       res.json({message:"Review deleted"});
     } else {
-      res.status(404).json({message:"Product not found"});
+      res.status(404).json({message:" cannot delete review unauthorized"});
     }
   
+}
+
+//detele reviews of a products
+// @route   DELETE /api/products/reviews
+// @access  Admin
+
+const deleteReviewAdmin = async (req, res) => {
+    const product = await Product.findById(req.params.id);
+    if (product) {
+      const reviews = product.reviews.filter(r=>r._id.toString()!==req.params.reviewId.toString());
+      product.reviews = reviews;
+      product.numReviews = product.reviews.length;
+      product.rating =
+        product.reviews.reduce((acc, item) => item.rating + acc, 0) /
+        product.reviews.length;
+      await product.save({ validateBeforeSave: false });
+      res.json({message:"Review deleted"});
+    } else {
+      res.status(404).json({message:"Product not found"});
+    }
 }
 
 

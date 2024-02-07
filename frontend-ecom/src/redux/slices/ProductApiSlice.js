@@ -45,10 +45,10 @@ export const productApiSlice= apiSlice.injectEndpoints({
             })
         }),
         deleteReview:builder.mutation({
-            query:(body)=>({
-                url:'/api/v1/product/delete-review',
+            query:(id)=>({
+                url:`/api/v1/product/delete-review/${id}`,
                 method:'DELETE',
-                body
+              
             })
         }),
         getTopRatedProduct:builder.query({
@@ -62,4 +62,4 @@ export const productApiSlice= apiSlice.injectEndpoints({
     })
 });
 
-export const {useGetProductQuery, useGetSingleProductQuery,useGetTopRatedProductQuery, useCreateReviewMutation}=productApiSlice;
+export const {useGetProductQuery, useGetSingleProductQuery,useGetTopRatedProductQuery, useCreateReviewMutation, useDeleteReviewMutation}=productApiSlice;
