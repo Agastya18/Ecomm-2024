@@ -17,6 +17,7 @@ const orderSchema = mongoose.Schema({
                },   
            ],
             price:{type:Number,required:true},
+            brand:{type:String,required:true},
             product:{
                 type:mongoose.Schema.Types.ObjectId,
                 //required:true,
@@ -27,6 +28,7 @@ const orderSchema = mongoose.Schema({
     shippingAddress:{
         address:{type:String,required:true},
         city:{type:String,required:true},
+        province:{type:String,required:true},
         postalCode:{type:String,required:true},
         country:{type:String,required:true},
     },

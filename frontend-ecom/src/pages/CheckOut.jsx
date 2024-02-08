@@ -10,6 +10,8 @@ import { clearCart } from '../redux/slices/cartSlice';
 import Spinner from '../components/Spinner';
 const stripePromise = await loadStripe(import.meta.env.VITE_STRIPE_PUBLIC)
 
+//  4000003560000008
+
 const CheckoutForm = () => {
     const [isProcessing, setProcessingTo] = useState(false);
     const stripe = useStripe();
@@ -52,16 +54,18 @@ const CheckoutForm = () => {
                 shippingPrice:cart.shippingPrice,
                 taxPrice:cart.taxPrice,
                 totalPrice:cart.totalPrice,
+                
                 isPaid:true,
                 paymentResult,
             }
-            await createOrder(order)
+           const res= await createOrder(order)
+           console.log("resp data---",res)
             
             dispatch(clearCart())
 
            
             toast.success('payment successfull')
-            navigate('/success')
+            navigate(`/order/${res.data.order._id}`);
 
         }
         setProcessingTo(false);

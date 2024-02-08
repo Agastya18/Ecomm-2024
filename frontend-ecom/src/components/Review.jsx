@@ -50,7 +50,7 @@ const Review = ({reviews,proInfo,logInfo}) => {
             </div>
             <div className="flex items-center justify-start w-full text-xs">
               <div className="flex items-center justify-center px-2 space-x-1 font-semibold text-gray-700 ">
-              <p className=" text-sm text-gray-600">{reviews?.createdAt
+              <p className=" text-sm text-gray-600">{reviews?.createdAt.substring(0, 10)
 }</p>
 
               </div>

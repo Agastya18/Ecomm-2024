@@ -51,7 +51,7 @@ const getMyOrders =async (req, res) => {
 
 const getOrderById =async (req, res) => {
     try {
-        const order = await Order.findById(req.params.id).populate("user", "name email");
+        const order = await Order.findById(req.params.id).populate("user", "name email avatar");
         if (order) {
             res.status(201).json(order);
         } else {
