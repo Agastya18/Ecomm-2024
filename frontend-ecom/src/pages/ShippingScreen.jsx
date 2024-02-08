@@ -18,7 +18,8 @@ export const ShippingScreen = () => {
   const [province, setProvince] = useState( shippingAddress.province || "");
   const [country, setCountry] = useState( shippingAddress.country || "");
   const [postalCode, setPostalCode] = useState( shippingAddress.postalCode || "");
-  const [payment, setPayment] = useState("")
+  
+  const [payment, setPayment] = useState("cod")
  //const [paymentOnline, setPaymentOnline] = useState("online")
  console.log(payment)
   const dispatch = useDispatch();

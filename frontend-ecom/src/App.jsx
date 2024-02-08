@@ -16,6 +16,7 @@ import PaymentScreen from './pages/PaymentScreen'
 import Success from './components/Success'
 import Cancel from './components/Cancel'
 import SuccessOrder from './pages/SuccessOrder'
+import CheckOut from './pages/CheckOut'
 
 
 function App() {
@@ -36,6 +37,10 @@ function App() {
         <Route path="/payment" element={<PaymentScreen/>} />
         <Route path='/success' element={<Success/>} />
         <Route path='/cancel' element={<Cancel/>} />
+
+        <Route path='/pay' element={<CheckOut/>} />
+
+
         <Route path='/order/:id' element={<SuccessOrder/>} />
 
        {/* <Route path='' element={<PrivateRoute/>} >

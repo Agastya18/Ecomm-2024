@@ -60,9 +60,11 @@ const Review = ({reviews,proInfo,logInfo}) => {
           <MdDelete size={"25px"} className=' ml-1' />
           </button> */}
           {
-            logInfo?._id===reviews?.user &&  <button className=' shadow-sm bg-blue-100'  onClick={()=>deleteRev(proInfo)}>
-          <MdDelete size={"25px"} className=' ml-1' />
+            logInfo?._id===reviews?.user &&  <div className=''>
+            <button className=' shadow-md  md:ml-96 '  onClick={()=>deleteRev(proInfo)}>
+          <MdDelete size={"25px"}  />
           </button> 
+            </div>
           }
         </div>
        

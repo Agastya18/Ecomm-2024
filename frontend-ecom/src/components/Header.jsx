@@ -141,7 +141,7 @@ const Header = () => {
          
   <div className="">
   <div className="group inline-block relative ">
-    <button className="bg-gray-200 text-gray-700 font-semibold py-2 px-4  rounded-sm inline-flex items-center">
+    <button className="bg-gray-100 text-gray-700 font-semibold py-2 px-4  rounded-sm inline-flex items-center">
       <span className="mr-1">{userInfo?.user.name}</span>
       <svg
         className="fill-current h-4 w-4"

@@ -3,22 +3,22 @@ import Layout from '../components/Layout'
 import { Link, useNavigate } from 'react-router-dom'
 import OrderCart from '../components/OrderCard' 
 import EmptyCart from '../components/EmptyCart';
-import product from '../data/product'
-import { useDispatch, useSelector } from 'react-redux';
-import { useCreateOrderMutation } from '../redux/slices/ordersApiSlice';
-import { clearCart } from '../redux/slices/cartSlice';
-import {loadStripe} from '@stripe/stripe-js';
+import { useState } from 'react';
+import {  useSelector } from 'react-redux';
+
+
+
+import toast from 'react-hot-toast';
+import Spinner from '../components/Spinner';
 const OrderScreen = () => {
 
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const [isProcessing, setProcessingTo] = useState(false);
   const auth = useSelector((state)=>state.auth)
   const {userInfo }=auth
   const cart = useSelector((state)=>state.cart)
   const {cartItems} = cart;
- // console.log(userInfo)
- //console.log("stripe key",import.meta.env.VITE_STRIPE_PUBLIC)
- //console.log("test 1",import.meta.env.VITE_SOME_KEY)
+ 
 
   useEffect(() => {
     if(!cart.shippingAddress.address){
@@ -28,15 +28,14 @@ const OrderScreen = () => {
     }
   },[cart.paymentMethod, cart.shippingAddress.address, navigate])
 
-  const [createOrder, { data, error, isLoading }] = useCreateOrderMutation()
+ 
   const placeOrderHandler = async() => {
-     
+
     try {
-
-      const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLIC)
-
+         
+      setProcessingTo(true); 
       const body = {
-        products:cart
+        amount:cart?.totalPrice
     }
     const headers = {
         "Content-Type":"application/json"
@@ -46,47 +45,27 @@ const OrderScreen = () => {
         headers:headers,
         body:JSON.stringify(body)
     });
-    const session = await response.json();
+    const resp = await response.json();
+   // console.log("resp data---",resp)
 
-    const result = stripe.redirectToCheckout({
-        sessionId:session.id
+    navigate('/pay',{
+      state:resp.clientSecret
     });
-    console.log("result st",result)
-    if(result.error){
-      console.log(result.error);
+
+
+     setProcessingTo(false);
+    } catch (error) {
+
+       setProcessingTo(false);
+      toast.error('failed to redirect to payment page')
+    }
+   
       
   }
 
   //  4000003560000008
-       localStorage.setItem('session',JSON.stringify(session))
-       localStorage.setItem('result',JSON.stringify(result))
-     
-       
-        const order = {
-          orderItems:cartItems,
-          shippingAddress:cart.shippingAddress,
-          paymentMethod:cart.paymentMethod,
-          itemsPrice:cart.itemsPrice,
-          shippingPrice:cart.shippingPrice,
-          totalPrice:cart.totalPrice,
-          paymentResult:{
-            id:session.id,
-            status:session.payment_status,
-           
-           
-          }
-        }
-          const { data } = await createOrder(order)
-          console.log(data)
-        dispatch(clearCart())
-
-
       
       
-    } catch (error) {
-      console.log(error)
-    }
-  }
   return (
     <>
    
@@ -181,8 +160,8 @@ const OrderScreen = () => {
                
               </div>
               <div className="w-full flex justify-center items-center">
-                <button onClick={placeOrderHandler}   disabled={ cart.cartItems.length===0} className="hover:bg-green-600    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green py-5 w-96 md:w-full bg-green-500 text-base font-medium leading-4 text-white">
-                  Place Order       {'->'}
+                <button onClick={placeOrderHandler}   disabled={ cart.cartItems.length===0 ||isProcessing} className="hover:bg-green-600    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green py-5 w-96 md:w-full bg-green-500 text-base font-medium leading-4 text-white">
+                {isProcessing ? <Spinner/> : 'Place Order' }      
                 </button>
                
               </div>

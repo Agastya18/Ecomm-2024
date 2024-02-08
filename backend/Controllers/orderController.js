@@ -14,12 +14,14 @@ const createOrder =async (req, res) => {
         taxPrice,
         shippingPrice,
         totalPrice,
+        paymentResult,
+        isPaid,
         } = req.body;
         if (orderItems && orderItems.length === 0) {
        return res.status(400).json({ message: "No order items" });
         
         }
-      const order = await Order.create({ shippingAddress, paymentMethod, itemsPrice, taxPrice, shippingPrice, totalPrice, user: req.user._id, orderItems,})
+      const order = await Order.create({ shippingAddress, paymentMethod, itemsPrice, taxPrice, shippingPrice, totalPrice, user: req.user._id, orderItems,paymentResult, isPaid });
         // if (order) {
         //     await reduceStock(orderItems);
         // }    
