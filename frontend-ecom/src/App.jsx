@@ -17,6 +17,12 @@ import Success from './components/Success'
 import Cancel from './components/Cancel'
 import SuccessOrder from './pages/SuccessOrder'
 import CheckOut from './pages/CheckOut'
+import MyOrder from './pages/MyOrder'
+import { Dashboard } from './pages/admin/Dashboard'
+import AdminRoute from './components/adminComp/AdminRoute'
+import ProductAdmin from './pages/admin/ProductAdmin'
+import OrderAdmin from './pages/admin/OrderAdmin'
+import CreateProduct from './pages/admin/CreateProduct'
 
 
 function App() {
@@ -31,18 +37,44 @@ function App() {
         <Route path='/cart' element={<CartScreen/>} />
         <Route path="/register" element={<Register/>} />
         <Route path="/login" element={<Login/>} />
-        <Route path="/side" element={<ProfileScreen/>} />
+
+        {/* registered user route */}
+
+        <Route path="" element={<PrivateRoute/>} >
+
+        <Route path='/profile' element={<ProfileScreen/>} />
         <Route path="/ship" element={<ShippingScreen/>} />
         <Route path="/order" element={<OrderScreen/>} />
+        <Route path='/order/:id' element={<SuccessOrder/>} />
         <Route path="/payment" element={<PaymentScreen/>} />
+        <Route path='/my-order' element={<MyOrder/>} />
+        <Route path='/pay' element={<CheckOut/>} />
+        </Route>
+
+        {/* admin routes */}
+        <Route path='' element={<AdminRoute/>} >
+        <Route path='/dash' element={<Dashboard/>} />
+        <Route path='/admin/product' element={<ProductAdmin/>} />
+        <Route path='/admin/order' element={<OrderAdmin/>} />
+        <Route path='/admin/product/create-product' element={<CreateProduct/>} />
+        </Route>
+
+
+
+
+
+       
+       
         <Route path='/success' element={<Success/>} />
         <Route path='/cancel' element={<Cancel/>} />
 
-        <Route path='/pay' element={<CheckOut/>} />
+        
 
 
-        <Route path='/order/:id' element={<SuccessOrder/>} />
-
+        
+        
+        
+       
        {/* <Route path='' element={<PrivateRoute/>} >
        <Route path="/ship" element={<ShippingScreen/>} />
         </Route> */}

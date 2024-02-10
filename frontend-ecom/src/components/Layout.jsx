@@ -11,16 +11,24 @@ const Layout = ({children,title}) => {
     
 
     </Helmet>
-     <Header />
-    <main style={{ minHeight: "80vh" }}  >
-    
-      {children}
-
-    </main>
-    <Footer/>
+     
+  
+   
+    <main  className=' max-h-screen' >
+    <Header />
+    {children}
+    <Footer/> 
+  </main>
+  
+ 
+  
+   
+   
+   
     </div>
+    
   )
 }
 
 export default Layout
-// style={{ minHeight: "70vh" }}
+// style={{ minHeight: "80vh" }}

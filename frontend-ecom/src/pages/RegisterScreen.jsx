@@ -7,11 +7,13 @@ import axios from 'axios'
 import { useRegisterMutation } from '../redux/slices/userApiSlice';
 import { loginFront } from '../redux/slices/authSlice'
 import { useDispatch } from 'react-redux';
+import Spinner from '../components/Spinner';
 const RegisterScreen = () => {
   const [name,setName]= useState("")
   const [password,setPass]= useState("")
   const [email,setEmail]= useState("")
   const [file,setFile]= useState(null)
+  const [isProcessing,setIsProcessing]= useState(false)
   //console.log(image)
   const navigate = useNavigate()
   const [ registerApi , { isLoading, error, data }] = useRegisterMutation();
@@ -33,7 +35,7 @@ const RegisterScreen = () => {
     formdata.append('password' ,password)
 
     
-    console.log("thhis is formdata:",formdata)
+    //console.log("thhis is formdata:",formdata)
     
     //api call
     // const userData={
@@ -52,15 +54,19 @@ const RegisterScreen = () => {
       // toast.success("user created successfully")
       // navigate('/login')
       
-    
+      
+      setIsProcessing(true)
       
 
       
       const {data}=await registerApi(formdata)
       console.log(data)
       dispatch(loginFront(data))
+      setIsProcessing(false) 
+      toast.success("user created successfully")
       navigate("/")
     } catch (error) {
+      setIsProcessing(false)
       toast.error("An error occurred")
       console.log(error)
     }
@@ -162,8 +168,8 @@ const RegisterScreen = () => {
         />
       </div>
       <div className="mt-8">
-        <button onClick={(e)=>handleSubmit(e)} className="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600">
-          Register
+        <button disabled={isProcessing} onClick={(e)=>handleSubmit(e)} className="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600">
+          { isProcessing ? <Spinner/> : "Register"}
         </button>
       </div>
       </form>

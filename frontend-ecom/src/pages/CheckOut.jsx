@@ -76,7 +76,9 @@ const CheckoutForm = () => {
     }
   return (
     <div className=' max-w-[40%]  w-[100%] mx-auto  mt-40 bg-gray-100 p-5 rounded-md shadow-md  '>
-        <h1 className=' mb-10  ml-56  font-mono text-xl font-semibold inline-block'>Payment form</h1>
+        <h1 className=' mb-1  ml-56  font-mono text-xl font-semibold inline-block'>Payment form</h1>
+        <h1 className=' mb-10  ml-52 text-sm font-thin inline-block'>Test card: 4000003560000008 </h1>
+       
         <form onSubmit={submitHandler}  >
            
             <PaymentElement />

@@ -55,7 +55,7 @@ const Header = () => {
 // </nav>
 <>
   {/* component */}
-  <header className=" bg-slate-50">
+  <header className=" bg-slate-50   top-0 w-full">
     <div className="container mx-auto px-4 py-8 flex items-center">
       {/* logo */}
       <Link to={'/'} className="mr-auto md:w-48">

@@ -32,13 +32,13 @@ export const userApiSlice= apiSlice.injectEndpoints({
             //     url: `${USERS_URL}/profile`,
             //     }),
             // }),
-            // updateUserProfile: builder.mutation({
-            //     query: (data) => ({
-            //     url: `${USERS_URL}/profile`,
-            //     method: 'PUT',
-            //     body: data,
-            //     }),
-            // }),
+            updateUserProfile: builder.mutation({
+                query: (data) => ({
+                url: "/api/v1/user/update-user",
+                method: 'PUT',
+                body: data,
+                }),
+            }),
             // getUsers: builder.query({
             //     query: () => ({
             //     url: `${USERS_URL}`,

@@ -150,7 +150,7 @@ const updateUserProfile = async(req,res)=>{
                 email:updatedUser.email,
                 isAdmin:updatedUser.isAdmin,
                 avatar:updatedUser.avatar,
-                refreshToken:updatedUser.refreshToken,
+               
             }})
         }
         else{

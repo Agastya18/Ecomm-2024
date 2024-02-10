@@ -25,7 +25,7 @@ const HomeScreen = () => {
   // }, [])
   return (
     <Layout title={"Kharido.com"}>
-      <div className=' h-[100%] '>
+      <div className=' w-full  '>
       <Carousel/>
       
       <div className='flex flex-wrap justify-center'>

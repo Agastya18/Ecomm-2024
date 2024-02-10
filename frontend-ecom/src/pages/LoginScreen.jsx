@@ -29,6 +29,10 @@ const LoginScreen = () => {
         //  dispatch(loginFront(res.data))
         //  navigate("/")
         const {data}=await login({email,password})
+        if(!data){
+            toast.error("Invalid credentials")
+            return
+        }
         dispatch(loginFront(data))
         navigate("/")
          
