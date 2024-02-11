@@ -23,6 +23,7 @@ import AdminRoute from './components/adminComp/AdminRoute'
 import ProductAdmin from './pages/admin/ProductAdmin'
 import OrderAdmin from './pages/admin/OrderAdmin'
 import CreateProduct from './pages/admin/CreateProduct'
+import EditProduct from './pages/admin/EditProduct'
 
 
 function App() {
@@ -57,6 +58,7 @@ function App() {
         <Route path='/admin/product' element={<ProductAdmin/>} />
         <Route path='/admin/order' element={<OrderAdmin/>} />
         <Route path='/admin/product/create-product' element={<CreateProduct/>} />
+        <Route path='/admin/product/edit-product/:id' element={<EditProduct/>} />
         </Route>
 
 

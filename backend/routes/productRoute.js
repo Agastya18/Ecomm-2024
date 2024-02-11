@@ -8,9 +8,9 @@ import { upload } from "../middleware/multer.js";
 
 
 router.route("/create-product").post(upload.array("images",4),verifyUser,Admin,createProduct); // use verifyuser,admin in future
-router.route("/get-product/:id").get(getProductById); // use verifyuser in future
-router.route("/all-product").get(getAllProducts); // use verifyuser in future
-router.route("/update-product/:id").put(verifyUser,Admin,upload.array('images',3),updateProduct)
+router.route("/get-product/:id").get(verifyUser,getProductById); // use verifyuser in future
+router.route("/all-product").get(verifyUser,Admin,getAllProducts); // use verifyuser in future
+router.route("/update-product/:id").put(verifyUser,Admin,upload.array('images',4),updateProduct)
 router.route("/delete-product/:id").delete(verifyUser,Admin,deleteProduct)
 router.route("/top-product").get(getTopRatedProduct)  // may be add verify
 router.route("/:id/reviews").post(verifyUser,createProductReview)
