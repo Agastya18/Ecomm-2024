@@ -33,6 +33,7 @@ app.use(cookieParser())
 
 app.use('/api/v1/user', userRoutes);
 
+
 app.use('/api/v1/product',productRoutes)
 
 app.use('/api/v1/order',orderRoutes)

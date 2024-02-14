@@ -27,7 +27,15 @@ userSchema.methods.matchPassword = async function(enteredPassword){
 userSchema.methods.getAccessToken = function(){
     return jwt.sign({id: this._id}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: process.env.ACCESS_TOKEN_EXPIRY})
 }
-//genrating refresh token for user
+
+const User = mongoose.model("User", userSchema)
+export default User;
 
 
-export const User = mongoose.model("User", userSchema)
+
+
+
+
+
+
+  

@@ -14,7 +14,8 @@ router.route("/me").get(verifyUser, getMyOrders);   //done
 
 router.route('/:id').get(verifyUser, getOrderById);   //done
 
-router.route("/admin/order/:id").put(verifyUser, Admin, updateOrderStatus).delete(verifyUser, Admin, deleteOrder);
+router.route("/admin/order/:id").delete(verifyUser, Admin, deleteOrder);
+router.route("/admin/orderStatus/:id").put(verifyUser,Admin,updateOrderStatus)
 
 
 

@@ -24,6 +24,8 @@ import ProductAdmin from './pages/admin/ProductAdmin'
 import OrderAdmin from './pages/admin/OrderAdmin'
 import CreateProduct from './pages/admin/CreateProduct'
 import EditProduct from './pages/admin/EditProduct'
+import UserAdmin from './pages/admin/UserAdmin'
+import OrderProcess from './pages/admin/OrderProcess'
 
 
 function App() {
@@ -59,6 +61,9 @@ function App() {
         <Route path='/admin/order' element={<OrderAdmin/>} />
         <Route path='/admin/product/create-product' element={<CreateProduct/>} />
         <Route path='/admin/product/edit-product/:id' element={<EditProduct/>} />
+        <Route path='/admin/all-user' element={<UserAdmin/>}/>
+        <Route path='/admin/process-order/:id' element={<OrderProcess/>} />
+        
         </Route>
 
 

@@ -1,4 +1,8 @@
- import { User } from "../models/userModel.js";
+ 
+
+//import{ User} from "../models/userModel.js";
+import User from "../models/userModel.js";
+
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
  // @desc    Register a new user
@@ -167,9 +171,9 @@ const updateUserProfile = async(req,res)=>{
 // @route   GET /api/users/:id
 // @access  Private/Admin
 const getUserById = async(req,res)=>{
-    const user = await User.findById(req.params.id).select("-password");
-    if(user){
-        return res.status(200).json({message:"User found",user})
+    const users = await User.findById(req.params.id).select("-password");
+    if(users){
+        return res.status(200).json({message:"User found",users})
     }
     else{
         return res.status(400).json({message:"User not found"})
@@ -182,9 +186,11 @@ const getUserById = async(req,res)=>{
 const updateUserRole= async(req,res)=>{
     const user = await User.findById(req.params.id);
     if(user){
-        user.name = req.body.name || user.name;
-        user.email = req.body.email || user.email;
+        user.name =  user.name;
+        user.email =  user.email;
         user.isAdmin = req.body.isAdmin;
+        user.avatar =  user.avatar;
+
         
 
         const updatedUser = await user.save({validateBeforeSave: false});
@@ -196,7 +202,7 @@ const updateUserRole= async(req,res)=>{
                 email:updatedUser.email,
                 isAdmin:updatedUser.isAdmin,
                 avatar:updatedUser.avatar,
-                refreshToken:updatedUser.refreshToken,
+                
             }})
         }
         else{
@@ -206,6 +212,39 @@ const updateUserRole= async(req,res)=>{
     else{
         return res.status(400).json({message:"User not found"})
     }
+}
+
+// @desc    Get all user profile
+// @route   GET /api/users/all-user
+// @access  Private/admin
+
+const getAllUsers = async(req,res)=>{
+
+    try {
+      //  const users= await User.find().select("-password");
+      const users = await User.find({}).select("-password")
+      
+      
+        
+        
+        if(!users)
+        {
+              return res.status(404).json({message:"Users not found"});
+        }
+        return  res.status(200).json({message:"Users found",users:users});
+
+        
+    } catch (error) {
+        console.log("not working........1.....1...");
+        return res.status(500).json({message:"Server error"});
+
+        
+    }
+    
+
+
+    
+
 }
 
 
@@ -218,7 +257,9 @@ export {
     getCurrentUser,
     updateUserProfile,
     getUserById,
+    getAllUsers,
     updateUserRole,
+    
   
 }
 

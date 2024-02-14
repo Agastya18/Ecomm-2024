@@ -68,7 +68,7 @@ const ProductAdmin = () => {
             <tr className="  text-sm text-left text-gray-500 dark:text-gray-400">
               <th className="flex items-center px-6 pb-3 font-medium dark:text-gray-400">
                 
-                <span>Product Id</span>
+                <span>Product Image</span>
               </th>
               <th className="px-6 pb-3 font-medium ">Name </th>
               <th className="px-6 pb-3 font-medium">Created </th>
@@ -88,7 +88,7 @@ const ProductAdmin = () => {
               <td className="px-6 py-5 font-medium ">{product.createdAt.substring(0,10)} </td>
               <td className="px-6 py-5 font-medium">
                 <span className="text-blue-700 dark:text-blue-300">
-                  {product.countInStock}
+                  {product.countInStock > 0 ? product.countInStock : <span className='inline-block px-2 py-1 text-center  text-red-700  bg-red-100 rounded-full '>Out of stock</span>}
                 </span>
               </td>
               <td className="flex items-center px-6 py-5  ">

@@ -77,7 +77,7 @@ const getAllOrders =async (req, res) => {
         orders.forEach(order=>{
             totalAmount+=order.totalPrice;
         })
-        res.status(201).json(orders,totalAmount);
+        res.status(201).json({orders,totalAmount});
     } catch (error) {
         console.error(error);
     }
@@ -91,6 +91,11 @@ const getAllOrders =async (req, res) => {
 const updateOrderStatus =async (req, res) => {
     try {
         const order = await Order.findById(req.params.id);
+       // console.log(order)
+    //    console.log(req.body);
+    //    const {status} = req.body;
+    //    console.log(status);
+      
        if(!order) {
            return res.status(404).json({ message: "Order not found" });
        }
@@ -101,7 +106,7 @@ const updateOrderStatus =async (req, res) => {
               
               order.orderStatus="Shipped";
              // order.deliveredAt=Date.now();
-
+             console.log(order.orderStatus);
            
        }
          if(req.body.status==="Delivered"){

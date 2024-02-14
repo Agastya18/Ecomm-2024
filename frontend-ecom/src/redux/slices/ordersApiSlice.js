@@ -30,10 +30,10 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
             }),
         }),
         updateOrderStatus: builder.mutation({
-            query: (id, status) => ({
-                url: `/api/v1/order/admin/order/${id}`,
+            query: (data) => ({
+                url: `/api/v1/order/admin/orderStatus/${data.id}`,
                 method: "PUT",
-                body: status,
+                body: data,
             }),
         }),
         deleteOrder: builder.mutation({

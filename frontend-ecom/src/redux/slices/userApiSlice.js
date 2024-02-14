@@ -39,11 +39,11 @@ export const userApiSlice= apiSlice.injectEndpoints({
                 body: data,
                 }),
             }),
-            // getUsers: builder.query({
-            //     query: () => ({
-            //     url: `${USERS_URL}`,
-            //     }),
-            // }),
+            getAllUsers: builder.query({
+                query: () => ({
+                url: '/api/v1/user/all-users',
+                }),
+            }),
             // deleteUser: builder.mutation({
             //     query: (id) => ({
             //     url: `${USERS_URL}/${id}`,
@@ -62,9 +62,17 @@ export const userApiSlice= apiSlice.injectEndpoints({
             //     body: data,
             //     }),
             // }),
+            updateUserRole: builder.mutation({
+                query: ({ id, data }) => ({
+                url: `/api/v1/user/${id}`,
+                method: 'PUT',
+                body: data,
+                }),
+            
+            })
 
         
     }),
 });
 
-export const { useLoginMutation , useRegisterMutation, useLogoutMutation, useGetUserProfileQuery, useUpdateUserProfileMutation, useGetUsersQuery, useDeleteUserMutation, useGetUserByIdQuery, useUpdateUserMutation } = userApiSlice;
+export const { useLoginMutation , useRegisterMutation, useLogoutMutation, useGetUserProfileQuery, useUpdateUserProfileMutation,useGetAllUsersQuery, useDeleteUserMutation, useGetUserByIdQuery, useUpdateUserMutation } = userApiSlice;
