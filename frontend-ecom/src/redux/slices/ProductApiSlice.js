@@ -44,7 +44,7 @@ export const productApiSlice= apiSlice.injectEndpoints({
                 body:data
             })
         }),
-        deleteReview:builder.mutation({
+        deleteReview:builder.mutation({   /// dont touch here in delete review
             query:(id)=>({
                 url:`/api/v1/product/delete-review/${id}`,
                 method:'DELETE',
@@ -58,8 +58,22 @@ export const productApiSlice= apiSlice.injectEndpoints({
             }),
             keepUnusedDataFor:5
         }),
+        getAllReviews:builder.query({
+            query:(id)=>({
+                url:`/api/v1/product/reviews/${id}`,
+                
+            }),
+            keepUnusedDataFor:5
+        }),
+        deleteReviewAdmin:builder.mutation({
+            query:(data)=>({
+                url:`/api/v1/product/admin/delete-review/${data.id}`,
+                method:'DELETE',
+                body:data
+            })
+        })
         
     })
 });
 
-export const {useGetProductQuery, useGetSingleProductQuery,useGetTopRatedProductQuery, useCreateReviewMutation,useDeleteReviewMutation,useDeleteProductMutation,useCreateProductMutation,useUpdateProductMutation}=productApiSlice;
+export const {useGetProductQuery, useGetSingleProductQuery,useGetTopRatedProductQuery, useCreateReviewMutation,useDeleteReviewMutation,useDeleteProductMutation,useCreateProductMutation,useUpdateProductMutation,useGetAllReviewsQuery,useDeleteReviewAdminMutation}=productApiSlice;

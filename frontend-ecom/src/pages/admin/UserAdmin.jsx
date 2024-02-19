@@ -4,6 +4,8 @@ import { MdOutlineDeleteForever } from "react-icons/md";
 import { useGetAllUsersQuery } from '@/redux/slices/userApiSlice';
 import Loader from '@/components/Loader';
 import { useState } from 'react';
+import { useDeleteUserMutation } from '@/redux/slices/userApiSlice';
+import { useUpdateUserRoleMutation } from '@/redux/slices/userApiSlice';
 import {
   Popover,
   PopoverContent,
@@ -12,8 +14,22 @@ import {
 const UserAdmin = () => {
   const [role , setRole] = useState();
   console.log(role)
-  const { data, error, isLoading } = useGetAllUsersQuery();
+  const { data, error, isLoading,refetch } = useGetAllUsersQuery();
+  const [updateUserRole] = useUpdateUserRoleMutation();
+  const [deleteUser] = useDeleteUserMutation();
+  const handleDeleteUser = async (id) => {
+    if (window.confirm('Are you sure')) {
+      await deleteUser(id)
+      refetch()
+      
+
+    }
+  }
   console.log(data);
+  const handleRoleChange = async (id) => {
+    await updateUserRole({id:id,isAdmin:role})
+    refetch()
+  }
 
   return (
    <AdminLayout>
@@ -79,6 +95,8 @@ const UserAdmin = () => {
                 
                 <PopoverTrigger>
                 <button
+                  type="button"
+                  
                   
                   className="px-4 py-2 mr-4 text-sm text-gray-600 bg-gray-200 rounded-md dark:bg-gray-600 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-300"
                 >
@@ -98,13 +116,14 @@ const UserAdmin = () => {
                   
                   <select onChange={(e)=>setRole(e.target.value)}  className="px-3  border rounded-md focus:outline-none focus:border-blue-500">
                       <option value="">Choose Role...</option>
-                      <option value="user">User</option>
+                      <option value="false">User</option>
 
-                      <option value="admin">Admin</option>
+                      <option value="true">Admin</option>
                     </select>
                   </div>
 
                   <button
+                   onClick={()=>handleRoleChange(user._id )}
                  
                    className=' shadow-md bg-blue-300 p-1 px-2  rounded-sm  ml-[65%]'
                     type="submit"
@@ -116,12 +135,14 @@ const UserAdmin = () => {
                   </div>
                 </PopoverContent>
                 </Popover>
-                <a
-                  href="#"
+                <button
+                  type="button"
+                  onClick={()=>handleDeleteUser(user._id)}
+                 
                   className="px-4 py-2 text-sm text-gray-600 bg-gray-200 rounded-md dark:bg-gray-600 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-300"
                 >
                 <MdOutlineDeleteForever size={'25px'} />
-                </a>
+                </button>
               </div>
             </td>
            

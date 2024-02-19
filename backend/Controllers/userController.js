@@ -185,6 +185,8 @@ const getUserById = async(req,res)=>{
 // @access  Private/Admin
 const updateUserRole= async(req,res)=>{
     const user = await User.findById(req.params.id);
+  //  console.log(req.body);
+    
     if(user){
         user.name =  user.name;
         user.email =  user.email;
@@ -247,6 +249,26 @@ const getAllUsers = async(req,res)=>{
 
 }
 
+// @desc    Delete user
+// @route   DELETE /api/users/:id
+// @access  Private/Admin
+ const deleteUser = async(req,res)=>{
+
+    const user= await User.findById(req.params.id);
+   // console.log("user",user);
+    if(user){
+        if(user.isAdmin){
+            return res.status(400).json({message:"You can not delete admin user"})
+        }
+        await User.deleteOne({_id:user._id});
+        return res.status(200).json({message:"User deleted successfully"});
+
+
+    }else{
+        return res.status(400).json({message:"User not found"})
+    }
+ }
+
 
 
 
@@ -259,6 +281,7 @@ export {
     getUserById,
     getAllUsers,
     updateUserRole,
+    deleteUser,
     
   
 }

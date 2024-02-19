@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {  getAllUsers, getCurrentUser, getUserById, updateUserProfile, updateUserRole, userLogin, userLogout, userRegister } from "../Controllers/userController.js";
+import {  deleteUser, getAllUsers, getCurrentUser, getUserById, updateUserProfile, updateUserRole, userLogin, userLogout, userRegister } from "../Controllers/userController.js";
 import { Admin, verifyUser } from "../middleware/authMiddleware.js";
 import { upload } from "../middleware/multer.js";
 
@@ -14,7 +14,8 @@ import { upload } from "../middleware/multer.js";
  
  router.route("/update-user").put(verifyUser,upload.single("avatar"),updateUserProfile)
  router.route("/:id").get(verifyUser,getUserById)
- router.route("/:id").put(verifyUser,Admin,upload.single("avatar"),updateUserRole)
+ router.route("/admin/:id").put(verifyUser,Admin,updateUserRole)
+ router.route("/admin/delete-user/:id").delete(verifyUser,Admin,deleteUser)
 
 
  

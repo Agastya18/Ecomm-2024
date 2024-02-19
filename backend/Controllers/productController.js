@@ -228,13 +228,16 @@ const createProductReview=async(req,res)=>{
 // @access  Private
 
 const  getAllReviews = async (req, res) => {
-    const product = await Product.findById(req.query.id);
+    const product = await Product.findById(req.params.id);
     if (product) {
-      res.json({message:"Reviews found",reviews:product.reviews});
+      res.json({message:"Reviews found",reviews:product.reviews, products:product});
     } else {
       res.status(404).json({message:"Product not found"});
     }
   };
+
+
+
 
   //detele reviews of a products
 // @route   DELETE /api/products/reviews
@@ -263,8 +266,10 @@ const deleteReview = async (req, res) => {
 
 const deleteReviewAdmin = async (req, res) => {
     const product = await Product.findById(req.params.id);
+   // console.log(req.body);
+    
     if (product) {
-      const reviews = product.reviews.filter(r=>r._id.toString()!==req.params.reviewId.toString());
+      const reviews = product.reviews.filter(r=>r._id.toString()!==req.body.reviewId.toString());
       product.reviews = reviews;
       product.numReviews = product.reviews.length;
       product.rating =
@@ -294,6 +299,7 @@ export {
     createProductReview,
     getAllReviews,
     deleteReview,
+    deleteReviewAdmin,
     
     
    
