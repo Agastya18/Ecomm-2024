@@ -18,7 +18,7 @@ const Review = ({reviews,proInfo,logInfo}) => {
   return (
     <>
     
-  <div className=" justify-center flex-1 max-w-6xl px-4 py-6 mx-auto lg:py-1 md:px-2">
+  <div className="  justify-center flex-1 max-w-6xl px-4 py-6 mx-auto lg:py-1 md:px-2">
     <div className="p-3  bg-zinc-50 rounded-lg shadow-md ">
       <div className="flex flex-wrap items-center mb-2  space-x-2 ">
         <div className="flex self-start flex-shrink-0 cursor-pointer">

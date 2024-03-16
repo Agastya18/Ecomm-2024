@@ -194,7 +194,7 @@ countInStock
         </ul>
       </div>
       <div className="lg:col-span-3">
-        <div className="border-b border-gray-300">
+        <div className="border-b border-gray-300 ">
           <nav className="flex gap-4">
             
             <a
@@ -210,7 +210,7 @@ countInStock
               
             </a>
       
-            {!userInfo ? <Message  message={"Please  Login to write review."}/> : <form className=" flex items-center justify-center bg-slate-50 rounded-md" onSubmit={submitHandler} >
+            {!userInfo ? <Message  message={"Please  Login to write review."}/> : <form className=" md:flex items-center justify-center bg-slate-50 rounded-md" onSubmit={submitHandler} >
 
 <label className="inline text-gray-700 text-sm font-bold ">Rating:</label>
 
@@ -223,9 +223,9 @@ countInStock
             <option value='5'>5 - Excellent</option>
 </select>
 
-<label className="inline text-gray-700 text-sm font-bold ml-2">Comment:</label>
+<label className="block md:inline text-gray-700 text-sm font-bold ml-2 ">Comment:</label>
 <textarea onChange={(e)=>setComment(e.target.value)} value={comment}   rows="1" placeholder="please share your experience?"
-className=" w-80 px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
+className=" md:w-80   w-50 px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
 <button type="submit" className="inline-flex items-center justify-center bg-gray-900 text-white px-4 py-2 rounded-md focus:outline-none hover:bg-gray-800 transition-all duration-200 ease-in-out ml-8">
   Submit
 </button>
