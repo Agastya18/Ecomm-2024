@@ -1,5 +1,5 @@
 
-import productData from "../productData"
+//import productData from "../productData"
 import { useState } from "react";
 import { Link, useParams,useNavigate } from 'react-router-dom'
 import Rating from "../components/Rating";
@@ -146,7 +146,9 @@ countInStock
             {/* future use----/--/---/- */}
             <p className=" font-bold">Brand: <p className=" inline font-light">{product?.brand}</p></p>
             
+            
           </div>
+          
           <button
             type="button"
             className="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-gray-900 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800"
@@ -166,7 +168,7 @@ countInStock
                 d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
               />
             </svg>
-            Add to cart
+            Buy now
           </button>
         </div>
         <ul className="mt-3 space-y-2">

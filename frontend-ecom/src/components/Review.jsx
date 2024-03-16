@@ -25,7 +25,7 @@ const Review = ({reviews,proInfo,logInfo}) => {
           <img
             src={reviews?.avatar}
             alt="review img"
-            className="object-fill w-16 h-16 rounded-full"
+            className="object-cover w-16 h-16 rounded-full"
           />
         </div>
         

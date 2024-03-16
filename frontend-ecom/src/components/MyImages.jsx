@@ -6,9 +6,9 @@ const MyImages = ({imgs=[" "]}) => {
   return (
     <div className="lg:flex lg:items-start">
           <div className="lg:order-2 lg:ml-5">
-            <div className="max-w-xl overflow-hidden rounded-lg">
+            <div className="max-w-xl overflow-hidden rounded-lg md:ml-36 ">
               <img
-                className="h-full w-full max-w-full object-cover"
+                className=" h-full md:h-96  w-full max-w-full md:object-cover "
                 src={mainImg}
                 alt=""
               />

@@ -137,7 +137,7 @@ const Header = () => {
       {/* cart count */}
       <div>
         {userInfo ? ( <div className=' flex items-center justify-center'>
-          <img src={userInfo?.user.avatar} alt="img" className=' w-12 h-12 shrink-0 rounded-full mr-2' />
+          <img src={userInfo?.user.avatar} alt="img" className=' w-12 h-12 shrink-0 object-cover rounded-full mr-2' />
          
   <div className="">
   <div className="group inline-block relative ">
@@ -154,12 +154,27 @@ const Header = () => {
     <ul className="absolute hidden text-gray-700 pt-1 group-hover:block z-30">
       <li className="">
         <a
-          className="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+          className="  rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
           href="/profile"
         >
+        
           Profile
         </a>
       </li>
+     {
+        userInfo?.user?.isAdmin  && (
+          <li className="">
+          <a
+            className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+            href="/dash"
+          >
+           dashboard
+          </a>
+        </li>
+        )
+     }
+
+
       <li className="" onClick={logoutHandler}>
         <a
           className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"

@@ -14,7 +14,7 @@ const Layout = ({children,title}) => {
      
   
    
-    <main  className=' max-h-screen' >
+    <main  className=' min-h-screen' >
     <Header />
     {children}
     <Footer/> 

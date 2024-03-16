@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useCreateProductMutation } from '@/redux/slices/ProductApiSlice';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const CreateProduct = () => {
   const [ProductName, setProductName] = useState('');
   const [Brand, setBrand] = useState('');
@@ -15,6 +16,7 @@ const CreateProduct = () => {
   const [Processing, setProcessing] = useState(false);
   const [file, setFile] = useState('');
   const [preview, setPreview] = useState('');
+  const navigate = useNavigate();
   const [createProduct, { isLoading, isError, error, isSuccess }] = useCreateProductMutation();
   const handleSubmit = async(e) => {
     e.preventDefault();
@@ -44,6 +46,8 @@ const CreateProduct = () => {
       setProcessing(false);
       
       toast.success("Product created successfully")
+      navigate('/admin/product')
+
       
     } catch (error) {
       setProcessing(false);
@@ -156,8 +160,7 @@ const CreateProduct = () => {
                        required name="message" id className=" outline-none w-full min-h-[100px] max-h-[300px] h-28 appearance-none block bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg  py-4 px-4" placeholder="Enter product description" spellCheck="false" defaultValue={""} />
                       
                     </div>
-                    <p className="text-xs text-red-500 text-right my-3">Required fields are marked with an
-                      asterisk <abbr title="Required field">*</abbr></p>
+                    
                     <div className="mt-5 text-right md:space-x-3 md:block flex flex-col-reverse">
                      <Link to={'/admin/product'}>
                      <button className="mb-2 md:mb-0 bg-white px-5 py-2 text-sm shadow-sm font-medium tracking-wider border text-gray-600 rounded-full hover:shadow-lg hover:bg-gray-100"> back </button>

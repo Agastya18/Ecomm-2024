@@ -10,8 +10,8 @@ const MyOrder = () => {
   return (
     <Layout>
      
-      <section className="  items-center lg:flex bg-gray-50 lg:h-screen font-poppins  ">
-  <div className=" mb-80 justify-center flex-1 max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6 bg-gray-400">
+      <section className="  items-center lg:flex bg-gray-50 lg:h-screen font-poppins   ">
+  <div className=" md:mb-40 justify-center flex-1 max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6 bg-gray-400">
     {
       isLoading ? (<Loader/>) :error ? ( <div>error</div> ):(<div className="overflow-x-auto bg-white rounded shadow ">
       <div className="">

@@ -29,6 +29,18 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
         
 
     const user = await User.create({name,email,password,avatar:avatarCloudinaryPath.url})
+    const accessToken = await user.getAccessToken();
+    if(!accessToken){
+        return res.status(400).json({message:"Invalid accesstoken"})
+    }
+    const option={
+        httpOnly:true,
+        secure: true,
+        sameSite: "strict",
+        maxAge: 1000 * 60 * 60 * 24 * 15
+    }
+    res.status(200).cookie("accessToken",accessToken,option);
+    
     if(user){
         return res.status(201).json({message:"User created successfully",
         user:{

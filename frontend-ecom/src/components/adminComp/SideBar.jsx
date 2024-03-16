@@ -7,7 +7,7 @@ import { RiCoupon3Fill } from "react-icons/ri";
 import { HiShoppingCart } from "react-icons/hi2";
 import { FaUserCircle } from "react-icons/fa";
 import { useLocation } from 'react-router-dom';
-import { FaStar } from "react-icons/fa6";
+
 const route =[
   {
     name: 'Dashboard',
@@ -38,11 +38,7 @@ const route =[
     path: '/coupon',
     icon: <RiCoupon3Fill size={'25px'} />
   },
-  {
-    name: 'Review',
-    path: '/admin/review',
-    icon: <FaStar size={'25px'} />
-  }
+  
   
 ]
 const Sidebar = () => {
