@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { MdDashboardCustomize } from "react-icons/md";
 import logo from '../../assets/logo3.svg'
 import { FaProductHunt } from "react-icons/fa6";
-import { RiCoupon3Fill } from "react-icons/ri";
+//import { RiCoupon3Fill } from "react-icons/ri";
 import { HiShoppingCart } from "react-icons/hi2";
 import { FaUserCircle } from "react-icons/fa";
 import { useLocation } from 'react-router-dom';
@@ -33,11 +33,7 @@ const route =[
     path: '/admin/all-user',
     icon: <FaUserCircle size={'25px'}  />
   },
-  {
-    name: 'Coupon',
-    path: '/coupon',
-    icon: <RiCoupon3Fill size={'25px'} />
-  },
+ 
   
   
 ]

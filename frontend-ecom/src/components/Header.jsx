@@ -46,15 +46,15 @@ const Header = () => {
         <p className=' text-sm'>Kharido.com</p>
       </Link>
       {/* search */}
-      <div className="w-full mr-12 max-w-xs xl:max-w-lg 2xl:max-w-2xl bg-gray-200 rounded-md hidden xl:flex items-center">
-        <select
+      <div className=" hidden w-full mr-12 max-w-xs xl:max-w-lg 2xl:max-w-2xl bg-gray-200 rounded-md  xl:flex items-center ">
+        {/* <select
           className="bg-transparent uppercase font-bold text-sm p-4 mr-4"
           
         >
           <option>all categories</option>
-        </select>
+        </select> */}
         <input
-          className="border-l border-gray-300 bg-transparent font-semibold text-sm pl-4"
+          className=" rounded-md  outline-none p-4  w-full border-l border-gray-300 bg-transparent font-semibold text-sm pl-4"
           type="text"
           placeholder="I'm searching for ..."
         />
@@ -79,11 +79,9 @@ const Header = () => {
       {/* buttons */}
       <nav className="contents">
         <ul className=" lg:mr-1 xl:w-48 flex items-center justify-end">
-        <li className="lg:mr-16 lg:ml-4 relative inline-block ">
+        <li className="lg:mr-16 lg:ml-4 mr-5 relative inline-block ">
             <Link to={'/cart'} className="" >
-              {/* <div className="absolute -top-1 right-0 z-10 bg-yellow-400 text-xs font-bold px-1 py-0.5 rounded-sm">
-                11
-              </div> */}
+             
               {
                 cartItems.length>0 && (
                   <div className="absolute -top-1 right-0 z-10 bg-yellow-400 text-xs font-bold px-1 py-0.5 rounded-sm">

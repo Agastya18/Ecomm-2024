@@ -47,7 +47,7 @@ const ProductCard = ({product}) => {
     <div className="flex items-center justify-between">
       <p>
         <span className="text-3xl font-bold text-slate-900">${product.price}</span>
-        <span className="text-sm text-slate-900 line-through  ml-1">$299</span>
+        {/* <span className="text-sm text-slate-900 line-through  ml-1">$299</span> */}
       </p>
       <Link to={'/'}>
       <button
