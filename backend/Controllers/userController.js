@@ -76,6 +76,9 @@ const userLogin = async(req, res) => {
        
         const option={
             httpOnly:true,
+            secure: true,
+            sameSite: "strict",
+            maxAge: 1000 * 60 * 60 * 24 * 15
             
      }
      //console.log(accessToken);
