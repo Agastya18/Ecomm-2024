@@ -1,5 +1,5 @@
 import {Link, useNavigate} from 'react-router-dom'
-
+import { CiSearch } from "react-icons/ci";
 import logo from '../assets/logo3.svg'
 import toast from 'react-hot-toast'
 
@@ -35,6 +35,7 @@ const Header = () => {
 <>
   {/* component */}
   <header className=" bg-slate-50   top-0 w-full">
+    <div>
     <div className="container mx-auto px-4 py-8 flex items-center">
       {/* logo */}
       <Link to={'/'} className="mr-auto md:w-48">
@@ -171,6 +172,18 @@ const Header = () => {
    </Link>
         )}
       </div>
+    </div>
+    <div className=' md:hidden'>
+    <div className=" ml-8  w-full mr-12 max-w-xs xl:max-w-lg 2xl:max-w-2xl bg-gray-200 rounded-md  flex items-center justify-center ">
+        
+        <input
+          className="  rounded-md  outline-none p-4  w-[80%] border-l border-gray-300 bg-transparent font-semibold text-sm pl-4"
+          type="text"
+          placeholder="I'm searching for ..."
+        />
+        <CiSearch size={'30px'} className=' ml-auto  mr-2 ' />
+      </div>
+    </div>
     </div>
     <hr />
   </header>
