@@ -65,11 +65,11 @@ const ProfileScreen = () => {
     
         <Layout>
         
-         <div className="flex flex-col md:flex-row justify-center mt-20 px-8 ">
+         <div className="flex flex-col md:flex-row justify-center md:mt-20 mt-10 px-8 ">
        
-         <div className=' shrink-0'><img className=' mt-7 mr-30  w-72 h-72 rounded-full object-cover' src={userInfo?.user.avatar} alt="" />
+         <div className=' shrink-0'><img className=' md:mt-7 md:mr-30  md:w-72 md:h-72 rounded-full object-cover mt-7  ml-5 w-72 h-72' src={userInfo?.user.avatar} alt="" />
          <Link to={'/my-order'}>
-         <button className=' w-full p-2 rounded-md bg-slate-300 mt-6 hover:bg-slate-500'>
+         <button className=' w-full ml-2 p-2 rounded-md bg-slate-300 mt-6 hover:bg-slate-500'>
           my order
          </button>
          </Link>
