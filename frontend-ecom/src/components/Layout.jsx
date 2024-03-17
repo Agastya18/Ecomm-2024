@@ -16,7 +16,9 @@ const Layout = ({children,title}) => {
    
     <main  className=' min-h-screen' >
     <Header />
+    < >
     {children}
+    </>
     <Footer/> 
   </main>
   

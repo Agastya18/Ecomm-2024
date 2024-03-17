@@ -27,6 +27,7 @@ import EditProduct from './pages/admin/EditProduct'
 import UserAdmin from './pages/admin/UserAdmin'
 import OrderProcess from './pages/admin/OrderProcess'
 import ReviewAdmin from './pages/admin/ReviewAdmin'
+import QueryPage from './pages/QueryPage'
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
      <div >
       <Routes>
         <Route path="/" element={<Home/>} />
+        <Route path="/search/:keyword" element={<QueryPage/>} />
         <Route path="/product/:id" element={<ProductScreen/>} />
         <Route path='/cart' element={<CartScreen/>} />
         <Route path="/register" element={<Register/>} />

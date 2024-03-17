@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom"
 import logo from '../assets/logo3.svg'
+import { FaGithub } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+import { IoLogoYoutube } from "react-icons/io5";
 const Footer = () => {
     return (
       <footer className="bg-gray-100 shadow-md">
@@ -14,6 +17,17 @@ const Footer = () => {
         />
         <p className=' text-sm'>Kharido.com</p>
       </Link>
+      </div>
+      <div className="mt-4 flex justify-center space-x-6 sm:mt-0">
+        <Link to={'/'} className="  hover:text-gray-600">
+        <FaGithub size={'25px'} />
+        </Link>
+        <Link to={'/about'} className="  hover:text-gray-600">
+        <FaLinkedin size={'25px'} />
+        </Link>
+        <Link to={'/contact'} className="  hover:text-gray-600">
+        <IoLogoYoutube size={'25px'} />
+        </Link>
       </div>
 
       <p className="mt-4 text-center text-sm text-gray-500 lg:mt-0 lg:text-right">

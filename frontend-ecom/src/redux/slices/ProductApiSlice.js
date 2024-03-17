@@ -71,9 +71,19 @@ export const productApiSlice= apiSlice.injectEndpoints({
                 method:'DELETE',
                 body:data
             })
-        })
+        }),
+
+        getProductByQuery:builder.query({
+            query:(query)=>({
+                url:`/api/v1/product/search?keyword=${query}`,
+                
+            }),
+            keepUnusedDataFor:5
+        }),
+
+
         
     })
 });
 
-export const {useGetProductQuery, useGetSingleProductQuery,useGetTopRatedProductQuery, useCreateReviewMutation,useDeleteReviewMutation,useDeleteProductMutation,useCreateProductMutation,useUpdateProductMutation,useGetAllReviewsQuery,useDeleteReviewAdminMutation}=productApiSlice;
+export const {useGetProductQuery, useGetSingleProductQuery,useGetTopRatedProductQuery, useCreateReviewMutation,useDeleteReviewMutation,useDeleteProductMutation,useCreateProductMutation,useUpdateProductMutation,useGetAllReviewsQuery,useDeleteReviewAdminMutation,useGetProductByQueryQuery}=productApiSlice;

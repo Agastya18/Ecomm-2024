@@ -283,6 +283,27 @@ const deleteReviewAdmin = async (req, res) => {
 }
 
 
+ const getProductsByQuery = async (req, res) => {
+
+    const keyword = req.query.keyword
+        ? {
+            name: {
+            $regex: req.query.keyword,
+            $options: "i",
+            },
+        }
+        : {};
+       // console.log(keyword);
+    const products = await Product.find({ ...keyword });
+    if (products) {
+        res.json({message:"Products found",products});
+    } else {
+        res.status(404).json({message:"Product not found"});
+    }
+    
+}
+
+
 
  
 
@@ -300,6 +321,7 @@ export {
     getAllReviews,
     deleteReview,
     deleteReviewAdmin,
+    getProductsByQuery,
     
     
    
