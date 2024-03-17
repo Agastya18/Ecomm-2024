@@ -1,12 +1,12 @@
 
-import { Link,useLocation,useNavigation } from 'react-router-dom'
+
 import { useState } from 'react'
 import toast from 'react-hot-toast'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import logo from "../assets/logo3.svg"
-import axios from 'axios'
+
 import Loader from '../components/Loader'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { loginFront } from '../redux/slices/authSlice'
 import { useLoginMutation } from '../redux/slices/userApiSlice'
 const LoginScreen = () => {
@@ -14,8 +14,8 @@ const LoginScreen = () => {
     const [password,setPass]= useState("")
   const [email,setEmail]= useState("")
   const navigate = useNavigate()
-  const [ login , { isLoading, error, data }] = useLoginMutation();
-  const {userInfo}=useSelector(state=>state.auth)
+  const [ login , { isLoading }] = useLoginMutation();
+ // const {userInfo}=useSelector(state=>state.auth)
   const handleSubmit=async(e)=>{  
     e.preventDefault()
     console.log(password,email)
@@ -89,7 +89,7 @@ const LoginScreen = () => {
             <img src={logo} alt="image" className=' h-6 ml-[48%]' />
           </h2>
           <p className="text-xl text-gray-600 text-center">Kharidoo.com !</p>
-          <a
+          <Link
             href="#"
             className="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100"
           >
@@ -116,12 +116,12 @@ const LoginScreen = () => {
             <h1 className="px-4 py-3 w-5/6 text-center text-gray-600 font-bold">
               Sign in with Google
             </h1>
-          </a>
+          </Link>
           <div className="mt-4 flex items-center justify-between">
             <span className="border-b w-1/5 lg:w-1/4" />
-            <a href="#" className="text-xs text-center text-gray-500 uppercase">
+            <div className="text-xs text-center text-gray-500 uppercase">
               or login with email
-            </a>
+            </div>
             <span className="border-b w-1/5 lg:w-1/4" />
           </div>
           <form >
@@ -141,9 +141,9 @@ const LoginScreen = () => {
               <label className="block text-gray-700 text-sm font-bold mb-2">
                 Password
               </label>
-              <a href="#" className="text-xs text-gray-500">
+              {/* <Link href="#" className="text-xs text-gray-500">
                 Forget Password?
-              </a>
+              </Link> */}
             </div>
             <input
               className="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
@@ -161,9 +161,9 @@ const LoginScreen = () => {
           </form>
           <div className="mt-4 flex items-center justify-between">
             <span className="border-b w-1/5 md:w-1/4" />
-            <a href="#" className="text-xs text-gray-500 uppercase">
+            <Link to={'/register'} className="text-xs text-gray-500 uppercase">
               or sign up
-            </a>
+            </Link>
             <span className="border-b w-1/5 md:w-1/4" />
           </div>
         </div>

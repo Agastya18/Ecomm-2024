@@ -204,52 +204,7 @@ const [deleteOrder, { isLoading: deleteLoading }] = useDeleteOrderMutation();
            
           </tbody>
         </table>
-        <div className="flex justify-end pt-4 mt-4 border-t ">
-          <nav aria-label="page-navigation">
-            <ul className="flex list-style-none">
-              <li className="page-item disabled ">
-                <a
-                  href="#"
-                  className="relative block pointer-events-none px-3 py-1.5 mr-3 text-base text-gray-700 transition-all duration-300  rounded-md dark:text-gray-400 hover:text-gray-100 hover:bg-blue-600"
-                >
-                  Previous
-                </a>
-              </li>
-              <li className="page-item ">
-                <a
-                  href="#"
-                  className="relative block px-3 py-1.5 mr-3 text-base hover:text-blue-700 transition-all duration-300 hover:bg-blue-200 dark:hover:text-gray-400 dark:hover:bg-gray-700 rounded-md text-gray-100 bg-blue-600"
-                >
-                  1
-                </a>
-              </li>
-              <li className="page-item ">
-                <a
-                  href="#"
-                  className="relative block px-3 py-1.5 text-base text-gray-700 transition-all duration-300 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-blue-100 rounded-md mr-3  "
-                >
-                  2
-                </a>
-              </li>
-              <li className="page-item ">
-                <a
-                  href="#"
-                  className="relative block px-3 py-1.5 text-base text-gray-700 transition-all duration-300 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-blue-100 rounded-md mr-3 "
-                >
-                  3
-                </a>
-              </li>
-              <li className="page-item ">
-                <a
-                  href="#"
-                  className="relative block px-3 py-1.5 text-base text-gray-700 transition-all duration-300 dark:text-gray-400 dark:hover:bg-gray-700 hover:bg-blue-100 rounded-md "
-                >
-                  Next
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+        
       </div>
     </div>
   </div>

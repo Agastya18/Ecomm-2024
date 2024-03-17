@@ -4,7 +4,7 @@ import { RxDotFilled } from 'react-icons/rx';
 import Loader from '../components/Loader'
 import { useGetTopRatedProductQuery } from '../redux/slices/ProductApiSlice';
 const Carousel = () => {
-  const {data,isLoading,isError}=useGetTopRatedProductQuery()
+  const {data,isLoading}=useGetTopRatedProductQuery()
   const slides = [
     {
       url: `${data?.products[2].images[2]}`,

@@ -20,7 +20,7 @@ const CheckoutForm = () => {
     const navigate = useNavigate()
     const cart = useSelector((state)=>state.cart)
 
-    const [createOrder, { data, error, isLoading }] = useCreateOrderMutation();
+    const [createOrder] = useCreateOrderMutation();
 
     const submitHandler = async (e) => {
       

@@ -20,19 +20,19 @@ const Footer = () => {
       </Link>
       </div>
       <div className="mt-4 flex justify-center space-x-6 sm:mt-0">
-        <Link to={'/'} className="  hover:text-gray-600">
+        <Link to={'https://github.com/Agastya18'} target="_blank" className="  hover:text-gray-600">
         <FaGithub size={'25px'} />
         </Link>
-        <Link to={'/about'} className="  hover:text-gray-600">
+        <Link to={'https://www.linkedin.com/in/agastya-gaur-86b3261a0'} target="_blank" className="  hover:text-gray-600">
         <FaLinkedin size={'25px'} />
         </Link>
-        <Link to={'/contact'} className="  hover:text-gray-600">
+        <Link to={'https://youtube.com/@agastya_gaur?feature=shared'} target="_blank" className="  hover:text-gray-600">
         <IoLogoYoutube size={'25px'} />
         </Link>
       </div>
 
       <p className="mt-4 text-center text-sm text-gray-500 lg:mt-0 lg:text-right">
-        Copyright &copy; 2022. All rights reserved.
+        Copyright &copy; 2024. All rights reserved.
       </p>
     </div>
   </div>

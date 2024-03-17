@@ -1,12 +1,10 @@
-import axios from "axios"
+
 import  Carousel  from "../components/Carousel"
 import Layout from "../components/Layout"
 import ProductCard from "../components/ProductCard"
-import product from "../productData"
-import { useGetProductQuery,useGetProductByQueryQuery } from "../redux/slices/ProductApiSlice"
-import { useEffect } from "react"
-import { useParams } from "react-router-dom"
-import { Link } from "react-router-dom"
+
+import { useGetProductQuery} from "../redux/slices/ProductApiSlice"
+
 const HomeScreen = () => {
   //const {keyword}=useParams()
     //const id = "65abe9891854ed5a5d9fe1e0"
@@ -57,11 +55,3 @@ const HomeScreen = () => {
 export default HomeScreen
 
 
-// <Carousel/>
-      
-//       <div className='flex flex-wrap justify-center'>
-      
-//         {data?.products.map((product) => (
-//           <ProductCard  key={product._id} product={product} />
-//         ))}
-//       </div>

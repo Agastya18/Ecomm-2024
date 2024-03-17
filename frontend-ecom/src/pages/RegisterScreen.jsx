@@ -97,9 +97,9 @@ const RegisterScreen = () => {
 
       <div className="mt-4 flex items-center justify-between">
         <span className="border-b w-1/5 lg:w-1/4" />
-        <a href="#" className="text-xs text-center text-gray-500 uppercase">
+        <div  className="text-xs text-center text-gray-500 uppercase">
            Register with email
-        </a>
+        </div>
         <span className="border-b w-1/5 lg:w-1/4" />
       </div>
       <form >
@@ -175,9 +175,9 @@ const RegisterScreen = () => {
       </form>
       <div className="mt-4 flex items-center justify-between">
         <span className="border-b w-1/5 md:w-1/4" />
-        <a href="#" className="text-xs text-gray-500 uppercase">
+        <Link to={'/login'} className="text-xs text-gray-500 uppercase">
           or sign in
-        </a>
+        </Link>
         <span className="border-b w-1/5 md:w-1/4" />
       </div>
     </div>

@@ -2,13 +2,13 @@
 import { MdDeleteForever} from "react-icons/md";
 import Layout from '../components/Layout';
 import Progress from '../components/Progress';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import EmptyCart from "../components/EmptyCart";
 //import { useState } from "react";
 import { addToCart,removeFromCart } from "../redux/slices/cartSlice";
 const CartScreen = () => {
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const dispatch = useDispatch();
   //const [newqty, setNewqty] = useState(1)
   const  cart  = useSelector((state)=>state.cart);

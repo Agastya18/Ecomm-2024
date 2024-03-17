@@ -197,8 +197,8 @@ countInStock
         <div className="border-b border-gray-300 ">
           <nav className="flex gap-4">
             
-            <a
-              href="#"
+            <div
+             
               title=""
               className="inline-flex items-center border-b-2 border-transparent py-4 text-sm font-medium text-gray-600"
             >
@@ -208,7 +208,7 @@ countInStock
                 {product?.numReviews}{" "}
               </span>
               
-            </a>
+            </div>
       
             {!userInfo ? <Message  message={"Please  Login to write review."}/> : <form className=" md:flex items-center justify-center bg-slate-50 rounded-md" onSubmit={submitHandler} >
 

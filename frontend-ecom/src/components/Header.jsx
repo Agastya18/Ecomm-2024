@@ -134,35 +134,35 @@ const Header = () => {
     </button>
     <ul className="absolute hidden text-gray-700 pt-1 group-hover:block z-30">
       <li className="">
-        <a
+        <Link
           className="  rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
           href="/profile"
         >
         
           Profile
-        </a>
+        </Link>
       </li>
      {
         userInfo?.user?.isAdmin  && (
           <li className="">
-          <a
+          <Link
             className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
             href="/dash"
           >
            dashboard
-          </a>
+          </Link>
         </li>
         )
      }
 
 
       <li className="" onClick={logoutHandler}>
-        <a
+        <Link
           className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
-          href="#"
+          
         >
           Logout
-        </a>
+        </Link>
       </li>
       
     </ul>
