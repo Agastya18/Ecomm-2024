@@ -17,7 +17,7 @@ const OrderScreen = () => {
   const auth = useSelector((state)=>state.auth)
   const {userInfo }=auth
   const cart = useSelector((state)=>state.cart)
-  const {cartItems} = cart;
+ 
  
 
   useEffect(() => {

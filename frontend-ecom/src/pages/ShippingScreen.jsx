@@ -1,6 +1,6 @@
 import Layout from "../components/Layout"
 import logo from "./../assets/ship2.jpg"
-import Progress from "../components/Progress"
+
 import { Link , useNavigate } from "react-router-dom"
 import { useState } from "react"
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,7 +19,7 @@ export const ShippingScreen = () => {
   const [country, setCountry] = useState( shippingAddress.country || "");
   const [postalCode, setPostalCode] = useState( shippingAddress.postalCode || "");
   
-  const [payment, setPayment] = useState("cod")
+  const [payment, setPayment] = useState()
  //const [paymentOnline, setPaymentOnline] = useState("online")
  console.log(payment)
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ export const ShippingScreen = () => {
  
   return (
    <Layout title={"shipping"}>
-      <Progress/>
+     
      <div className="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
      
       <div className="container max-w-screen-lg mx-auto mb-52">
@@ -191,20 +191,9 @@ export const ShippingScreen = () => {
                     />
                   </div>
                   <div className="md:col-span-2">
-                    <p >Payment Method</p>
+                    <p >Payment Method </p>
                     <div className=" flex space-x-4 mt-3 bg-slate-100" >
-                    <label htmlFor="cod" >Cash on delivery</label>
-                      <input
-                      
-                          type='radio'
-                          id="cod"
-                          name="paymentMethod"
-                          
-                           value={payment}
-                        
-                       
-                        onChange={() => setPayment("cod")}
-                      />
+                    
                        <label htmlFor="online">Online</label>
                       <input
                       

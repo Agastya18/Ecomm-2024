@@ -14,7 +14,7 @@ import {
 const UserAdmin = () => {
   const [role , setRole] = useState();
   console.log(role)
-  const { data, error, isLoading,refetch } = useGetAllUsersQuery();
+  const { data,  isLoading,refetch } = useGetAllUsersQuery();
   const [updateUserRole] = useUpdateUserRoleMutation();
   const [deleteUser] = useDeleteUserMutation();
   const handleDeleteUser = async (id) => {

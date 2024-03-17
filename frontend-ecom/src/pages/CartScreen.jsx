@@ -1,7 +1,7 @@
 
 import { MdDeleteForever} from "react-icons/md";
 import Layout from '../components/Layout';
-import Progress from '../components/Progress';
+
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import EmptyCart from "../components/EmptyCart";
@@ -42,11 +42,11 @@ const CartScreen = () => {
       <EmptyCart/>
     ):(
       <>
-      <Progress/>
+      
    
    <div className="h-full  pt-8">
   <h1 className="mb-12 text-center text-4xl font-bold w-[75%] mx-auto  font-Oswald">Your Cart</h1>
-  <div className="mx-auto max-w-6xl justify-center px-6 md:flex md:space-x-6 xl:px-0 bg-gray-100 p-3">
+  <div className="mx-auto max-w-6xl justify-center px-6 md:flex md:space-x-6 xl:px-0 bg-slate-200 p-3">
     <div className="rounded-lg md:w-2/3">
      
       {
@@ -122,11 +122,11 @@ const CartScreen = () => {
         }</p>
       </div>
 
-      <div className="py-6">
+      {/* <div className="py-6">
           <label  className="font-semibold inline-block mb-1 text-sm uppercase">Promo-Coupon Code</label>
           <input type="text" id="promo" placeholder="Enter your code" className="p-2 text-sm w-full"/>
         </div>
-        <button className="bg-red-500 hover:bg-red-600 px-5 py-2 text-sm text-white uppercase">Apply</button>
+        <button className="bg-red-500 hover:bg-red-600 px-5 py-2 text-sm text-white uppercase">Apply</button> */}
 
 
 

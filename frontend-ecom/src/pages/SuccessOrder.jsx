@@ -12,7 +12,7 @@ import Message from '../components/Message';
 
 const SuccessOrder = () => {
   const { id: orderId } = useParams();
-  const { data: order, refetch, isLoading,error } = useGetOrderByIdQuery(orderId);
+  const { data: order,  isLoading,error } = useGetOrderByIdQuery(orderId);
     const navigate = useNavigate()
   const dispatch = useDispatch()
   const auth = useSelector((state)=>state.auth)
@@ -21,7 +21,7 @@ const SuccessOrder = () => {
   return (
     <>
    
-    <Layout>
+    <Layout title={"order-summary"}>
     { isLoading ? <Loader/> : error ? <Message message={"error occure"} /> :<div className="py-8 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto ">
      
      <div className="flex justify-start item-start space-y-1 flex-col">
@@ -129,6 +129,7 @@ const SuccessOrder = () => {
                  </div>   
                </div>
               
+              
              </div>
            </div>
          </div>
@@ -191,10 +192,17 @@ const SuccessOrder = () => {
              </div>
              <div className=" bg-blue-100 rounded flex w-full justify-center items-center md:justify-start md:items-start mt-4">
            
-               <div className="mt-2 md:mt-0  py-5  md:ml-14  w-96 2xl:w-full text-base font-medium leading-4 text-gray-800  ml-14">
+               <div className=" mt-2 md:mt-0  py-5  md:ml-14  w-96 2xl:w-full text-base font-medium leading-4 text-gray-800  ml-14">
                Order Status: <span className=' text-orange-500'>{order?.orderStatus}</span>
                </div>
+               
+               
              </div>
+             <Link to={'/my-order'} className=' shadow-md hover:bg-purple-200 bg-purple-300 rounded flex w-full justify-center items-center md:justify-start md:items-start mt-4'>
+             <div className=" mt-2 md:mt-0  py-2  md:ml-32  w-96 2xl:w-full text-base font-medium leading-4 text-gray-800  ml-14">
+               My-Order
+               </div>
+             </Link>
            </div>
          </div>
        </div>

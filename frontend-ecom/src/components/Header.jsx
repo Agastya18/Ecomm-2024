@@ -147,7 +147,7 @@ const Header = () => {
           <li className="">
           <Link
             className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
-            href="/dash"
+            to="/dash"
           >
            dashboard
           </Link>
@@ -170,9 +170,16 @@ const Header = () => {
 </div>
 
         </div> ): (
-    <Link to={"/login"} className="  rounded-md inline-flex items-center bg-yellow-400 border-0 py-1 px-3 mt-4 md:mt-0">
+   <>
+   <Link to={"/register"} className="  rounded-md inline-flex items-center bg-yellow-400 border-0 py-1 px-3 mt-4 md:mt-0 mr-5">
+     Register
+   </Link>
+   <Link to={"/login"} className="  rounded-md inline-flex items-center bg-yellow-400 border-0 py-1 px-3 mt-4 md:mt-0">
      Login
    </Link>
+   </>
+
+
         )}
       </div>
     </div>

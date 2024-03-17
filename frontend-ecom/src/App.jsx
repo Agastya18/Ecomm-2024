@@ -12,7 +12,7 @@ import PrivateRoute from './components/PrivateRoute'
 import ProfileScreen from './pages/ProfileScreen'
 import { ShippingScreen } from './pages/ShippingScreen'
 import OrderScreen from './pages/OrderScreen'
-import PaymentScreen from './pages/PaymentScreen'
+
 import Success from './components/Success'
 import Cancel from './components/Cancel'
 import SuccessOrder from './pages/SuccessOrder'
@@ -52,7 +52,7 @@ function App() {
         <Route path="/ship" element={<ShippingScreen/>} />
         <Route path="/order" element={<OrderScreen/>} />
         <Route path='/order/:id' element={<SuccessOrder/>} />
-        <Route path="/payment" element={<PaymentScreen/>} />
+        {/* <Route path="/payment" element={<PaymentScreen/>} /> */}
         <Route path='/my-order' element={<MyOrder/>} />
         <Route path='/pay' element={<CheckOut/>} />
         </Route>

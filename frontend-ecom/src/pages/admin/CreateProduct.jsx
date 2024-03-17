@@ -15,9 +15,9 @@ const CreateProduct = () => {
   const [Description, setDescription] = useState('');
   const [Processing, setProcessing] = useState(false);
   const [file, setFile] = useState('');
-  const [preview, setPreview] = useState('');
+  //const [preview, setPreview] = useState('');
   const navigate = useNavigate();
-  const [createProduct, { isLoading, isError, error, isSuccess }] = useCreateProductMutation();
+  const [createProduct] = useCreateProductMutation();
   const handleSubmit = async(e) => {
     e.preventDefault();
    if(!ProductName || !Brand  || !Price || !Stock || !Description || !file  || !Category){

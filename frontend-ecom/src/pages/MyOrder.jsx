@@ -11,7 +11,7 @@ const MyOrder = () => {
     <Layout>
      
       <section className="  items-center lg:flex bg-gray-50 lg:h-screen font-poppins   ">
-  <div className=" md:mb-40 justify-center flex-1 max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6 bg-gray-400">
+  <div className=" md:mb-40 justify-center flex-1 max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6 bg-gray-200">
     {
       isLoading ? (<Loader/>) :error ? ( <div>error</div> ):(<div className="overflow-x-auto bg-white rounded shadow ">
       <div className="">
@@ -25,29 +25,7 @@ const MyOrder = () => {
             <p className="text-xs text-gray-600"> agastya@gmail.com</p>
           </div>
 
-          <div className="flex px-4 py-2 mb-4 border border-gray-300 rounded-md md:mb-0 ">
-            <input
-              type="text"
-              className="w-full pr-4 text-sm text-gray-700 bg-white "
-              placeholder="search..."
-            />
-            <button className="flex items-center text-gray-700   hover:text-blue-600">
-              <span className="mr-2 text-xs ">Go</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width={16}
-                height={16}
-                fill="currentColor"
-                className="bi bi-arrow-right"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
-                />
-              </svg>
-            </button>
-          </div>
+          
 
 
 

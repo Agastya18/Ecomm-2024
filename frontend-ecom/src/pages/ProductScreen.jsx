@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Link, useParams,useNavigate } from 'react-router-dom'
 import Rating from "../components/Rating";
 import Layout from "../components/Layout";
-import { useGetProductQuery,useGetSingleProductQuery ,useCreateReviewMutation} from "../redux/slices/ProductApiSlice"
+import { useGetProductQuery ,useCreateReviewMutation} from "../redux/slices/ProductApiSlice"
 
 import { useDispatch, useSelector } from 'react-redux';
 import Review from "../components/Review";
@@ -14,8 +14,9 @@ import toast from "react-hot-toast";
 import MyImages from "../components/MyImages";
 import { addToCart } from "../redux/slices/cartSlice";
 const ProductScreen = () => {
+  const [rev,setRev] = useState(false) 
   const{data,isLoading,error,refetch}=useGetProductQuery();
-  const [rating, setRating] = useState(0)
+  const [rating, setRating] = useState(5)
   const [comment, setComment] = useState('')
   const [qty, setQty] = useState(1)
   const dispatch = useDispatch()
@@ -28,7 +29,7 @@ const navigate = useNavigate()
     if (qty <= 1) return
     setQty(qty - 1)
   }
-  const [ createReview, { isLoading:isLoadingReview, } ] = useCreateReviewMutation()
+  const [ createReview ] = useCreateReviewMutation()
   const {userInfo}=useSelector(state=>state.auth)
  // console.log(rating,comment)
  
@@ -46,9 +47,9 @@ const navigate = useNavigate()
       e.preventDefault()
       try {
         
-       const resp =  await createReview({ productId,rating,comment});
+         await createReview({ productId,rating,comment});
         //console.log("response data--+",resp)
-        
+         setRev(true)
       
         refetch();
         toast.success("review add succesfully")
@@ -226,7 +227,7 @@ countInStock
 <label className="block md:inline text-gray-700 text-sm font-bold ml-2 ">Comment:</label>
 <textarea onChange={(e)=>setComment(e.target.value)} value={comment}   rows="1" placeholder="please share your experience?"
 className=" md:w-80   w-50 px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
-<button type="submit" className="inline-flex items-center justify-center bg-gray-900 text-white px-4 py-2 rounded-md focus:outline-none hover:bg-gray-800 transition-all duration-200 ease-in-out ml-8">
+<button disabled={rev} type="submit" className="inline-flex items-center justify-center bg-green-800 text-white px-4 py-2 rounded-md focus:outline-none hover:bg-gray-800 transition-all duration-200 ease-in-out ml-8 disabled:hidden">
   Submit
 </button>
 </form>}
@@ -240,7 +241,7 @@ className=" md:w-80   w-50 px-3 py-2 border rounded-md focus:outline-none focus:
 
           {/* // in future loop for review */}
           {product?.reviews.length ===0 && product?.reviews[0] === undefined ? <Message message={"No review yet."}/> : product?.reviews.map((review) => (
-            <Review key={review._id} reviews={review} proInfo={product?._id} logInfo={userInfo?.user}/>
+            <Review key={review._id} reviews={review} proInfo={product?._id} logInfo={userInfo?.user} setRev={setRev} />
           ))}
           
          

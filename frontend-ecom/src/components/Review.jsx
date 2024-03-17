@@ -1,16 +1,18 @@
-import React from 'react'
+
 import Rating from './Rating'
 import { MdDelete } from "react-icons/md";
  import { useDeleteReviewMutation,useGetProductQuery } from '../redux/slices/ProductApiSlice';
-import Loader from './Loader';
+
 import { Link } from 'react-router-dom';
-const Review = ({reviews,proInfo,logInfo}) => {
-  const [deleteReview, { isLoading:isLoadingReview, } ] = useDeleteReviewMutation()
+
+const Review = ({reviews,proInfo,logInfo,setRev}) => {
+  const [deleteReview ] = useDeleteReviewMutation()
   const {refetch}=useGetProductQuery();
  
-
+  
   const deleteRev = async(id)=>{
     await deleteReview(id)
+    setRev(false)
     refetch();
     
   
