@@ -3,6 +3,7 @@ import logo from '../assets/logo3.svg'
 import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { IoLogoYoutube } from "react-icons/io5";
+import foo from "../assets/foo.svg"
 const Footer = () => {
     return (
       <footer className="bg-gray-100 shadow-md">
@@ -12,7 +13,7 @@ const Footer = () => {
       <Link to={'/'} className="mr-auto md:w-48">
         <img
           className="h-16 w-16  "
-          src={logo}
+          src={foo}
           alt="logo"
         />
         <p className=' text-sm'>Kharido.com</p>
@@ -40,3 +41,7 @@ const Footer = () => {
   }
   
   export default Footer
+
+
+
+  
